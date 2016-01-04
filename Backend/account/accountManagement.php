@@ -5,13 +5,10 @@
 ?>
 <head>
     <meta http-equiv="content-Type" content="text/html; charset=utf-8">
-
-    <link href="../../css/bootstrap.min.css" rel="stylesheet">
-    <link href="../../css/index.css" rel="stylesheet">
-    <script src="../../js/jq.js"></script>
-    <script src="../../js/bootstrap.min.js"></script>
-
-
+    <!-- <base href="/Backend" /> -->
+    <?php
+        include "../../head.php";
+    ?>
     <script>
         jQuery(document).ready(function(){
             jQuery('#hideshowAddQ').on('click', function(event) {
