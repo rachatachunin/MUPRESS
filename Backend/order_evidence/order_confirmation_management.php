@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <head>
+  <?php
+    include "../../dbconnection.php";
+    include "../../head.php";
+  ?>
     <meta charset=utf-8 />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <?php include "head.php" ;
-    include "dbconnect.php"; ?>
 <script>
 function getOrder() {
              $('#OrderDetail').modal('show');
@@ -12,7 +14,7 @@ function getOrder() {
 </script>
 </head>
 <body>
-<?php include "header.php"; ?>
+  <?php include "../header.php" ?>
 
 <div class="container-fluid">
     <div class = "container" style="text-align: center">
@@ -36,7 +38,7 @@ function getOrder() {
 
 	</div>
 
-	</div>	
+	</div>
 </div>
 
 </body>
@@ -44,15 +46,15 @@ function getOrder() {
 <!--modal Department-->
 <div class="modal fade" id="OrderDetail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
-        
+
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="myModalLabel">รายการสั่งซื้อ</h4>
             </div>
-         
+
 	            <div class="modal-body">
-	            
+
 	                รายการสั่งซื้อเลขที่ MUP 1 <br>
 	                นาย รชค ชูนิล <br>
 	                วันที่โอน 13/12/2015 <br>
@@ -62,17 +64,17 @@ function getOrder() {
 		                <form action="#" method="post">
 		                	<button type = "submit" class = "btn btn-warning"> ยืนยันกาณโอน</button>
 		                </form>
-	             	</div>	
+	             	</div>
 	            </div>
-          
 
-            <div class="modal-footer">       
+
+            <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">ปิด</button>
             </div>
 
 		</div>
 	  </div>
-    </div> 
+    </div>
 
 
 </html>
