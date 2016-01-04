@@ -41,7 +41,7 @@
         <div class="jumbotron">
             <h2 class="lead">Users Management</h2>
 
-            <p><a class="btn btn-primary btn-lg text-center" href="#" role="button">Manage now<span class="glyphicon glyphicon-user" style="margin-left:10px"></span></a></p>
+            <p><a class="btn btn-primary btn-lg text-center" href="account/accountManagement.php" role="button">Manage now<span class="glyphicon glyphicon-user" style="margin-left:10px"></span></a></p>
         </div>
 
     </div>
@@ -65,7 +65,7 @@
         <div class="jumbotron">
             <h2 class="lead">Order Management</h2>
 
-            <p><a class="btn btn-primary btn-lg text-center" href="#" role="button">Manage now<span class="glyphicon glyphicon-shopping-cart" style="margin-left:10px"></span></a></p>
+            <p><a class="btn btn-primary btn-lg text-center" href="order_evidence/order_confirmation_management.php" role="button">Manage now<span class="glyphicon glyphicon-shopping-cart" style="margin-left:10px"></span></a></p>
         </div>
 
     </div>
