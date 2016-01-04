@@ -18,19 +18,19 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="admin.php">
-                    <img class="img-responsive" alt="Brand" width="130px"  src="../image/logo_mupress.jpg">
+                <a class="navbar-brand" href="/MUPRESS_GIT/Backend/admin.php">
+                    <img class="img-responsive" alt="Brand" width="130px"  src="/MUPRESS_GIT/image/logo_mupress.jpg">
                 </a>
             </div>
             <div class="text-center" style="margin-left:420px;" >
-                    <a href="#" class="navbar-text"> <h4>MUPMIS</h4><b>(Mahidol University Press Management Information System)</b></a></li>
+                    <a href="/MUPRESS_GIT/Backend/admin.php" class="navbar-text"> <h4>MUPMIS</h4><b>(Mahidol University Press Management Information System)</b></a></li>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
 
-                    <li><a href="../disconnect.php">Log out</a></li>
+                    <li><a href="/MUPRESS_GIT/disconnect.php">Log out</a></li>
 
 
 
