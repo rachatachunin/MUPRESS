@@ -2,9 +2,10 @@
 <html>
 <head>
     <meta http-equiv="content-Type" content="text/html; charset=utf-8">
-   <?php 
-        include "head.php" ;
-    ?>
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../css/index.css" rel="stylesheet">
+    <script src="../../js/jq.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
 
     <script>
         jQuery(document).ready(function(){
@@ -37,7 +38,7 @@
                     <ul class="list-group">
                        <li class="list-group-item"><a href="#" onClick="$('#addbox').hide(); $('#editbox').show()">นาย รชต ชูนิล</a></li>
                     </ul>
-                    <div class="panel-footer"> 
+                    <div class="panel-footer">
                            <div id="search-input">
                                 <div class="input-group col-md-12">
 
@@ -75,8 +76,8 @@
                                         <input type="text" class="form-control" name="email" placeholder="Email Address">
                                     </div>
                                 </div>
-                                
-                                
+
+
                                  <div class="form-group">
                                     <label for="phone" class="col-md-3 control-label">เพศ</label>
                                     <div class="col-md-9">
@@ -100,7 +101,7 @@
                                         <input type="password" class="form-control" name="passwd" placeholder="Password">
                                     </div>
                                 </div>
-                                    
+
                                 <div class="form-group">
                                     <label for="phone" class="col-md-3 control-label">เบอร์โทรศัพท์</label>
                                     <div class="col-md-9">
@@ -117,7 +118,7 @@
                     </div>
 
                 </div>
-                
+
         </div>
 
         <div class="col-lg-6">
@@ -126,7 +127,7 @@
                     <ul class="list-group">
                       <li class="list-group-item"><a href="#" onClick="$('#loginbox').hide(); $('#signupbox').show()">CourseSquare.co</a></li>
                     </ul>
-                    <div class="panel-footer"> 
+                    <div class="panel-footer">
                          <div id="search-input">
                                 <div class="input-group col-md-12">
                                     <input type="text"  id = "or_customer"class="form-control input-lg" placeholder="ชื่อ ลูกค้า" />
@@ -147,7 +148,7 @@
                                     <div class="col-md-9">
                                         <input type="text" class="form-control" name="organization" placeholder="ชื่อองกรณ์">
                                     </div>
-                                    </div>                                    
+                                    </div>
 
                                     <div class="form-group">
                                     <label for="firstname" class="col-md-3 control-label">ชื่อ</label>
@@ -169,9 +170,9 @@
                                         <input type="text" class="form-control" name="email" placeholder="Email Address">
                                     </div>
                                 </div>
-                                
-                                
-                                
+
+
+
                                 <div class="form-group">
                                     <label for="password" class="col-md-3 control-label">ที่อยู่</label>
                                     <div class="col-md-9">
@@ -185,7 +186,7 @@
                                         <input type="password" class="form-control" name="passwd" placeholder="Password">
                                     </div>
                                 </div>
-                                    
+
                                 <div class="form-group">
                                     <label for="phone" class="col-md-3 control-label">เบอร์โทรศัพท์</label>
                                     <div class="col-md-9">
@@ -194,20 +195,20 @@
                                 </div>
                                         <button type="submit" class="btn btn-warning">เพิ่ม</button>
 
-                                    </form>  
-                                    
+                                    </form>
+
                                 </div>
                         </div>
 
-                           
+
                     </div>
 
                 </div>
-                
-        </div>  
+
+        </div>
     </div>
-    </div>    
+    </div>
 </body>
-   
+
 
 </html>
