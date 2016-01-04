@@ -1,6 +1,5 @@
 <?php
 $con = new mysqli("localhost", "root", "root", "MU_PRESS");
-
 header('Content-Type: text/html; charset=utf-8');
 mysqli_query($con,"SET NAMES UTF8");
 
