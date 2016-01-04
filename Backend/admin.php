@@ -2,10 +2,13 @@
 <html>
 <head>
     <title>Admin</title>
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <?php
+      include "../head.php";
+    ?>
+    <!-- <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/index.css" rel="stylesheet">
     <script src="../js/jq.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script> -->
 </head>
 <body>
 
