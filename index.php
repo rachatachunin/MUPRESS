@@ -236,7 +236,7 @@ session_start();
 
                             <form  method="post" action="Authentication/login.php">
 
-                                <input type="text" class="form-control" placeholder="Username" id= "username" name="username"required autofocus="true"><br>
+                                <input type="text" class="form-control" placeholder="Username" id= "username" name="username" required autofocus="true"><br>
                                 <input type="password" class="form-control" placeholder="Password"id= "password" name="password" required><br>
 
                                 <button class="btn btn-lg btn-primary btn-block" type="submit">

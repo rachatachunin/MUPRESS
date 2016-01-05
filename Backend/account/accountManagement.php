@@ -33,49 +33,52 @@
         <h4>( Accounts Management )</h4><br>
          <div class="col-lg-6">
                 <div class="panel panel-info">
-                    <div class="panel-heading">ลูกค้าทั่วไป
-                        <div class="pull-right" style="margin-top:0;">
+                    <div class="panel-heading">
+                        <div style="text-align:left">
+                          ลูกค้าทั่วไป
+                          <div class="pull-right" style="margin-top:0;">
+                            <button class="btn btn-info" id = "hideshowAddCus"><i class="glyphicon glyphicon-plus"></i> เพิ่มลูกค้า</button>
+                          </div>
                         </div>
                     </div>
                     <ul class="list-group">
+                       <li class="list-group-item">
+                         <div id="search-input">
+                            <div class="input-group col-md-12">
+                                <input type="text" id = "general_customer" class="form-control input-md" placeholder="ชื่อ ลูกค้า" />
+                                  <span class="input-group-btn">
+                                    <button class="btn btn-info btn-md" type="button">
+                                        <i class="glyphicon glyphicon-search"></i>
+                                    </button>
+                                </span>
+                            </div>
+                       </div>
+                     </li>
                        <li class="list-group-item"><a href="#" onClick="$('#addbox').hide(); $('#editbox').show()">นาย รชต ชูนิล</a></li>
                     </ul>
                     <div class="panel-footer">
-                           <div id="search-input">
-                                <div class="input-group col-md-12">
-
-                                    <input type="text" id = "general_customer" class="form-control input-lg" placeholder="ชื่อ ลูกค้า" />
-                                      <span class="input-group-btn">
-                                        <button class="btn btn-info btn-lg" type="button">
-                                            <i class="glyphicon glyphicon-search"></i>
-                                        </button>
-                                    </span>
-                                </div>
-                           </div><br>
-
                             <div id = "addCustomer">
-                              <button class="btn btn-info" id = "hideshowAddCus"><i class="glyphicon glyphicon-plus"></i> เพิ่มลูกค้า</button>
                                 <div id="AddCus" style="display: none">
-                                 <form id="addCustomerForm" onsubmit="return confirm('Do you really want to submit?');" action ="index.php" method="post" class="form-horizontal" role="form" style="margin-top: 20px">
+                                 <form id="addCustomerForm" onsubmit="return confirm('Do you really want to submit?');" action ="addCustomer.php" method="post" class="form-horizontal" role="form" style="margin-top: 20px">
                                     <!-- <form class="from" onsubmit="return confirm('Do you really want to submit?');" method="post" action="AddCustomer.php" style="margin-top: 20px"> -->
                                 <div class="form-group">
                                     <label for="firstname" class="col-md-3 control-label">ชื่อ</label>
                                     <div class="col-md-9">
-                                        <input type="text" class="form-control" name="firstname" placeholder="ชื่อ">
+                                        <input type="text" class="form-control" name="firstname" placeholder="ชื่อ" required="true">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="lastname" class="col-md-3 control-label">นามสกุล</label>
                                     <div class="col-md-9">
-                                        <input type="text" class="form-control" name="lastname" placeholder="นามสกุล">
+                                        <input type="text" class="form-control" name="lastname" placeholder="นามสกุล" required="true">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="email" class="col-md-3 control-label">Email</label>
                                     <div class="col-md-9">
-                                        <input type="text" class="form-control" name="email" placeholder="Email Address">
+                                        <input type="text" class="form-control" name="email" placeholder="Email Address" required="true">
                                     </div>
                                 </div>
 
@@ -83,7 +86,7 @@
                                  <div class="form-group">
                                     <label for="phone" class="col-md-3 control-label">เพศ</label>
                                     <div class="col-md-9">
-                                        <select name="gender" class="form-control" aria-describedby="sizing-addon">
+                                        <select name="gender" class="form-control" aria-describedby="sizing-addon" required="ture">
                                             <option value="">เลือกเพศ</option>
                                             <option value="M">ชาย</option>
                                             <option value="F">หญิง</option>
@@ -100,14 +103,14 @@
                                 <div class="form-group">
                                     <label for="password" class="col-md-3 control-label">Password</label>
                                     <div class="col-md-9">
-                                        <input type="password" class="form-control" name="passwd" placeholder="Password">
+                                        <input type="password" class="form-control" name="passwd" placeholder="Password" required="ture">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="phone" class="col-md-3 control-label">เบอร์โทรศัพท์</label>
                                     <div class="col-md-9">
-                                        <input type="text" class="form-control" name="phone" placeholder="เบอร์โทรศัพท์">
+                                        <input type="text" class="form-control" name="phone" placeholder="เบอร์โทรศัพท์" required="ture">
                                     </div>
                                 </div>
 
@@ -125,24 +128,31 @@
 
         <div class="col-lg-6">
                 <div class="panel panel-warning">
-                    <div class="panel-heading">ลูกค้าองค์กร</div>
+                    <div class="panel-heading">
+                      <div style="text-align:left">
+                        ลูกค้าองค์กร
+                        <div class="pull-right" style="margin-top:0;">
+                          <button class="btn btn-warning" id = "hideshowAddQ"><i class="glyphicon glyphicon-plus"></i> เพิ่มลูกค้าองค์กร</button>
+                        </div>
+                      </div>
+                    </div>
                     <ul class="list-group">
+                      <li class="list-group-item">
+                        <div id="search-input">
+                           <div class="input-group col-md-12">
+                               <input type="text" id = "general_customer" class="form-control input-md" placeholder="ชื่อ ลูกค้า" />
+                                 <span class="input-group-btn">
+                                   <button class="btn btn-warning btn-md" type="button">
+                                       <i class="glyphicon glyphicon-search"></i>
+                                   </button>
+                               </span>
+                           </div>
+                      </div>
+                    </li>
                       <li class="list-group-item"><a href="#" onClick="$('#loginbox').hide(); $('#signupbox').show()">CourseSquare.co</a></li>
                     </ul>
                     <div class="panel-footer">
-                         <div id="search-input">
-                                <div class="input-group col-md-12">
-                                    <input type="text"  id = "or_customer"class="form-control input-lg" placeholder="ชื่อ ลูกค้า" />
-                                      <span class="input-group-btn">
-                                        <button class="btn btn-warning btn-lg" type="button">
-                                            <i class="glyphicon glyphicon-search"></i>
-                                        </button>
-                                    </span>
-                                </div>
-                        </div>
-                        <br>
                         <div id = "addOrganization">
-                              <button class="btn btn-warning" id = "hideshowAddQ"><i class="glyphicon glyphicon-plus"></i> เพิ่มลูกค้าองกรณ์</button>
                                 <div id="AddQ" style="display: none">
                                  <form id="addOrganizationForm" onsubmit="return confirm('Do you really want to submit?');" action ="index.php" method="post" class="form-horizontal" role="form" style="margin-top: 20px">
                                      <div class="form-group">
