@@ -12,7 +12,7 @@ $resultAll = mysqli_query($con,$sqlAll);
 $books = mysqli_query($con,"select * from book where book_id = ".$q."");
 $book = mysqli_fetch_array($books);
 
-echo ' <div class="modal fade" id="mS'.$row['book_id'].'" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+echo ' <div class="modal fade" id="mS'.$book['book_id'].'" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -34,7 +34,7 @@ echo ' <div class="modal fade" id="mS'.$row['book_id'].'" tabindex="-1" role="di
                                         </div>
                                         <div class="input-group hidden">
                                             <span class="input-group-addon" id="sizing-addon">Building name:</span>
-                                            <input type="hidden" class="form-control" placeholder="" aria-describedby="sizing-addon" name="bookid" value="'.$row['book_id'].'">
+                                            <input type="hidden" class="form-control" placeholder="" aria-describedby="sizing-addon" name="bookid" value="'.$book['book_id'].'">
                                         </div>
                                         <br>
 
@@ -67,13 +67,18 @@ echo ' <div class="modal fade" id="mS'.$row['book_id'].'" tabindex="-1" role="di
                         <div class="col-lg-6">
                             <h5>ประวัติการเพิ่ม - ลด หนังสือ</h5>
                             <ul class="list-group" style="overflow:auto">';
-                                while($book = mysqli_fetch_array($resultAll)){
-                                    if($book['action']=='IN'){
-                                        echo '<li class="list-group-item" style="color:green">'.'เพิ่ม'.' จำนวน '.$book['amount'].' เล่ม '.date('m/j/Y',strtotime($book['created_date'])).'</li>';
+                                if(mysqli_num_rows($result) > 0 ){
+                                    while($ebook = mysqli_fetch_array($resultAll)){
+                                        if($ebook['action']=='IN'){
+                                            echo '<li class="list-group-item" style="color:green">'.'เพิ่ม'.' จำนวน '.$ebook['amount'].' เล่ม '.date('m/j/Y',strtotime($ebook['created_date'])).'</li>';
+                                        }
+                                        if($ebook['action']=='OUT'){
+                                            echo '<li class="list-group-item" style="color:red">'.'ลด'.' จำนวน '.$ebook['amount'].' เล่ม '.date('m/j/Y',strtotime($ebook['created_date'])).'</li>';
+                                        }
                                     }
-                                    if($book['action']=='OUT'){
-                                        echo '<li class="list-group-item" style="color:red">'.'ลด'.' จำนวน '.$book['amount'].' เล่ม '.date('m/j/Y',strtotime($book['created_date'])).'</li>';
-                                    }
+                                }
+                                else{
+                                  echo '<h5>ยังไม่มีประวัติ</h5>';
                                 }
                            echo '</ul>
                         </div>
@@ -84,4 +89,3 @@ echo ' <div class="modal fade" id="mS'.$row['book_id'].'" tabindex="-1" role="di
             </div>';
 mysqli_close($con);
 ?>
-

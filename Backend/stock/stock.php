@@ -40,23 +40,33 @@
   include "../../dbconnection.php";
   $sql = "SELECT * FROM book";
   $allBook = mysqli_query($con, $sql);
-
+  $allBookk = mysqli_query($con, $sql);
 
 ?>
 
 <body>
-  
+
 <?php include "../header.php" ?>
 
 <div class="container-fluid" id="navv" style="text-align: center;">
     <h2 class="lead">Stock Management</h2>
 </div>
 
-<div class="container-fluid" id="search-bar" style="text-align: center;">
-
+<div class="row" id="search-bar" style="text-align: center;">
+    <div class="from-group">
+      <label for="searchb" class="control-label">ค้นหาโดยชื่อหนังสือ</label>
+          <select class="chosen-select" style="width: 400px" name="searchb" id="searchb" onchange="getBook(this.value)" aria-describedby="sizing-addon6">
+              <option selected disabled>เลือกชื่อหนังสือ</option>
+              <?php  while($row = mysqli_fetch_array($allBookk)) {
+                  echo '<option value="'.$row['book_id'].'">'.$row['title'].'</option>';
+              }
+              ?>
+          </select>
+          <span class="help-block"></span>
+    </div>
 </div>
 
-<div class="container" id="search-bar" style="text-align: center;">
+<div class="container" id="table-list" style="text-align: center;">
     <table class="table" >
       <th style="text-align: center;">
         ชื่อหนังสือ
@@ -69,6 +79,9 @@
       </th>
       <th style="text-align: center;">
         เปลี่ยนแปลงล่าสุด
+      </th>
+      <th>
+
       </th>
 
       <?php
@@ -85,7 +98,8 @@
             echo "<tr>";
             echo "<td>";
 
-                echo '<a href="#" onclick="mS('.$row['book_id'].')" >'.$row['title'].'</a>';
+                echo $row['title'];
+                //echo '<a href="#" onclick="mS('.$row['book_id'].')" >'.$row['title'].'</a>';
             echo "</td>";
               echo "<td>";
 
@@ -97,7 +111,17 @@
               echo "</td>";
               echo "<td>";
 
-              echo date('m/j/Y',strtotime($cdate['created_date']));
+              if(mysqli_num_rows($ldate) > 0 )
+              {
+                echo date('j/m/Y',strtotime($cdate['created_date']));
+              }
+              else {
+                echo 'ไม่เคยมีการเปลี่ยนแปลง';
+              }
+              echo "</td>";
+
+              echo "<td>";
+                  echo "<button class=\"btn btn-warning btn-xs\" data-book-id=\"".$row['book_id']."\" data-toggle=\"modal\" data-target=\"#fastAdd\" >เพิ่มจำนวนเร่งด่วน</button>";
               echo "</td>";
             echo "</tr>";
           }
@@ -111,4 +135,116 @@
 <div id="txtHint">
 
 </div>
+
+<div class="modal fade" id="fastAdd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">เพิ่มจำนวนหนังสือในคลัง</h4>
+            </div>
+            <form method="get" action="addStock.php">
+            <div class="modal-body">
+                <div class="from">
+                    <div class="input-group hidden">
+                        <span class="input-group-addon" id="sizing-addon">Job-group name:</span>
+                        <input type="text" class="form-control" placeholder="" aria-describedby="sizing-addon" name="bookid" value="" required="true">
+                    </div>
+                    <br>
+                    <div class="container-fluid text-center">
+                    <button class="btn btn-success" id="amountPlus" type="button" field="amount" >+</button>
+                    <input class="text-center" type="text" aria-describedby="sizing-addon" id="amountText" name="amount" value="100" required="true">
+                    <button class="btn btn-danger" id="amountMinus" type="button" field="amount" >-</button>
+                    </div>
+                    <h6 class="pull-right">*สามารถกรอกจำนวนที่ต้องการได้ในช่องด้านบน</h6>
+                    <br>
+                </div>
+            </div>
+            <div class="modal-footer">
+
+                <button type="submit" class="btn btn-primary">ตกลง</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">ยกเลิก</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
 </html>
+
+<script type="text/javascript">
+
+    $('#fastAdd').on('show.bs.modal', function(e) {
+      var bookId = $(e.relatedTarget).data('book-id');
+      $(e.currentTarget).find('input[name="bookid"]').val(bookId);
+    });
+
+    $("#searchb").on("change", function() {
+    var value = $(this).val();
+
+          $("table tr").each(function(index) {
+              if (index !== 0) {
+
+                  $row = $(this);
+
+                  var id = $row.find("td:first").text();
+
+                  if (id.indexOf(value) !== 0) {
+                      $row.hide();
+                  }
+                  else {
+                      $row.show();
+                  }
+              }
+          });
+    });
+    // $("#searchb").change(function(){
+    //     _this = this;
+    //     // Show only matching TR, hide rest of them
+    //     $.each($("#table tbody").find("tr"), function() {
+    //         console.log($(this).text());
+    //         if($(this).text().toLowerCase().indexOf($(_this).val().toLowerCase()) == -1)
+    //            $(this).hide();
+    //         else
+    //              $(this).show();
+    //     });
+    // });
+
+    jQuery(document).ready(function(){
+    // This button will increment the value
+        $('#amountPlus').click(function(e){
+            // Stop acting like a button
+            e.preventDefault();
+            // Get the field name
+            fieldName = $(this).attr('field');
+            // Get its current value
+            var currentVal = parseInt($('input[name='+fieldName+']').val());
+            // If is not undefined
+            if (!isNaN(currentVal)) {
+                // Increment
+                $('input[name='+fieldName+']').val(currentVal + 100);
+            } else {
+                // Otherwise put a 0 there
+                $('input[name='+fieldName+']').val(0);
+            }
+        });
+        // This button will decrement the value till 0
+        $("#amountMinus").click(function(e) {
+            // Stop acting like a button
+            e.preventDefault();
+            // Get the field name
+            fieldName = $(this).attr('field');
+            // Get its current value
+            var currentVal = parseInt($('input[name='+fieldName+']').val());
+            // If it isn't undefined or its greater than 0
+            if (!isNaN(currentVal) && currentVal > 0) {
+                // Decrement one
+                $('input[name='+fieldName+']').val(currentVal - 100);
+            } else {
+                // Otherwise put a 0 there
+                $('input[name='+fieldName+']').val(0);
+            }
+        });
+        $('.chosen-select', this).chosen();
+    });
+
+</script>
