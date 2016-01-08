@@ -2,6 +2,14 @@
 <html>
 <?php
   include "../../dbconnection.php";
+  //sql geting data
+  $sql_getCustomer = "SELECT * FROM user ORDER BY user_fn ASC  ";
+  $sql_getOrganization = "SELECT comp.user_id, comp.organization_name FROM organization as comp LEFT JOIN user ON comp.user_id = user.user_id
+                          ORDER BY comp.organization_name ASC ";
+  //query data
+  $result = mysqli_query($con,$sql_getCustomer);
+  $result2 = mysqli_query($con,$sql_getOrganization);
+
 ?>
 <head>
     <meta http-equiv="content-Type" content="text/html; charset=utf-8">
@@ -21,6 +29,77 @@
                 jQuery('#AddCus').toggle('show');
             });
         });
+
+    </script>
+
+    <script >
+    function editCUS(str) {
+        if (str == "") {
+            document.getElementById("editCustomers").innerHTML = "";
+            return;
+        } else {
+            if (window.XMLHttpRequest) {
+                // code for IE7+, Firefox, Chrome, Opera, Safari
+                xmlhttp = new XMLHttpRequest();
+            } else {
+                // code for IE6, IE5
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xmlhttp.onreadystatechange = function() {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    document.getElementById("editCustomers").innerHTML = xmlhttp.responseText;
+                    $('#EditC'+str).modal('show');
+                }
+            }
+            xmlhttp.open("GET","editCustomerDetail.php?q="+str,true);
+            xmlhttp.send();
+        }
+    }
+
+    function editOR(str) {
+        if (str == "") {
+            document.getElementById("editOrganization").innerHTML = "";
+            return;
+        } else {
+            if (window.XMLHttpRequest) {
+                // code for IE7+, Firefox, Chrome, Opera, Safari
+                xmlhttp = new XMLHttpRequest();
+            } else {
+                // code for IE6, IE5
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xmlhttp.onreadystatechange = function() {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    document.getElementById("editOrganization").innerHTML = xmlhttp.responseText;
+                    $('#EditO'+str).modal('show');
+                }
+            }
+            xmlhttp.open("GET","editOrganizationDetail.php?q="+str,true);
+            xmlhttp.send();
+        }
+    }
+
+    function generateRandomString() {
+      var text = "";
+     var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+     for( var i=0; i < 10; i++ )
+         text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+    var elem = document.getElementById("mytext");
+    elem.value = text;
+
+    }
+
+    function generateRandomStringOr() {
+      var text = "";
+     var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+     for( var i=0; i < 10; i++ )
+         text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+    var elem = document.getElementById("mytextOr");
+    elem.value = text;
+
+    }
 
     </script>
 </head>
@@ -54,7 +133,17 @@
                             </div>
                        </div>
                      </li>
-                       <li class="list-group-item"><a href="#" onClick="$('#addbox').hide(); $('#editbox').show()">นาย รชต ชูนิล</a></li>
+                     <?php
+                     while($row1 = mysqli_fetch_array($result)){
+                      echo '<li class = "list-group-item">' ;
+                      echo $row1['user_fn']."  ".$row1['user_ln'];
+                      echo '<a href="#" class="icon pull-right" onclick="editCUS('.$row1['user_id'].')">
+                            <span class="glyphicon glyphicon-cog"></span>
+                            </a>
+                            </li>';
+                          }
+                     ?>
+                       <!-- <li class="list-group-item"><a href="#" onClick="$('#addbox').hide(); $('#editbox').show()">นาย รชต ชูนิล</a></li> -->
                     </ul>
                     <div class="panel-footer">
                             <div id = "addCustomer">
@@ -84,7 +173,7 @@
 
 
                                  <div class="form-group">
-                                    <label for="phone" class="col-md-3 control-label">เพศ</label>
+                                    <label for="gender" class="col-md-3 control-label">เพศ</label>
                                     <div class="col-md-9">
                                         <select name="gender" class="form-control" aria-describedby="sizing-addon" required="ture">
                                             <option value="">เลือกเพศ</option>
@@ -94,16 +183,21 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="password" class="col-md-3 control-label">ที่อยู่</label>
+                                    <label for="address" class="col-md-3 control-label">ที่อยู่</label>
                                     <div class="col-md-9">
-                                        <textarea name="address"  cols="50" rows="5"></textarea>
+                                        <textarea  name="address"  cols="50" rows="5"></textarea>
                                     </div>
                                 </div>
 
-                                <div class="form-group">
+                                <div class="form-group" >
                                     <label for="password" class="col-md-3 control-label">Password</label>
                                     <div class="col-md-9">
-                                        <input type="password" class="form-control" name="passwd" placeholder="Password" required="ture">
+                                      <div class="col-md-6">
+                                          <input type="password" class="form-control"  id ="mytext" value="" name="pass" placeholder="Password">
+                                      </div>
+                                      <div class="col-md-3">
+                                          <button type="button" class="btn btn-info" onclick="generateRandomString()" name="button">Generate Password</button>
+                                      </div>
                                     </div>
                                 </div>
 
@@ -149,12 +243,23 @@
                            </div>
                       </div>
                     </li>
-                      <li class="list-group-item"><a href="#" onClick="$('#loginbox').hide(); $('#signupbox').show()">CourseSquare.co</a></li>
+                    <?php
+                    while($row2 = mysqli_fetch_array($result2)){
+                     echo '<li class = "list-group-item">' ;
+                     echo $row2['organization_name'];
+                     echo '<a href="#" class="icon pull-right" onclick="editOR('.$row2['user_id'].')" >
+                           <span class="glyphicon glyphicon-cog"></span>
+                           </a>
+                           </li>';
+                   }
+                    ?>
+
+                      <!-- <li class="list-group-item"><a href="#" onClick="$('#loginbox').hide(); $('#signupbox').show()">CourseSquare.co</a></li> -->
                     </ul>
                     <div class="panel-footer">
                         <div id = "addOrganization">
                                 <div id="AddQ" style="display: none">
-                                 <form id="addOrganizationForm" onsubmit="return confirm('Do you really want to submit?');" action ="index.php" method="post" class="form-horizontal" role="form" style="margin-top: 20px">
+                                 <form id="addOrganizationForm" onsubmit="return confirm('Do you really want to submit?');" action ="addOrganization.php" method="post" class="form-horizontal" role="form" style="margin-top: 20px">
                                      <div class="form-group">
                                     <label for="organization" class="col-md-3 control-label">ชื่อองกรณ์</label>
                                     <div class="col-md-9">
@@ -195,7 +300,12 @@
                                 <div class="form-group">
                                     <label for="password" class="col-md-3 control-label">Password</label>
                                     <div class="col-md-9">
-                                        <input type="password" class="form-control" name="passwd" placeholder="Password">
+                                      <div class="col-md-6">
+                                          <input type="password" class="form-control"  id ="mytextOr" value="" name="pass" placeholder="Password">
+                                      </div>
+                                      <div class="col-md-3">
+                                          <button type="button" class="btn btn-warning" onclick="generateRandomStringOr()" name="button">Generate Password</button>
+                                      </div>
                                     </div>
                                 </div>
 
@@ -221,6 +331,10 @@
     </div>
     </div>
 </body>
+
+<div id= "editCustomers">  </div>
+
+<div id= "editOrganization">  </div>
 
 
 </html>

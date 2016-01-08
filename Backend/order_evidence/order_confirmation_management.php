@@ -43,7 +43,7 @@ function getOrder() {
 
 </body>
 
-<!--modal Department-->
+<!--modal OrderDe-->
 <div class="modal fade" id="OrderDetail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
 
