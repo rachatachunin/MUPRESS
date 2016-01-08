@@ -191,7 +191,7 @@
               }
           });
     });
-  
+
     jQuery(document).ready(function(){
     // This button will increment the value
         $('#amountPlus').click(function(e){
