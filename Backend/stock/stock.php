@@ -55,13 +55,7 @@
 <div class="row" id="search-bar" style="text-align: center;">
     <div class="from-group">
       <label for="searchb" class="control-label">ค้นหาโดยชื่อหนังสือ</label>
-          <select class="chosen-select" style="width: 400px" name="searchb" id="searchb" onchange="getBook(this.value)" aria-describedby="sizing-addon6">
-              <option selected disabled>เลือกชื่อหนังสือ</option>
-              <?php  while($row = mysqli_fetch_array($allBookk)) {
-                  echo '<option value="'.$row['book_id'].'">'.$row['title'].'</option>';
-              }
-              ?>
-          </select>
+        <input type="text" style="width:350px" id="searchb" placeholder="ใส่ชื่อที่ต้องการค้นหา" aria-describedby="sizing-addon" name="bookn" >
           <span class="help-block"></span>
     </div>
 </div>
@@ -178,7 +172,7 @@
       $(e.currentTarget).find('input[name="bookid"]').val(bookId);
     });
 
-    $("#searchb").on("change", function() {
+    $("#searchb").on("keyup", function() {
     var value = $(this).val();
 
           $("table tr").each(function(index) {
@@ -197,17 +191,6 @@
               }
           });
     });
-    // $("#searchb").change(function(){
-    //     _this = this;
-    //     // Show only matching TR, hide rest of them
-    //     $.each($("#table tbody").find("tr"), function() {
-    //         console.log($(this).text());
-    //         if($(this).text().toLowerCase().indexOf($(_this).val().toLowerCase()) == -1)
-    //            $(this).hide();
-    //         else
-    //              $(this).show();
-    //     });
-    // });
 
     jQuery(document).ready(function(){
     // This button will increment the value
