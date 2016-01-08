@@ -50,10 +50,10 @@
                     <br>
                     <div class="input-group">
                         <span class="input-group-addon" id="sizing-addon2">จำนวน:</span>
-                        <input type="text" class="form-control" id="am" placeholder="" aria-describedby="sizing-addon2" name="amount">
+                        <input type="number" class="form-control" id="am" placeholder="" aria-describedby="sizing-addon2" name="amount" >
                     </div>
                     <br>
-                        <button type="button" onclick="getBooklist()" class="btn btn-success" >เพิ่ม</button>
+                        <button type="button" id="addbook" onclick="getBooklist()" class="btn btn-success" >เพิ่ม</button>
                     </form>
 
                 </div>
@@ -75,31 +75,49 @@
     var list = document.getElementById('blist');
 
     function getBooklist(){
-        document.getElementById("txt").innerHTML = "";
-        var x = document.getElementById("myForm");
-        var txt = "";
-        var i;
-        var entry = document.createElement('li');
-        entry.setAttribute('class','list-group-item');
-        var deleteb = document.createElement('button');
-        deleteb.setAttribute('class','btn btn-danger btn-sm pull-right');
-        deleteb.setAttribute('style','margin-top: -5px');
-        deleteb.innerHTML = "ลบรายการ";
+        var check = parseInt(document.getElementById("am").value);
+        if( !$("#am").val() ) {
+          alert("กรุณาใส่จำนวนหนังสือ");
+        }
+        else{
+          if(check > 0){
+                document.getElementById("txt").innerHTML = "";
+                var x = document.getElementById("myForm");
+                var txt = "";
+                var i;
+                var entry = document.createElement('li');
+                entry.setAttribute('class','list-group-item');
+                var deleteb = document.createElement('button');
+                deleteb.setAttribute('class','btn btn-danger btn-sm pull-right');
+                deleteb.setAttribute('style','margin-top: -5px');
+                deleteb.setAttribute('id',x.elements[0].value);
+                deleteb.setAttribute('name',document.getElementById('bn').options[document.getElementById('bn').selectedIndex].text);
+                deleteb.innerHTML = "ลบรายการ";
 
 
-        entry.appendChild(document.createTextNode(document.getElementById('bn').options[document.getElementById('bn').selectedIndex].text));
-            entry.setAttribute('id', x.elements[0].value);
-            entry.appendChild(document.createTextNode("จำนวน "+x.elements[1].value+" เล่ม"));
-            entry.setAttribute('name', x.elements[1].value);
-        entry.appendChild(deleteb);
-        list.appendChild(entry);
-        $("#bn option:selected").remove();
-        document.getElementById("am").value = '';
+                entry.appendChild(document.createTextNode(document.getElementById('bn').options[document.getElementById('bn').selectedIndex].text));
+                    entry.setAttribute('id', x.elements[0].value);
+                    entry.appendChild(document.createTextNode("จำนวน "+x.elements[1].value+" เล่ม"));
+                    entry.setAttribute('name', x.elements[1].value);
+                entry.appendChild(deleteb);
+                list.appendChild(entry);
+                $("#bn option:selected").remove();
+                document.getElementById("am").value = '';
+          }
+          else{
+            alert("กรุณาใส่จำนวนหนังสือให้ถูกต้อง");
+            document.getElementById("am").value = '';
+          }
+        }
 
     }
 
     $("ul").on("click", "button", function(e) {
         e.preventDefault();
+        $('#bn').append($('<option>', {
+          value: e.target.id,
+          text: e.target.name
+        }));
         $(this).parent().remove();
     });
 
@@ -130,10 +148,12 @@
                 console.log('done');
                 console.log(data);
                 alert("ทำการเพิ่มการขายเรียนบร้อยแล้ว");
+                window.location.href = "/MUPRESS_GIT/Backend/finance/financial.php";
         })
         .fail( function( data ) {
 
                 alert("ทำการเพิ่มการขายเรียนบร้อยแล้ว");
+                window.location.href = "/MUPRESS_GIT/Backend/finance/financial.php";
         });
 
     }
