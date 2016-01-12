@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="content-Type" content="text/html; charset=utf-8">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/index.css" rel="stylesheet">
+    <script src="../js/jq.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+
+    <!--<link href="css/bootstrap-theme.min.css" rel="stylesheet">-->
+    <title>MU PRESS</title>
+    <style>
+        .carousel-inner > .item > img,
+        .carousel-inner > .item > a > img,h3 {
+            /*width: 70%;*/
+            margin: auto;
+            max-width: 200;
+            max-height: 200;
+        }
+        .thumbnail{
+            background-color: lightblue;
+        }
+        .thumbnail > img{
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .bright {
+            border-right: 1px solid #ccc;
+        }
+    </style>
+</head>
+
+<body>
+
+<!--///////////////////////////// Start  page header ///////////////////////// -->
+    </div>
+
+     <div class="page-header" >
+        <div style="margin-left: 20px;margin-bottom: 20px;"><img src="../image/logo_mupress.jpg">
+            <button class="btn btn-info pull-right" style="margin-right: 20px" type="button">
+                ลงชื่อออก <span class="badge"></span>
+            </button>
+        </div>
+        <!--<h1 style="margin-left: 30px; margin-bottom: 20px;">MU PRESS</h1>-->
+    </div>
+<div class = "container-fluid ">
+<!--///////////////////////////// End page header /////////////////////////// -->
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-top: 20px">
+          <h1>การจัดการหนังสือ</h1>
+        </div>
+    </div>
+<!--///////////////////////////// Start insert,update,delete /////////////////////////// -->
+    <div class="row">
+        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" style="margin-top: 20px">
+
+        <!-- Start add Button trigger modal -->
+        <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#addbook">
+            เพิ่มหนังสือ
+        </button>
+        <!-- END ADD Button trigger modal -->
+        </div>
+        <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 pull-right" style="margin-top: 20px">
+        <!-- Start Search Button  -->
+        <div class="input-group">
+                <div class="input-group-btn search-panel">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                      <span id="search_concept" value="none">ค้นหาโดย</span> <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                      <li><a href="#serial_no" value="book_id">หมายเลขหนังสือ</a></li>
+                      <li><a href="#title" value="title">ชื่อหนังสือ</a></li>
+                      <li><a href="#author" value="author">ผู้เขียน</a></li>
+                      <li class="divider"></li>
+                    </ul>
+                </div>
+                <input type="hidden" name="search_param" value="all" id="search_param">         
+                <input type="text" id= "searchKeyword" class="form-control" name="x" placeholder="คำที่ต้องการค้าหา ....">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button" onclick="searchBook()"><span class="glyphicon glyphicon-search"></span></button>
+                </span>
+        </div>
+        <!-- END Search Button  -->
+        </div>
+
+
+      
+    </div>
+<!--///////////////////////////// End insert,update,delete /////////////////////////// -->
+
+<!--///////////////////////////// Start book tabel /////////////////////////// -->
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
+        <table class="table table-hover" id="book_list">
+          <thead>
+            <tr>
+                <th></th>
+                <th>หมายเลขหนังสือ</th>
+                <th>ชื่อหนังสือ</th>
+                <th>ผู้เขียน</th>
+                <th>ราคา</th>
+                <th>แนะนำ</th>
+                <th></th>
+            </tr>
+          </thead>
+          <tbody>
+
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+<!--///////////////////////////// End   book tabel /////////////////////////// -->
+
+<!--///////////////////////////// Start page dropdown  /////////////////////////// -->
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">  
+        <div class="pull-right">
+        
+            <select id="page_list" onchange="tabledisplay(this.value)">
+          
+            </select>
+
+        </div>
+      </div>    
+    </div>
+<!--///////////////////////////// END page dropdown  /////////////////////////// -->
+</div>
+
+
+
+
+<!--//////////////////////////// Modal add book ///////////////////////////////////////////////-->
+<div class="modal fade" id="addbook" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">เพิ่มหนังสือ</h4>
+      </div>
+      <div class="modal-body">
+
+
+    
+          <form method="post" action="add_book.php">
+            <div class="form-group">
+              <label for="serial_no">หมายเลขหนังสือ</label>
+              <input type="text" class="form-control" name="serial_no" placeholder="หนังสือที่ต้องการจัดรายการ">
+            </div>
+            <div class="form-group">
+              <label for="book">ชื่อหนังสือ</label>
+              <input type="text" class="form-control" name="title" placeholder="หนังสือที่ต้องการจัดรายการ">
+            </div>
+            <div class="form-group">
+              <label for="author">ฉบับที่</label>
+              <input type="text" class="form-control" name="edition" placeholder="หนังสือที่ต้องการจัดรายการ">
+            </div>
+            <div class="form-group">
+              <label for="author">ชื่อผู้เขียน</label>
+              <input type="text" class="form-control" name="author" placeholder="หนังสือที่ต้องการจัดรายการ">
+            </div>
+            <div class="form-group">
+              <label for="price">ราคา</label>
+              <input type="text" class="form-control" name="price" placeholder="หนังสือที่ต้องการจัดรายการ">
+            </div>
+            <div class="form-group">
+              <label for="book_detail">รายละเอียดหนังสือ</label>
+              <textarea  class="form-control" name="book_detail" placeholder=""></textarea>
+            </div>
+            <div class="form-group">
+              <label for="file">กรุณาเลือกไฟล์</label>
+              <input type="file" name="file">
+            </div>
+ 
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">ยกเลิก</button>
+        <button type="submit" class="btn btn-success">เพิ่ม</button>
+      </div>
+         </form>
+ 
+    </div>
+  </div>
+  </div>
+</div>
+<!--//////////////////////////// END Modal add book ///////////////////////////////////////////////-->
+
+<!--//////////////////////////// Modal Edit book ///////////////////////////////////////////////-->
+<div class="modal fade" id="editbookmodel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">แก้ไขรายละเอียดหนังสือ</h4>
+      </div>
+      <div class="modal-body">
+    
+          <form method="post" action="edit_book.php">
+            <div class="form-group">
+              <label for="book">หมายเลขหนังสือ</label>
+              <input type="text" class="form-control" name="serial_no" placeholder="หนังสือที่ต้องการจัดรายการ" 
+              readonly="readonly">
+            </div>
+            <div class="form-group">
+              <label for="book">ชื่อหนังสือ</label>
+              <input type="text" class="form-control" name="title" placeholder="หนังสือที่ต้องการจัดรายการ">
+            </div>
+            <div class="form-group">
+              <label for="author">ฉบับที่</label>
+              <input type="text" class="form-control" name="edition" placeholder="หนังสือที่ต้องการจัดรายการ">
+            </div>
+            <div class="form-group">
+              <label for="author">ชื่อผู้เขียน</label>
+              <input type="text" class="form-control" name="author" placeholder="หนังสือที่ต้องการจัดรายการ">
+            </div>
+            <div class="form-group">
+              <label for="price">ราคา</label>
+              <input type="text" class="form-control" name="price" placeholder="หนังสือที่ต้องการจัดรายการ">
+            </div>
+            <div class="form-group">
+              <label for="book_detail">รายละเอียดหนังสือ</label>
+              <textarea  class="form-control" name="book_detail" placeholder=""></textarea>
+            </div>
+            <div class="form-group">
+              <label for="file">กรุณาเลือกไฟล์</label>
+              <input type="file" name="file">
+            </div>
+ 
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">ยกเลิก</button>
+        <button type="submit" class="btn btn-success">แก้ไข</button>
+      </div>
+         </form>
+ 
+    </div>
+  </div>
+  </div>
+</div>
+<!--//////////////////////////// END Modal Edit book ///////////////////////////////////////////////-->
+
+<!--//////////////////////////// Start Modal rec toggle ///////////////////////////////////////////////-->
+<div class="modal fade" id="recommendmodel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header alert alert-warning">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">คุณต้องการเปลี่ยนการแนะนำของหนังสือเล่นนี้หรือไม่</h4>
+      </div>
+     <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">ยกเลิก</button>
+        <button type="submit" class="btn btn-success" id="recommendChange" 
+        onclick="window.location.href='recommend_book.php?serial_no=' + this.value" >ตกลง</button>
+      </div>
+  </div>
+  </div>
+</div>
+<!--//////////////////////////// END Modal rec toggle ///////////////////////////////////////////////-->
+
+<!--//////////////////////////// Start Modal Delete book ///////////////////////////////////////////////-->
+<div class="modal fade" id="deletebookmodel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header alert alert-danger">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">คุณต้องการลบหนังสือเล่นนี้หรือไม่</h4>
+      </div>
+     <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">ยกเลิก</button>
+        <button type="submit" class="btn btn-success" id="bookdelete" 
+        onclick="window.location.href='delete_book.php?serial_no=' + this.value" >ตกลง</button>
+      </div>
+  </div>
+  </div>
+</div>
+<!--//////////////////////////// END Modal Delete book ///////////////////////////////////////////////-->
+</body>
+<script>
+var bookarray;
+var totalPage;
+
+$(document).ready(function() {
+ //////////////////////////////// Start Jquery for search ////////////////////////////////
+  $('.search-panel .dropdown-menu').find('a').click(function(e) {
+    e.preventDefault();
+    var param = $(this).attr("href").replace("#","");
+    var concept = $(this).text();
+    $('.search-panel span#search_concept').text(concept);
+    $('.input-group #search_param').val(param);
+
+  });
+ //////////////////////////////// END  Jquery for search ////////////////////////////////
+});
+
+window.onload = function() {
+ getajax(1,"none",null);
+};
+
+function deletebook(serial_no){
+  document.getElementById("bookdelete").value = serial_no;
+  $("#deletebookmodel").modal();
+}
+
+function recommendtoggle(serial_no){
+  document.getElementById("recommendChange").value = serial_no;
+  $("#recommendmodel").modal();
+}
+function searchBook(){
+  var search_concept = $('.input-group #search_param').val();
+  var keyword = document.getElementById('searchKeyword').value;
+  getajax(1,search_concept,keyword);
+}
+
+function editBook(serial_no){
+
+  $.ajax({
+    // The URL for the request
+    url: "request_book.php",
+    // The data to send (will be converted to a query string)
+    data: {
+        serial_no: serial_no 
+    },
+ 
+    // Whether this is a POST or GET request
+    type: "GET",
+    // The type of data we expect back
+    dataType : "JSON",
+ 
+    // Code to run if the request succeeds;
+    // the response is passed to the function
+    success: function( json ) {
+    var book = json;
+    $("#editbookmodel input[name='serial_no']").val(book[0]['serial_no']);
+    $("#editbookmodel input[name='title']").val(book[0]['title']);
+    $("#editbookmodel input[name='edition']").val(book[0]['edition']);
+    $("#editbookmodel input[name='author']").val(book[0]['author']);
+    $("#editbookmodel input[name='price']").val(book[0]['price']);
+    $("#editbookmodel input[name='book_detail']").val(book[0]['book_detail']);
+    $("#editbookmodel input[name='file']").val(book[0]['file']);
+
+    },
+ 
+    // Code to run if the request fails; the raw request and
+    // status codes are passed to the function
+    error: function( xhr, status, errorThrown ) {
+        alert( "Sorry, there was a problem in request_book.php!" );
+        console.log( "Error: " + errorThrown );
+        console.log( "Status: " + status );
+        console.dir( xhr );
+    },
+ 
+  
+  });
+
+  $("#editbookmodel").modal(); ///enable edit model
+
+}
+
+function getajax(page , searchBy , keyword){
+
+  $.ajax({
+ 
+    // The URL for the request
+    url: "select_book.php",
+ 
+    // The data to send (will be converted to a query string)
+    data: {
+        page: page ,
+        searchBy: searchBy ,
+        keyword: keyword
+    },
+ 
+    // Whether this is a POST or GET request
+    type: "GET",
+ 
+    // The type of data we expect back
+    dataType : "JSON",
+ 
+    // Code to run if the request succeeds;
+    // the response is passed to the function
+    success: function( json ) {
+        bookarray = json;
+        totalPage = Math.ceil(bookarray.length/10);
+        tabledisplay(1);
+        pageGenerator();
+
+    },
+ 
+    // Code to run if the request fails; the raw request and
+    // status codes are passed to the function
+    error: function( xhr, status, errorThrown ) {
+        alert( "Sorry, there was a problem!" );
+        console.log( "Error: " + errorThrown );
+        console.log( "Status: " + status );
+        console.dir( xhr );
+    },
+ 
+  
+  });
+}
+
+function pageGenerator(){
+
+    var selectpage = "";
+    for(var i=1;i <= totalPage ;i++){
+      selectpage += "<option value="+i+">หน้าที่ "+i+" / "+totalPage+"</option>";
+    }
+
+      $("#page_list").html(selectpage);
+
+}
+
+function tabledisplay(currentPage){
+
+    var table = "";
+    var startAt = (currentPage-1)*10;
+    var endAt;
+
+    if(currentPage == totalPage)
+        endAt   = bookarray.length;
+    else
+        endAt   = startAt+10;
+
+   for(var i =startAt; i < endAt;i++) {
+
+      table += "<tr>";
+
+      table += "<td><button type='button' class='btn btn-info btn-xs'";
+      table += "onclick='editBook("+bookarray[i]['serial_no']+")'";
+      table +=" >แก้ไข</button></td>";
+
+      table += "<td>"+bookarray[i]['serial_no']+"</td>";
+      table += "<td>"+bookarray[i]['title']+"</td>";
+      table += "<td>"+bookarray[i]['author']+"</td>";
+      table += "<td>"+bookarray[i]['price']+"</td>";
+
+      if( bookarray[i]['recommend'] == 1){
+      table += "<td><span class='glyphicon glyphicon-star'";
+      table += "onclick='recommendtoggle("+bookarray[i]['serial_no']+")'"
+      table += "></span></td>"
+      }
+      else{
+      table += "<td><span class='glyphicon glyphicon-star-empty' ";
+      table += "onclick='recommendtoggle("+bookarray[i]['serial_no']+")'";
+      table += "></span></td>";
+      }
+
+      table += "<td><button type='button' class='btn btn-danger btn-xs'";
+      table += "onclick='deletebook("+bookarray[i]['serial_no']+")'";
+      table += ">ลบ</button></td>";
+
+   
+
+      table += "</tr>"
+    }
+
+
+    $("#book_list > tbody ").html(table);
+}
+
+</script>
+</html>
