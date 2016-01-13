@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-Type" content="text/html; charset=utf-8">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/index.css" rel="stylesheet">
+    <script src="../js/jq.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+
+    <!--<link href="css/bootstrap-theme.min.css" rel="stylesheet">-->
+    <title>MU PRESS</title>
+    <style>
+        .carousel-inner > .item > img,
+        .carousel-inner > .item > a > img,h3 {
+            /*width: 70%;*/
+            margin: auto;
+            max-width: 200;
+            max-height: 200;
+        }
+        .thumbnail{
+            background-color: lightblue;
+        }
+        .thumbnail > img{
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+<!--///////////////////////////// Start  page header ///////////////////////// -->
+
+    <div class="page-header" >
+      <div style="margin-left: 20px;margin-bottom: 20px;"><img src="../image/logo_mupress.jpg">
+        <button class="btn btn-info pull-right" style="margin-right: 20px" type="button">
+          ลงชื่อออก <span class="badge"></span>
+        </button>
+      </div>
+      <!--<h1 style="margin-left: 30px; margin-bottom: 20px;">MU PRESS</h1>-->
+    </div>
+
+    <div class = "container-fluid ">
+      <!--///////////////////////////// End page header /////////////////////////// -->
+
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-top: 20px">
+          <h1>การจัดการเนื้อหา</h1>
+        </div>
+      </div>
+
+
+      <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#home">โปรโมชั่น</a></li>
+        <li><a data-toggle="tab" href="#menu1">ข่าวสารและกิจกรรม</a></li>
+      </ul>
+
+      <div class="tab-content">
+        <div id="home" class="tab-pane fade in active">
+          <!--///////////////////////////// Start div promotion ///////////////////////// -->
+          <div class="row">
+            <div class="label label-info col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-top: 20px">
+              <h3>โปรโมชั่น</h3>
+            </div>
+
+
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-top: 20px">
+              <!-- Start add promotion trigger modal -->
+              <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#addPromotionModel">
+                เพิ่มโปรโมชั่น
+              </button>
+              <!-- END add promotion trigger modal -->
+
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-top: 20px">
+                <h3>รายการโปรโมชั่น</h3>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+        <!--///////////////////////////// End div promotion /////////////////////////// -->
+        <!--///////////////////////////// Start div news&activities/////////////////////////// -->
+        <div id="menu1" class="tab-pane fade">
+          <div class="row">
+            <div class="label label-warning col-xs-12 col-sm-12 col-md-12 col-lg-12"  style="margin-top: 20px">
+              <h3>ข่าวสารและกิจกรรม</h3>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-top: 20px">
+
+              <!-- Start add news trigger modal -->
+              <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#addNewsModel">
+                เพิ่มข่าวสารและกิจกรรม
+              </button>
+              <!-- END add news trigger modal -->
+
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-top: 20px">
+                <h3>รายการข่าวสารและกิจกรรม</h3>
+              </div>
+          
+            </div>
+
+       
+          </div>
+        </div>
+        <!--///////////////////////////// End news&activities////////////////////////// -->
+
+      </div>
+    </div>
+
+
+</body>
+
+<!--//////////////////////////// Modal add promotion ///////////////////////////////////////////////-->
+<div class="modal fade" id="addPromotionModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">เพิ่มโปรโมชั่น</h4>
+      </div>
+      <div class="modal-body">
+
+        <form method="post" action="add_book.php">
+          <div class="form-group">
+            <label for="book">Label here</label>
+            <input type="text" class="form-control" id="book" placeholder="หนังสือที่ต้องการจัดรายการ">
+          </div>
+          <div class="form-group">
+            <label for="discount">Label here</label>
+            <div class="input-group">
+              <input type="text" class="form-control" id="discount" placeholder="ลด">
+              <div class="input-group-addon">%</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="promotion_detail">Label here</label>
+            <textarea  class="form-control" id="promotion_detail" placeholder="รายละเอียดโปรโมชั่น"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="file">กรุณาเลือกไฟล์</label>
+            <input type="file" id="file">
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">ยกเลิก</button>
+          <button type="submit" class="btn btn-success">เพิ่ม</button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>
+</div>
+<!--//////////////////////////// END Modal add promotion ///////////////////////////////////////////////-->
+
+<!--//////////////////////////// Start Modal add news&activities ////////////////////////////////////////-->
+<div class="modal fade" id="addNewsModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">เพิ่มข่าวสารและกิจกรรม</h4>
+      </div>
+      <div class="modal-body">
+
+        <form method="post" action="add_news.php">
+        <div class="form-group">
+          <label for="activitiesName">ชื่อกิจกรรม</label>
+          <input type="text" class="form-control" name="activitiesName" placeholder="ชื่อของกิจกรรม" >
+        </div>
+         <div class="form-group">
+          <label for="startDate">วันที่กิจกรรมเเริ่ม</label>
+          <input type="date" class="form-control" name="startDate" >
+        </div>
+        <div class="form-group">
+          <label for="endDate">วันที่กิจกรรมเสิ้นสุด</label>
+          <input type="date" class="form-control" name="endDate" >
+        </div>
+        <div class="form-group">
+          <label for="activitiesDetail">รายละเอียดกิจกรรม</label>
+          <textarea  class="form-control" name="activitiesDetail" placeholder="รายละเอียดกิจกรรม"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="file">รูปภาพประกอบกิจกรรม</label>
+          <input type="file" id="file">
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">ยกเลิก</button>
+        <button type="submit" class="btn btn-success">เพิ่ม</button>
+      </div>
+    </form>
+
+  </div>
+</div>
+</div>
+</div>
+<!--//////////////////////////// END Modal add news &activities ////////////////////////////////////////-->
+
+
+
+
+</html>
