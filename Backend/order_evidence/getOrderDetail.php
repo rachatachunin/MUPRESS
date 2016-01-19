@@ -3,8 +3,11 @@
 $q = intval($_GET['q']);
 
 include "../../dbconnection.php";
- //
- $sql="SELECT * FROM payment_evidence WHERE pe_id = '".$q."'";
+
+ $sql =" SELECT pe.pe_id,pe.order_id,pe.payment_date,pe.bank,pe.price,user.user_fn,user.user_ln
+         FROM payment_evidence pe LEFT JOIN order_book ob ON pe.order_id = ob.order_id
+         LEFT JOIN user ON ob.user_id = user.user_id WHERE pe.pe_id = '".$q."'  ";
+
  $result = mysqli_query($con,$sql);
  $row = mysqli_fetch_array($result);
 
@@ -17,12 +20,13 @@ echo ' <div class="modal fade" id="Detail'.$row['pe_id'].'" tabindex="-1" role="
                     </div>
                     <div class="modal-body">
                     รายการสั่งซื้อเลขที่ MUP '.$row['order_id'].' <br>
-                    นาย รชค ชูนิล <br>
+                    นาย '.$row['user_fn'].'  '.$row['user_ln'].' <br>
                     วันที่โอน '.$row['payment_date'].' <br>
                     ธนาคาร '.$row['bank'].' <br>
                     จำนวนเงิน '.$row['price'].' บาท <br>
                     <div class ="text-center">
-                      <form  onsubmit = "return confirm("คุณต้องการจะยืนยันหรือไม่?")" action="confirmPayment.php?q='.$row['order_id'].'" method="get">
+                      <form  onsubmit="return confirm(\'ยืนยันการตัดสินใจ\');"  action="confirmPayment.php" method="post">
+                        <input type="hidden" value = "'.$row['order_id'].'" name = "order_id">
                         <button type = "submit" class = "btn btn-warning"> ยืนยันกาณโอน</button>
                       </form>
                     </div>
