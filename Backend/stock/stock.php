@@ -53,10 +53,17 @@
 </div>
 
 <div class="row" id="search-bar" style="text-align: center;">
-    <div class="from-group">
-      <label for="searchb" class="control-label">ค้นหาโดยชื่อหนังสือ</label>
-        <input type="text" style="width:350px" id="searchb" placeholder="ใส่ชื่อที่ต้องการค้นหา" aria-describedby="sizing-addon" name="bookn" >
-          <span class="help-block"></span>
+    <div class="form-inline">
+        <div class="form-group">
+          <label for="searchway" class="control-label">ค้นหาโดย:</label>
+          <select name="bookname" id="searchway" class="form-control" aria-describedby="sizing-addon">
+              <option value="1" >ชื่อหนังสือ</option>
+              <option value="2" >ชื่อผู้เขียน</option>
+          </select>
+            <input type="text" style="width:350px" id="searchb" placeholder="ใส่ชื่อหนังสือที่ต้องการค้นหา" aria-describedby="sizing-addon" name="bookn" >
+            <input type="text" style="width:350px; display: none;" id="searcha" placeholder="ใส่ชื่อผู้เขียนที่ต้องการค้นหา" aria-describedby="sizing-addon" name="bookn" >
+              <span class="help-block"></span>
+        </div>
     </div>
 </div>
 
@@ -91,9 +98,7 @@
               $cdate = mysqli_fetch_array($ldate);
             echo "<tr>";
             echo "<td>";
-
-                echo $row['title'];
-                //echo '<a href="#" onclick="mS('.$row['book_id'].')" >'.$row['title'].'</a>';
+                echo '<a href="#" onclick="mS('.$row['book_id'].')" >'.$row['title'].'</a>';
             echo "</td>";
               echo "<td>";
 
@@ -137,7 +142,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="myModalLabel">เพิ่มจำนวนหนังสือในคลัง</h4>
             </div>
-            <form method="get" action="addStock.php">
+            <form method="get" action="addStock.php" onsubmit="return checkAmount(this)">
             <div class="modal-body">
                 <div class="from">
                     <div class="input-group hidden">
@@ -147,7 +152,7 @@
                     <br>
                     <div class="container-fluid text-center">
                     <button class="btn btn-success" id="amountPlus" type="button" field="amount" >+</button>
-                    <input class="text-center" type="text" aria-describedby="sizing-addon" id="amountText" name="amount" value="100" required="true">
+                    <input class="text-center" type="number" aria-describedby="sizing-addon" id="amountText" name="amount" value="100" required="true">
                     <button class="btn btn-danger" id="amountMinus" type="button" field="amount" >-</button>
                     </div>
                     <h6 class="pull-right">*สามารถกรอกจำนวนที่ต้องการได้ในช่องด้านบน</h6>
@@ -156,7 +161,7 @@
             </div>
             <div class="modal-footer">
 
-                <button type="submit" class="btn btn-primary">ตกลง</button>
+                <button type="submit" id="confirmadd" class="btn btn-primary">ตกลง</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">ยกเลิก</button>
             </div>
             </form>
@@ -172,6 +177,17 @@
       $(e.currentTarget).find('input[name="bookid"]').val(bookId);
     });
 
+    $("#searchway").on("change", function(e){
+      if($("#searchway").val()=="1"){
+        $("#searchb").show();
+        $("#searcha").hide();
+      }
+      else{
+        $("#searchb").hide();
+        $("#searcha").show();
+      }
+    });
+
     $("#searchb").on("keyup", function() {
     var value = $(this).val();
 
@@ -182,15 +198,48 @@
 
                   var id = $row.find("td:first").text();
 
-                  if (id.indexOf(value) !== 0) {
-                      $row.hide();
+                  if (id.indexOf(value) > -1) {
+                      $row.show();
                   }
                   else {
-                      $row.show();
+                      $row.hide();
                   }
               }
           });
     });
+
+    $("#searcha").on("keyup", function() {
+    var value = $(this).val();
+
+          $("table tr").each(function(index) {
+              if (index !== 0) {
+
+                  $row = $(this);
+
+                  var id = $row.find("td:nth-child(2)").text();
+
+                  if (id.indexOf(value) > -1) {
+                      $row.show();
+                  }
+                  else {
+                      $row.hide();
+                  }
+              }
+          });
+    });
+
+    function checkAmount(form){
+      var check = form.elements['amountText'].value > 0;
+      if(check){
+        return check;
+      }
+      else{
+        alert("กรุณาใส่จำนวนให้ถูกต้อง");
+        form.elements['amountText'].value = 100;
+        return check;
+      }
+    }
+
 
     jQuery(document).ready(function(){
     // This button will increment the value
