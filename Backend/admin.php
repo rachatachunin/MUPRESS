@@ -22,7 +22,7 @@
         <div class="jumbotron">
             <h2 class="lead">Books Management</h2>
 
-            <p><a class="btn btn-primary btn-lg text-center" href="#" role="button">Manage now<span class="glyphicon glyphicon-book" style="margin-left:10px"></span></a></p>
+            <p><a class="btn btn-primary btn-lg text-center" href="../book_mangement/book_management.html" role="button">Manage now<span class="glyphicon glyphicon-book" style="margin-left:10px"></span></a></p>
         </div>
 
     </div>
@@ -73,7 +73,7 @@
         <div class="jumbotron">
             <h2 class="lead">Contents Management</h2>
 
-            <p><a class="btn btn-primary btn-lg text-center" href="#" role="button">Manage now<span class="glyphicon glyphicon-folder-open" style="margin-left:10px"></span></a></p>
+            <p><a class="btn btn-primary btn-lg text-center" href="../content_mangement/content_management.html" role="button">Manage now<span class="glyphicon glyphicon-folder-open" style="margin-left:10px"></span></a></p>
         </div>
 
     </div>

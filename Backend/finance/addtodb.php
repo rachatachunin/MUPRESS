@@ -23,5 +23,9 @@ foreach($book as $item){
     $eachprice = ((int)$priceb['price']*$item['amount']);
     mysqli_query($con, "insert into order_line(amount,price,book_id,order_id) values ('".$item['amount']."','".$eachprice."','".$item['id']."','".$id."')");
 }
+
+foreach($book as $item){
+    mysqli_query($con, "insert into book_stock(amount,action,book_id) values ('".$item['amount']."','OUT','".$item['id']."')");
+}
 mysqli_close($con);
 var_dump(null);
