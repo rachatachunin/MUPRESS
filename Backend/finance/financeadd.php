@@ -147,12 +147,12 @@
         .done( function( data ) {
                 console.log('done');
                 console.log(data);
-                alert("ทำการเพิ่มการขายเรียนบร้อยแล้ว");
+                alert("ทำการเพิ่มการขายเรียบร้อยแล้ว");
                 window.location.href = "/MUPRESS_GIT/Backend/finance/financial.php";
         })
         .fail( function( data ) {
 
-                alert("ทำการเพิ่มการขายเรียนบร้อยแล้ว");
+                alert("ทำการเพิ่มการขายเรียบร้อยแล้ว");
                 window.location.href = "/MUPRESS_GIT/Backend/finance/financial.php";
         });
 
