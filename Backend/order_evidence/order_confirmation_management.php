@@ -3,13 +3,36 @@
   <?php
     include "../../dbconnection.php";
     include "../../head.php";
+    $sql_getPaymentEvidence = "SELECT * FROM payment_evidence ORDER BY payment_date ASC  ";
+    $result = mysqli_query($con,$sql_getPaymentEvidence);
+
   ?>
     <meta charset=utf-8 />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <script>
-function getOrder() {
-             $('#OrderDetail').modal('show');
+function getOrder(str) {
+            if (str == "") {
+                document.getElementById("getEvidence").innerHTML = "";
+                return;
+            } else {
+                if (window.XMLHttpRequest) {
+                    // code for IE7+, Firefox, Chrome, Opera, Safari
+                    xmlhttp = new XMLHttpRequest();
+                } else {
+                    // code for IE6, IE5
+                    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                }
+                xmlhttp.onreadystatechange = function() {
+                    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                        document.getElementById("getEvidence").innerHTML = xmlhttp.responseText;
+                        $('#Detail'+str).modal('show');
+                    }
+                }
+                xmlhttp.open("GET","getOrderDetail.php?q="+str,true);
+                xmlhttp.send();
             }
+
+        }
 
 </script>
 </head>
@@ -24,14 +47,19 @@ function getOrder() {
 	<div class ="row">
      	<div class="col-lg-12"  style="text-align: center;">
             <div class="list-group" style="margin-top: 10px;">
-             <a href="#" class="list-group-item" data-toggle="modal"data-target="#OrderDetail" onclick ="getOrder">รายการสั่งซื้อที่ 1</a>
+              <?php
+              while($row1 = mysqli_fetch_array($result)){
+               echo '<a href="#" class="list-group-item"  onclick="getOrder('.$row1['pe_id'].')"> <div style="color:green"> ' ;
+               echo "รายการสั่งซื้อเลขที่ " . $row1['order_id']  ;
+               echo '</div><div style="color:orange">';
+               echo " ของวันที่ " . $row1['payment_date'] ;
+               echo '</div></a>';
+                   }
+              ?>
+             <!-- <a href="#" class="list-group-item" data-toggle="modal"data-target="#OrderDetail" onclick ="getOrder">รายการสั่งซื้อที่ 1</a>
              <a href="#" class="list-group-item" data-toggle="modal"data-target="#OrderDetail" onclick ="getOrder">รายการสั่งซื้อที่ 2</a>
-             <a href="#" class="list-group-item" data-toggle="modal"data-target="#OrderDetail" onclick ="getOrder">รายการสั่งซื้อที่ 3</a>
-                               <?php
-                               //  while($rowss = mysqli_fetch_array($resultGetToShow)) {
-                               //     echo '<a href="#" class="list-group-item" data-toggle="modal" data-target="#TicketDetail'.$rowss['ht_id'].' " onclick ="getHistoryTicket'.$rowss['ht_id'].' "> Serial: '.$rowss['sno'].' '.$rowss['p_name'].' at  '.$rowss['d_name'].'</a>';
-                               // }
-                               ?>
+             <a href="#" class="list-group-item" data-toggle="modal"data-target="#OrderDetail" onclick ="getOrder">รายการสั่งซื้อที่ 3</a> -->
+
             </div>
 
         </div>
@@ -40,11 +68,11 @@ function getOrder() {
 
 	</div>
 </div>
-
 </body>
+<div id ="getEvidence"> </div>
 
 <!--modal OrderDe-->
-<div class="modal fade" id="OrderDetail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<!-- <div class="modal fade" id="OrderDetail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
 
         <div class="modal-content">
@@ -59,7 +87,7 @@ function getOrder() {
 	                นาย รชค ชูนิล <br>
 	                วันที่โอน 13/12/2015 <br>
 	                ธนาคาร ไทยภานิช <br>
-	                จำนวนเงิน XXX บาท <br>
+	                จำนวนเงิน  บาท <br>
 	                <div class ="text-center">
 		                <form action="#" method="post">
 		                	<button type = "submit" class = "btn btn-warning"> ยืนยันกาณโอน</button>
@@ -74,7 +102,7 @@ function getOrder() {
 
 		</div>
 	  </div>
-    </div>
+    </div> -->
 
 
 </html>
