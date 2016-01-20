@@ -42,7 +42,7 @@ function getOrder(str) {
 
 <div class="container-fluid">
     <div class = "container" style="text-align: center">
-		<h2>การจัดการ รายการสั่งซื้อ</h2>
+		<h2>การจัดการ หลักฐานการโอน</h2>
         <h4>( Orders' evidence Management )</h4><br>
 	<div><h3 class="pull-left">รายการแจ้งโอน</h3></div><br><br><br>
 	<div class ="row">
