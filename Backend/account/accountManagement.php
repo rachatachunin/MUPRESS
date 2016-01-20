@@ -17,6 +17,13 @@
     <?php
         include "../../head.php";
     ?>
+
+    <style>
+      .boxes {
+        height: 500px;
+        overflow: auto ;
+      }
+    </style>
     <script>
         jQuery(document).ready(function(){
             jQuery('#hideshowAddQ').on('click', function(event) {
@@ -230,7 +237,7 @@
                        </div>
                      </li>
                    </ul>
-
+                  <div class="boxes">
                    <ul class="list-group " id = "customerUL">
                      <?php
                      while($row1 = mysqli_fetch_array($result)){
@@ -244,6 +251,7 @@
                      ?>
                        <!-- <li class="list-group-item"><a href="#" onClick="$('#addbox').hide(); $('#editbox').show()">นาย รชต ชูนิล</a></li> -->
                     </ul>
+                  </div>
                     <div class="panel-footer">
                             <div id = "addCustomer">
                                 <div id="AddCus" style="display: none">
@@ -345,6 +353,7 @@
                       </div>
                     </li>
                   </ul>
+                  <div class="boxes">
                   <ul class="list-group" id ="organizationUL">
                     <?php
                     while($row2 = mysqli_fetch_array($result2)){
@@ -359,6 +368,7 @@
 
                       <!-- <li class="list-group-item"><a href="#" onClick="$('#loginbox').hide(); $('#signupbox').show()">CourseSquare.co</a></li> -->
                     </ul>
+                  </div>
                     <div class="panel-footer">
                         <div id = "addOrganization">
                                 <div id="AddQ" style="display: none">
@@ -458,7 +468,7 @@
               </div>
             </li>
             </ul>
-
+            <div class="boxes">
             <ul class ="list-group" id = "authorUL">
             <?php
             while($row2 = mysqli_fetch_array($result2)){
@@ -471,6 +481,7 @@
            }
             ?>
             </ul>
+          </div>
 
             <div class="panel-footer">
                 <div id = "addOrganization">
