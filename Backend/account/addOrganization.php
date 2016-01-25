@@ -5,11 +5,11 @@
   $lname = $_POST['lastname'];
   $email = $_POST['email'];
   $address = $_POST['address'];
-  $pass = $_POST['pass'];
+  // $pass = $_POST['pass'];
   $tel = $_POST['phone'];
 
 // add to user table
-  $query = "INSERT into user (email,password,user_fn,user_ln,gender,tel,address,user_type) values('".$email."','".$pass."','".$fname."','".$lname."','NA','".$tel."','".$address."','3') " ;
+  $query = "INSERT into user (email,password,user_fn,user_ln,gender,tel,address,user_type) values('".$email."',null,'".$fname."','".$lname."','NA','".$tel."','".$address."','3') " ;
   mysqli_query($con,$query);
 
 // get user id
