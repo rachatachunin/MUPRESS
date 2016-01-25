@@ -49,7 +49,7 @@
       ?>
     </table>
     <?php
-    if(mysqli_num_rows($his) > 0){
+    if(mysqli_num_rows($allhis) > 0){
       echo '<div class="pull-right">ขายได้รวมทั้งหมด '.$totalp.' บาท จำนวน '.$totala.' เล่ม</div>';
     }
     else{
