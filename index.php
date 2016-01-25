@@ -29,6 +29,37 @@ session_start();
             margin-bottom: 20px;
         }
     </style>
+    <script type="text/javascript">
+    function validateCus(e){
+
+      var filter = /[ก-๙a-zA-Z]/ ;
+      var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      var firstname = document.getElementById("firstname").value ;
+      var lastname = document.getElementById("lastname").value ;
+      var email = document.getElementById("email").value ;
+      var tel = document.getElementById("tel").value ;
+
+
+      if(firstname == "" || !filter.test(firstname)){
+        alert("กรุณากรอกชื่อของลูกค้าให้ถูกต้อง");
+        return false ;
+      }else if(lastname== "" || !filter.test(lastname) ){
+        alert("กรุณากรอกนามสกุลของลูกค้าให้ถูกต้อง");
+        return false ;
+     }else if(email == "" || !re.test(email) ){
+        alert("กรุณากรอก e-mail ของลูกค้าให้ถูกต้อง");
+        return false ;
+    //  }else if(address == "" ){
+    //     alert("กรุณากรอกที่อยู่ลูกค้าให้ถูกต้อง");
+    //     return false ;
+    }else if(tel == "" || filter.test(tel) || tel.length != 10  ){
+        alert("กรุณากรอกเบอร์โทรลูกค้าให้ถูกต้อง");
+        return false ;
+    }else{
+        return true;
+      }
+    }
+    </script>
 </head>
 <body>
 
@@ -228,16 +259,26 @@ session_start();
                 </ul>
             </div>
 
-            <!--<form method="post" >-->
+          <!-- modal register & login -->
                 <div class="modal-body">
                     <div class="tab-content">
-
                         <div id="menu1" class="tab-pane fade in active">
-
                             <form  method="post" action="Authentication/login.php">
+                              <div class="form-group">
+                              						<div class="input-group">
+                                            <label for="uLogin" class="input-group-addon glyphicon glyphicon-user"></label>
+                              							<input type="text" class="form-control" id="uLogin" placeholder="Login">
 
-                                <input type="text" class="form-control" placeholder="Email" id= "username" name="username" required autofocus="true"><br>
-                                <input type="password" class="form-control" placeholder="Password"id= "password" name="password" required><br>
+                              						</div>
+                              					</div> <!-- /.form-group -->
+
+                              					<div class="form-group">
+                              						<div class="input-group">
+                                            <label for="uPassword" class="input-group-addon glyphicon glyphicon-lock"></label>
+                              							<input type="password" class="form-control" id="uPassword" placeholder="Password">
+
+                              						</div> <!-- /.input-group -->
+                              					</div> <!-- /.form-group -->
 
                                 <button class="btn btn-lg btn-primary btn-block" type="submit">
                                     ลงชื่อเข้าใช้</button>
@@ -245,41 +286,55 @@ session_start();
 
                             </form>
                         </div>
+
                         <div id="home" class="tab-pane fade">
-                            <form class="form" method="post" action="Authentication/register.php">
+                          <form id="addCustomerForm" onsubmit="return validateCus();" action ="Authentication/register.php" method="post" role="form">
+                          <div class="row">
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                              <div class="form-group">
+                                <input type="text" name="fname" id="firstname" class="form-control input-sm" placeholder="ชื่อ">
+                              </div>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                              <div class="form-group">
+                                <input type="text" name="lname" id="lastname" class="form-control input-sm" placeholder="นามสกุล">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <select name="gender" class="form-control input-sm" aria-describedby="sizing-addon" required="ture">
+                                <option value="">เลือกเพศ</option>
+                                <option value="M">ชาย</option>
+                                <option value="F">หญิง</option>
+                            </select>
+                          </div>
 
-                                <div class="input-group">
-                                    <span class="input-group-addon" id="sizing-addon">ชื่อ:</span>
-                                    <input type="text" class="form-control" placeholder="" aria-describedby="sizing-addon" name="fname">
-                                </div>
-                                <br>
-                                <div class="input-group">
-                                    <span class="input-group-addon" id="sizing-addon2">นามสกุล:</span>
-                                    <input type="text" class="form-control" placeholder="" aria-describedby="sizing-addon2" name="lname">
-                                </div>
-                                <br>
-                                <div class="input-group">
-                                    <span class="input-group-addon" id="sizing-addon3">Email:</span>
-                                    <input type="text" class="form-control" placeholder="" aria-describedby="sizing-addon3" name="email">
-                                </div>
-                                <br>
-                                <div class="input-group">
-                                    <span class="input-group-addon" id="sizing-addon4">Password:</span>
-                                    <input type="password" class="form-control" placeholder="" aria-describedby="sizing-addon4" name="password">
-                                </div>
-                                <br>
-                                <div class="input-group">
-                                    <span class="input-group-addon" id="sizing-addon5">เบอร์โทรศัพท์:</span>
-                                    <input type="text" class="form-control" placeholder="" aria-describedby="sizing-addon5" name="tel">
-                                </div>
-                                <br>
-                                <button class="btn btn-lg btn-primary btn-block" type="submit">
-                                    สมัครสมาชิก</button>
-                                <span class="clearfix"></span>
+                          <div class="form-group">
+                            <input type="email" name="email" id="email" class="form-control input-sm" placeholder="Email Address">
+                          </div>
 
-                            </form>
-                        </div>
-                    </div>
+                          <div class="row">
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                              <div class="form-group">
+                                <input type="password" name="password" id="password" class="form-control input-sm" placeholder="Password">
+                              </div>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                              <div class="form-group">
+                                <input type="text" name="tel" id="tel" class="form-control input-sm" placeholder="เบอร์โทรศัพท์">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <textarea name="address" placeholder="ที่อยู่" class="form-control input-sm"></textarea>
+                          </div>
+                          <button class="btn btn-lg btn-primary btn-block" type="submit">
+                              สมัครสมาชิก</button>
+                          <span class="clearfix"></span>
+
+                        </form>
+                      </div>
+                  </div>
 
 
                 </div>
