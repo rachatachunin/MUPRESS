@@ -14,7 +14,7 @@ session_start();
 // $sql="SELECT image FROM it_man LEFT JOIN user ON it_man.it_id = user.it_id  WHERE user.username = '".$_COOKIE['username']."'";
 // $re = mysqli_query($con,$sql);
 // $result = mysqli_fetch_array($re);
-// if(!isset($_SESSION['username'])){
+if(!isset($_SESSION['username'])){
  echo '
    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
        <div class="container-fluid">
@@ -26,7 +26,7 @@ session_start();
                    <span class="icon-bar"></span>
                    <span class="icon-bar"></span>
                </button>
-               <a class="navbar-brand" href="index.html">Start Bootstrap</a>
+               <a class="navbar-brand" href="index.php">Start Bootstrap</a>
            </div>
 
            <!-- Collect the nav links, forms, and other content for toggling -->
@@ -84,16 +84,18 @@ session_start();
            </div>
        </div>
    </header>
-';
-// ;}
-//
-// else{
-//
-//
-//
-// }
+';}
+
+else{
+
+
+}
 
 ?>
+
+
+
+
 <div class="modal fade" id="L_R" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
