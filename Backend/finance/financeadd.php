@@ -29,7 +29,7 @@
 <div class="container" id="nav-bar" style="text-align: center;">
     <ul class="nav nav-tabs">
         <li role="presentation" ><a href="financial.php">รายงานของวันนี้</a></li>
-        <li role="presentation"><a href="financehis.php">รายงานย้อยหลัง</a></li>
+        <li role="presentation"><a href="financehis.php">รายงานย้อนหลัง</a></li>
         <li role="presentation" class="active"><a href="financeadd.php">เพิ่มรายการขายจากช่องทางอื่น</a></li>
     </ul>
 </div>
@@ -45,7 +45,7 @@
                         <span class="input-group-addon" id="sizing-addon">ชื่อหนังสือ:</span>
                         <select name="bookname" id="bn" class="form-control" aria-describedby="sizing-addon">
                             <option selected disabled>เลือกหนังสือ</option>
-                            <?
+                            <?php
                             while($row = mysqli_fetch_array($book)){
                                 echo '<option value="'.$row['book_id'].'" price="'.$row['price'].'" >'.$row['title'].'</option>';
                             }
@@ -93,7 +93,7 @@
                             <span class="input-group-addon" id="nuser">ชื่อผู้ซื้อหนังสือทั่วไป:</span>
                             <select name="bookname" id="susr" class="form-control chosen-select" aria-describedby="sizing-addon">
                                 <option selected disabled>เลือกผู้ซื้อ</option>
-                                <?
+                                <?php
                                 while($row = mysqli_fetch_array($user)){
                                     echo '<option value="'.$row['user_id'].'">'.$row['user_fn'].' '.$row['user_ln'].'</option>';
                                 }
@@ -105,7 +105,7 @@
                           <span class="input-group-addon" id="nuser">ชื่อผู้ซื้อหนังสือองค์กร:</span>
                           <select name="bookname" id="susr" class="form-control chosen-select" aria-describedby="sizing-addon">
                               <option selected disabled>เลือกผู้ซื้อ</option>
-                              <?
+                              <?php
                               while($row = mysqli_fetch_array($org)){
                                   echo '<option value="'.$row['user_id'].'">'.$row['organization_name'].'</option>';
                               }
