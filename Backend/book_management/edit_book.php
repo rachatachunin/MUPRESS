@@ -1,27 +1,22 @@
 <?php
 $headTo = "book_management.html";
-$db_cont = "../dbconnection.php";
+$db_cont = "../../dbconnection.php";
 
 if(!@file_exists("./".$db_cont) ) {
     echo 'can not include db_cont.php';
 } else {
    require("./".$db_cont);
+
 }
+
+
 $serial_no 	= $_POST['serial_no'];
 $title 		= $_POST['title'];
 $edition 	= $_POST['edition'];
 $author 	= $_POST['author'];
 $price 		= $_POST['price'];
-$detail 	= $_POST['book_detail'];
 $image 		= $_POST['file'];
-
-/*echo "Serial_no : ".$_POST['serial_no'];
-	echo " /Title : ".$_POST['title'];
-	echo " /Edition : ".$_POST['edition'];
-	echo " /Author : ".$_POST['author'];
-	echo " /Price : ".$_POST['price'];
-	echo " /Detail : ".$_POST['book_detail'];
-	echo " /Picture : ".$_POST['file'];*/
+$book_detail = $_POST['book_detail'];
 
 
 unset($_POST['serial_no']);
@@ -33,11 +28,11 @@ unset($_POST['book_detail']);
 unset($_POST['file']);
 
 
-$sql = "INSERT INTO book (serial_no, title, author,edition,price,image)
-VALUES ('$serial_no', '$title', '$author','$edition','$price','$image')";
+$sql ="UPDATE book SET title='$title', author='$author', edition='$edition', price='$price',image='$image' 
+		WHERE serial_no = '$serial_no'";
 
 if (mysqli_query($con, $sql)) {
-    echo "New book created successfully";
+    echo "The book is edited successfully";
 } else {
     echo "Error: " . $sql . "<br>" . mysqli_error($con);
 }

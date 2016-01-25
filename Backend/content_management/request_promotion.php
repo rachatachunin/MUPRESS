@@ -1,6 +1,5 @@
 <?php
-
-$db_cont = "../dbconnection.php";
+$db_cont = "../../dbconnection.php";
 
 if(!@file_exists("./".$db_cont) ) {
     echo 'can not include db_cont.php';
@@ -8,10 +7,11 @@ if(!@file_exists("./".$db_cont) ) {
    require("./".$db_cont);
 }
 
-$serial_no 	= $_GET['serial_no'];
-unset($_GET['serial_no']);
+$promotion_id 	= $_GET['promotion_id'];
+unset($_GET['promotion_id']);
 
-$sql = "SELECT * FROM book WHERE serial_no = '$serial_no'";
+$sql = "SELECT * FROM promotion INNER JOIN book ON promotion.book_serial_no = book.serial_no 
+WHERE promotion_id = '$promotion_id'";
 
 $result = mysqli_query($con,$sql);
 $data = array();

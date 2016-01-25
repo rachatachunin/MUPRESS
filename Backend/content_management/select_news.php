@@ -1,7 +1,6 @@
 <?php
 
-$db_cont = "../dbconnection.php";
-
+$db_cont = "../../dbconnection.php";
 if(!@file_exists("./".$db_cont) ) {
     echo 'can not include db_cont.php';
 } else {
@@ -19,10 +18,10 @@ $sql = "";
 
 
 if($searchBy == "none" || $searchBy == "all"){
-$sql = "SELECT * FROM book";
+$sql = "SELECT * FROM news_activities";
 }
 else{
-$sql = "SELECT * FROM book WHERE $searchBy LIKE '%$keyword%' ";
+$sql = "SELECT * FROM news_activities WHERE $searchBy LIKE '%$keyword%' ";
 }
 
 
@@ -42,7 +41,5 @@ mysqli_close($con);
 //print_r($data);
 
 echo json_encode($data);
-
-
 
 ?>

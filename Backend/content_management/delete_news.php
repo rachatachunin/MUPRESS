@@ -1,6 +1,6 @@
 <?php
-$headTo = "book_management.html";
-$db_cont = "../dbconnection.php";
+$headTo = "content_management.html";
+$db_cont = "../../dbconnection.php";
 
 if(!@file_exists("./".$db_cont) ) {
     echo 'can not include db_cont.php';
@@ -8,13 +8,12 @@ if(!@file_exists("./".$db_cont) ) {
    require("./".$db_cont);
 }
 
-$serialno 	= $_GET['serial_no'];
-unset($_GET['serial_no']);
+$activities_id 	= $_GET['news_id'];
+unset($_GET['news_id']);
 
-
-$sql = "UPDATE book SET recommend = NOT recommend WHERE serial_no = $serialno";
+$sql = "DELETE FROM news_activities WHERE activities_id = '$activities_id'";
 if (mysqli_query($con, $sql)) {
-    echo "New book created successfully";
+    echo "The activity is deleted completely";
 } else {
     echo "Error: " . $sql . "<br>" . mysqli_error($con);
 }
