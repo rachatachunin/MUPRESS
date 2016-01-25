@@ -236,6 +236,73 @@
                             </div>
                        </div>
                      </li>
+                     <div id = "addCustomer">
+                         <div id="AddCus" style="display: none">
+                          <form id="addCustomerForm" onsubmit="return validateCus();" action ="addCustomer.php" method="post" class="form-horizontal" role="form" style="margin-top: 20px">
+                             <!-- <form class="from" onsubmit="return confirm('Do you really want to submit?');" method="post" action="AddCustomer.php" style="margin-top: 20px"> -->
+                         <div class="form-group">
+                             <label for="firstname" class="col-md-3 control-label">ชื่อ    (ต้องการข้อมูล)</label>
+                             <div class="col-md-9">
+                                 <input type="text"  id = "fn_cus" class="form-control" name="firstname" placeholder="ชื่อ" required="true">
+                             </div>
+                         </div>
+
+                         <div class="form-group">
+                             <label for="lastname" class="col-md-3 control-label">นามสกุล    (ต้องการข้อมูล)</label>
+                             <div class="col-md-9">
+                                 <input type="text"  id = "ln_cus"class="form-control" name="lastname" placeholder="นามสกุล" required="true">
+                             </div>
+                         </div>
+
+                         <div class="form-group">
+                             <label for="email" class="col-md-3 control-label">Email    (ต้องการข้อมูล)</label>
+                             <div class="col-md-9">
+                                 <input type="text"  id= "email_cus" class="form-control" name="email" placeholder="Email Address" required="true">
+                             </div>
+                         </div>
+
+
+                          <div class="form-group">
+                             <label for="gender" class="col-md-3 control-label">เพศ</label>
+                             <div class="col-md-9">
+                                 <select name="gender" class="form-control" aria-describedby="sizing-addon" required="ture">
+                                     <option value="">เลือกเพศ</option>
+                                     <option value="M">ชาย</option>
+                                     <option value="F">หญิง</option>
+                                 </select>
+                             </div>
+                         </div>
+                         <div class="form-group">
+                             <label for="address" class="col-md-3 control-label">ที่อยู่   (ต้องการข้อมูล) </label>
+                             <div class="col-md-9">
+                                 <textarea  name="address" id="address_cus"  cols="50" rows="5"></textarea>
+                             </div>
+                         </div>
+
+                         <!-- <div class="form-group" >
+                             <label for="password" class="col-md-3 control-label">Password</label>
+                             <div class="col-md-9">
+                               <div class="col-md-6">
+                                   <input type="password" class="form-control"  id ="mytext" value="" name="pass" placeholder="Password">
+                               </div>
+                               <div class="col-md-3">
+                                   <button type="button" class="btn btn-info" onclick="generateRandomString()" name="button">Generate Password</button>
+                               </div>
+                             </div>
+                         </div> -->
+
+                         <div class="form-group">
+                             <label for="phone" class="col-md-3 control-label">เบอร์โทรศัพท์ (ต้องการข้อมูล) </label>
+                             <div class="col-md-9">
+                                 <input type="text" class="form-control"  id="tel_cus" name="phone" placeholder="เบอร์โทรศัพท์" required="ture">
+                             </div>
+                         </div>
+
+                                 <button type="submit" class="btn btn-info">เพิ่ม</button>
+
+                             </form>
+                         </div>
+                 </div><br><br>
                    </ul>
                   <div class="boxes">
                    <ul class="list-group " id = "customerUL">
@@ -252,76 +319,7 @@
                        <!-- <li class="list-group-item"><a href="#" onClick="$('#addbox').hide(); $('#editbox').show()">นาย รชต ชูนิล</a></li> -->
                     </ul>
                   </div>
-                    <div class="panel-footer">
-                            <div id = "addCustomer">
-                                <div id="AddCus" style="display: none">
-                                 <form id="addCustomerForm" onsubmit="return validateCus();" action ="addCustomer.php" method="post" class="form-horizontal" role="form" style="margin-top: 20px">
-                                    <!-- <form class="from" onsubmit="return confirm('Do you really want to submit?');" method="post" action="AddCustomer.php" style="margin-top: 20px"> -->
-                                <div class="form-group">
-                                    <label for="firstname" class="col-md-3 control-label">ชื่อ    (ต้องการข้อมูล)</label>
-                                    <div class="col-md-9">
-                                        <input type="text"  id = "fn_cus" class="form-control" name="firstname" placeholder="ชื่อ" required="true">
-                                    </div>
-                                </div>
 
-                                <div class="form-group">
-                                    <label for="lastname" class="col-md-3 control-label">นามสกุล    (ต้องการข้อมูล)</label>
-                                    <div class="col-md-9">
-                                        <input type="text"  id = "ln_cus"class="form-control" name="lastname" placeholder="นามสกุล" required="true">
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="email" class="col-md-3 control-label">Email    (ต้องการข้อมูล)</label>
-                                    <div class="col-md-9">
-                                        <input type="text"  id= "email_cus" class="form-control" name="email" placeholder="Email Address" required="true">
-                                    </div>
-                                </div>
-
-
-                                 <div class="form-group">
-                                    <label for="gender" class="col-md-3 control-label">เพศ</label>
-                                    <div class="col-md-9">
-                                        <select name="gender" class="form-control" aria-describedby="sizing-addon" required="ture">
-                                            <option value="">เลือกเพศ</option>
-                                            <option value="M">ชาย</option>
-                                            <option value="F">หญิง</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="address" class="col-md-3 control-label">ที่อยู่   (ต้องการข้อมูล) </label>
-                                    <div class="col-md-9">
-                                        <textarea  name="address" id="address_cus"  cols="50" rows="5"></textarea>
-                                    </div>
-                                </div>
-
-                                <div class="form-group" >
-                                    <label for="password" class="col-md-3 control-label">Password</label>
-                                    <div class="col-md-9">
-                                      <div class="col-md-6">
-                                          <input type="password" class="form-control"  id ="mytext" value="" name="pass" placeholder="Password">
-                                      </div>
-                                      <div class="col-md-3">
-                                          <button type="button" class="btn btn-info" onclick="generateRandomString()" name="button">Generate Password</button>
-                                      </div>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="phone" class="col-md-3 control-label">เบอร์โทรศัพท์ (ต้องการข้อมูล) </label>
-                                    <div class="col-md-9">
-                                        <input type="text" class="form-control"  id="tel_cus" name="phone" placeholder="เบอร์โทรศัพท์" required="ture">
-                                    </div>
-                                </div>
-
-                                        <button type="submit" class="btn btn-info">เพิ่ม</button>
-
-                                    </form>
-                                </div>
-                        </div>
-
-                    </div>
 
                 </div>
 
@@ -352,24 +350,7 @@
                            </div>
                       </div>
                     </li>
-                  </ul>
-                  <div class="boxes">
-                  <ul class="list-group" id ="organizationUL">
-                    <?php
-                    while($row2 = mysqli_fetch_array($result2)){
-                     echo '<li class = "list-group-item">' ;
-                     echo $row2['organization_name'];
-                     echo '<a href="#" class="icon pull-right" onclick="editOR('.$row2['user_id'].')" >
-                           <span class="glyphicon glyphicon-cog"></span>
-                           </a>
-                           </li>';
-                   }
-                    ?>
 
-                      <!-- <li class="list-group-item"><a href="#" onClick="$('#loginbox').hide(); $('#signupbox').show()">CourseSquare.co</a></li> -->
-                    </ul>
-                  </div>
-                    <div class="panel-footer">
                         <div id = "addOrganization">
                                 <div id="AddQ" style="display: none">
                                  <form id="addOrganizationForm" onsubmit="return validateOr();" action ="addOrganization.php" method="post" class="form-horizontal" role="form" style="margin-top: 20px">
@@ -410,7 +391,7 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group">
+                                <!-- <div class="form-group">
                                     <label for="password" class="col-md-3 control-label">Password</label>
                                     <div class="col-md-9">
                                       <div class="col-md-6">
@@ -420,7 +401,7 @@
                                           <button type="button" class="btn btn-warning" onclick="generateRandomStringOr()" name="button">Generate Password</button>
                                       </div>
                                     </div>
-                                </div>
+                                </div> -->
 
                                 <div class="form-group">
                                     <label for="phone" class="col-md-3 control-label">เบอร์โทรศัพท์ (ต้องการข้อมูล)</label>
@@ -433,10 +414,24 @@
                                     </form>
 
                                 </div>
-                        </div>
+                        </div><br><br>
+                  </ul>
+                  <div class="boxes">
+                  <ul class="list-group" id ="organizationUL">
+                    <?php
+                    while($row2 = mysqli_fetch_array($result2)){
+                     echo '<li class = "list-group-item">' ;
+                     echo $row2['organization_name'];
+                     echo '<a href="#" class="icon pull-right" onclick="editOR('.$row2['user_id'].')" >
+                           <span class="glyphicon glyphicon-cog"></span>
+                           </a>
+                           </li>';
+                   }
+                    ?>
 
-
-                    </div>
+                      <!-- <li class="list-group-item"><a href="#" onClick="$('#loginbox').hide(); $('#signupbox').show()">CourseSquare.co</a></li> -->
+                    </ul>
+                  </div>
 
                 </div>
 
@@ -449,9 +444,6 @@
             <div class="panel-heading">
               <div style="text-align:left">
                 ผู้เขียน
-                <div class="pull-right" style="margin-top:0;">
-                  <button class="btn btn-success" id = "hideshowAddQ"><i class="glyphicon glyphicon-plus"></i> เพิ่มผู้เขียน</button>
-                </div>
               </div>
             </div>
             <ul class="list-group">
