@@ -267,7 +267,7 @@ session_start();
                               <div class="form-group">
                               						<div class="input-group">
                                             <label for="uLogin" class="input-group-addon glyphicon glyphicon-user"></label>
-                              							<input type="text" class="form-control" id="uLogin" placeholder="Login">
+                              							<input type="text" class="form-control" name="username" id="uLogin" placeholder="Login">
 
                               						</div>
                               					</div> <!-- /.form-group -->
@@ -275,7 +275,7 @@ session_start();
                               					<div class="form-group">
                               						<div class="input-group">
                                             <label for="uPassword" class="input-group-addon glyphicon glyphicon-lock"></label>
-                              							<input type="password" class="form-control" id="uPassword" placeholder="Password">
+                              							<input type="password" class="form-control" name="password" id="uPassword" placeholder="Password">
 
                               						</div> <!-- /.input-group -->
                               					</div> <!-- /.form-group -->
