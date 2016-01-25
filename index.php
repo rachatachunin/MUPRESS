@@ -1,4 +1,4 @@
-<?
+<?php
 ob_start();
 session_start();
 ?>
@@ -65,7 +65,7 @@ session_start();
 
     <div class="page-header" >
         <div style="margin-left: 20px;margin-bottom: 20px;"><img src="image/logo_mupress.jpg">
-            <?
+            <?php
             if(!isset($_SESSION['login']))
             {
                 echo '<a href="#" data-toggle="modal" data-target="#L_R" class="btn btn-primary btn-lg pull-right" role="button" style="margin-right: 20px">สมัครสมาชิก หรือ ลงชื่อเข้าใช้งาน</a></div>';
@@ -73,7 +73,7 @@ session_start();
             else
             {
                 echo '<div class="pull-right" style="padding-top: 20px;">';
-                echo '<p class="lead pull-left" style="margin-right: 20px">'.$_SESSION['username'].'</p>';
+                echo '<a href="#" onclick="profile_request(\''.$_SESSION["username"].'\')" class="lead pull-left" style="margin-right: 20px">'.$_SESSION['username'].'</a>';
                 echo '<a href="cart2.html" class="btn btn-info" style="margin-right: 20px" type="button">
                 สินค้าทั้งหมด <span class="badge">4</span>
             ';
@@ -153,9 +153,9 @@ session_start();
                     <img class="img-responsive" src="image/medicine.jpg" alt="..." height="171" width="180">
                     <div class="caption">
                         <h4>การตรวจคัดกรองและการวินิจฉัยทางการแพทย์ : Screening and Diagnostic Tests in Medicine</h4>
-                        <p>ผู้แต่ง	ศิริวรรณ ตั้งจิตกมล และคณะ<br>
-                            พิมพ์ครั้งที่ 1	344 หน้า<br>
-                            นครปฐม :	มหาวิทยาลัยมหิดล, 2558<br>
+                        <p>ผู้แต่ง  ศิริวรรณ ตั้งจิตกมล และคณะ<br>
+                            พิมพ์ครั้งที่ 1 344 หน้า<br>
+                            นครปฐม :    มหาวิทยาลัยมหิดล, 2558<br>
                             <br>
                             ISBN 978-616-279-701-9<br>
                             ราคา 400 บาท</p>
@@ -168,9 +168,9 @@ session_start();
                     <img class="img-responsive" src="image/health.jpg" alt="..." height="171" width="180">
                     <div class="caption">
                         <h4>นโยบายสุขภาพ : การจัดทำ วิเคราะห์ และประเมินผล</h4>
-                        <p>ผู้แต่ง	นวรัตน์ สุวรรณผ่อง, รองศาสตราจารย์<br>
-                            พิมพ์ครั้งที่ 1	216 หน้า<br>
-                            นครปฐม :	มหาวิทยาลัยมหิดล, 2557<br>
+                        <p>ผู้แต่ง  นวรัตน์ สุวรรณผ่อง, รองศาสตราจารย์<br>
+                            พิมพ์ครั้งที่ 1 216 หน้า<br>
+                            นครปฐม :    มหาวิทยาลัยมหิดล, 2557<br>
                             <br>
                             ISBN 978-616-279-581-7<br>
                             ราคา 180 บาท</p>
@@ -183,9 +183,9 @@ session_start();
                     <img class="img-responsive" src="image/law.jpg" alt="..." height="171" width="180">
                     <div class="caption">
                         <h4>จริยธรรมในวิชาชีพกฎหมาย</h4>
-                        <p>ผู้แต่ง	ศาสตราจารย์ พิเศษ วิชา มหาคุณ และคณะ<br>
-                            พิมพ์ครั้งที่ 1	182 หน้า<br>
-                            นครปฐม :	มหาวิทยาลัยมหิดล, 2558<br>
+                        <p>ผู้แต่ง  ศาสตราจารย์ พิเศษ วิชา มหาคุณ และคณะ<br>
+                            พิมพ์ครั้งที่ 1 182 หน้า<br>
+                            นครปฐม :    มหาวิทยาลัยมหิดล, 2558<br>
                             <br>
                             ISBN 978-616-279-694-4<br>
                             ราคา 200 บาท</p>
@@ -200,9 +200,9 @@ session_start();
                     <img class="img-responsive" src="image/behavioralgame.jpg" alt="..." height="171" width="180">
                     <div class="caption">
                         <h4>Behavioral Game experiments in Thailand, and Implications of Cross-Country Comparisons</h4>
-                        <p>ผู้แต่ง	Yingyot Chiaravutthi<br>
-                            พิมพ์ครั้งที่ 1	188 หน้า<br>
-                            นครปฐม :	มหาวิทยาลัยมหิดล, 2558<br>
+                        <p>ผู้แต่ง  Yingyot Chiaravutthi<br>
+                            พิมพ์ครั้งที่ 1 188 หน้า<br>
+                            นครปฐม :    มหาวิทยาลัยมหิดล, 2558<br>
                             <br>
                             ISBN 978-616-279-666-1<br>
                             ราคา 220 บาท</p>
@@ -215,9 +215,9 @@ session_start();
                     <img src="image/rome.jpg" alt="..." height="171" width="180">
                     <div class="caption">
                         <h4>อารยธรรมโรมัน : อารยธรรมตะวันตก</h4>
-                        <p>ผู้แต่ง	สุริยา รัตนกุล, ศาสตราจารย์คุณหญิง<br>
-                            พิมพ์ครั้งที่ 3	279 หน้า<br>
-                            นครปฐม :	มหาวิทยาลัยมหิดล, 2557<br>
+                        <p>ผู้แต่ง  สุริยา รัตนกุล, ศาสตราจารย์คุณหญิง<br>
+                            พิมพ์ครั้งที่ 3 279 หน้า<br>
+                            นครปฐม :    มหาวิทยาลัยมหิดล, 2557<br>
                             <br>
                             ISBN 978-616-279-515-2<br>
                             ราคา 240 บาท</p>
@@ -230,9 +230,9 @@ session_start();
                     <img src="image/thai-music.jpg" alt="..." height="171" width="180">
                     <div class="caption">
                         <h4>สารานุกรมเพลงไทย</h4>
-                        <p>ผู้แต่ง	ณรงชัย ปิฎกรัชต์, รองศาสตราจารย์<br>
-                            พิมพ์ครั้งที่ 1	848 หน้า<br>
-                            นครปฐม :	มหาวิทยาลัยมหิดล, 2557<br>
+                        <p>ผู้แต่ง  ณรงชัย ปิฎกรัชต์, รองศาสตราจารย์<br>
+                            พิมพ์ครั้งที่ 1 848 หน้า<br>
+                            นครปฐม :    มหาวิทยาลัยมหิดล, 2557<br>
                             <br>
                             ISBN 978-616-279-514-5<br>
                             ราคา 749 บาท</p>
@@ -265,20 +265,20 @@ session_start();
                         <div id="menu1" class="tab-pane fade in active">
                             <form  method="post" action="Authentication/login.php">
                               <div class="form-group">
-                              						<div class="input-group">
+                                                    <div class="input-group">
                                             <label for="uLogin" class="input-group-addon glyphicon glyphicon-user"></label>
-                              							<input type="text" class="form-control" name="username" id="uLogin" placeholder="Login">
+                                                        <input type="text" class="form-control" name="username" id="uLogin" placeholder="Login">
 
-                              						</div>
-                              					</div> <!-- /.form-group -->
+                                                    </div>
+                                                </div> <!-- /.form-group -->
 
-                              					<div class="form-group">
-                              						<div class="input-group">
+                                                <div class="form-group">
+                                                    <div class="input-group">
                                             <label for="uPassword" class="input-group-addon glyphicon glyphicon-lock"></label>
-                              							<input type="password" class="form-control" name="password" id="uPassword" placeholder="Password">
+                                                        <input type="password" class="form-control" name="password" id="uPassword" placeholder="Password">
 
-                              						</div> <!-- /.input-group -->
-                              					</div> <!-- /.form-group -->
+                                                    </div> <!-- /.input-group -->
+                                                </div> <!-- /.form-group -->
 
                                 <button class="btn btn-lg btn-primary btn-block" type="submit">
                                     ลงชื่อเข้าใช้</button>
@@ -346,4 +346,110 @@ session_start();
         </div>
     </div>
 </div>
+
+<!---//////////////////////////////////////// Begin edit model  ///////////////////////////////////////////////-->
+    <div class="modal fade" id="edit_Profile_Model" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title text-center" id="myModalLabel">แก้ไขประวัติส่วนตัว</h4>
+        
+            </div>
+
+            <!--<form method="post" >-->
+                <div class="modal-body">
+                    
+                    <form class="form" method="post" action="edit_profile.php">
+                        <div class="input-group">
+                            <span class="input-group-addon" id="sizing-addon3">Email</span>
+                            <input type="text" value="<?php echo $_SESSION['username']; ?>" class="form-control" placeholder="" aria-describedby="sizing-addon3" name="email" readonly="true">
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                              <div class="form-group">
+                                <span class="input-group-addon" id="sizing-addon1">ชื่อ</span>
+                                <input type="text" name="fname" id="firstname" class="form-control input-sm" placeholder="ชื่อ" aria-describedby="sizing-addon1">
+                              </div>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                              <div class="form-group">
+                                <span class="input-group-addon" id="sizing-addon2">นามสกุล</span>
+                                <input type="text" name="lname" id="lastname" class="form-control input-sm" placeholder="นามสกุล" aria-describedby="sizing-addon2">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <span class="input-group-addon" id="sizing-addon4">เพศ</span>
+                            <select name="gender" class="form-control input-sm" aria-describedby="sizing-addon" aria-describedby="sizing-addon4" required="ture">
+                                <option value="">เลือกเพศ</option>
+                                <option value="M">ชาย</option>
+                                <option value="F">หญิง</option>
+                            </select>
+                          </div>
+
+                          <div class="row">
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                              <div class="form-group">
+                                <span class="input-group-addon" id="sizing-addon7">เบอร์โทรศัพท์</span>
+                                <input type="text" name="tel" id="tel" class="form-control input-sm" placeholder="เบอร์โทรศัพท์" aria-describedby="sizing-addon7">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <span class="input-group-addon" id="sizing-addon8">ที่อยู่</span>
+                            <textarea name="address" placeholder="ที่อยู่" class="form-control input-sm"  aria-describedby="sizing-addon8"></textarea>
+                          </div>
+                          <button class="btn btn-lg btn-primary btn-block" type="submit">
+                              แก้ไข</button>
+                          <span class="clearfix"></span>
+
+                    </form>
+                      
+                </div>
+                <div class="modal-footer">
+                    <!--<button type="submit" class="btn btn-primary">Add</button>-->
+                    <button type="button" class="btn btn-default" data-dismiss="modal">ปิด</button>
+                </div>
+            <!--</form>-->
+        </div>
+    </div>
+</div>
+<!---//////////////////////////////////////// End edit model  ///////////////////////////////////////////////-->
 </html>
+<script>
+$(document).ready(function() {
+
+
+});
+
+function profile_request(email){
+     $.ajax({
+    url: "request_profile.php",
+    data: {
+        email: email ,
+
+    },
+    type: "GET",
+    dataType : "JSON",
+    success: function( json ) {
+    var profile = json;
+    $("#edit_Profile_Model input[name='fname']").val(profile[0]['user_fn']);
+    $("#edit_Profile_Model input[name='lname']").val(profile[0]['user_ln']);
+    $("#edit_Profile_Model input[name='tel']").val(profile[0]['tel']);
+    $("#edit_Profile_Model select[name='gender']").val(profile[0]['gender']);
+    $("#edit_Profile_Model textarea[name='address']").val(profile[0]['address']);
+
+    },
+    error: function( xhr, status, errorThrown ) {
+        alert( "Sorry, there was a problem in user profile request!" );
+        console.log( "Error: " + errorThrown );
+        console.log( "Status: " + status );
+        console.dir( xhr );
+    },
+  });
+$("#edit_Profile_Model").modal(); ///enable edit model
+}
+
+</script>
