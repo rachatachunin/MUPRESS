@@ -1,6 +1,6 @@
 <?php
 $headTo = "content_management.html";
-$db_cont = "../dbconnection.php";
+$db_cont = "../../dbconnection.php";
 if(!@file_exists("./".$db_cont) ) {
 	echo 'can not include db_cont.php';
 } else {
