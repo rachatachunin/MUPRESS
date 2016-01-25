@@ -48,7 +48,9 @@ echo ' <div class="modal fade" id="Detail'.$row['pe_id'].'" tabindex="-1" role="
                          <form  onsubmit="return confirm(\'ยืนยันการตัดสินใจ\');"  action="confirmPayment.php" method="post">
                            <input type="hidden" value = "'.$row['order_id'].'" name = "order_id">
                            <button type = "submit" class = "btn btn-warning"> ยืนยันการโอน</button>
+                            <button type="button" class="btn btn-danger" onclick ="deleteOrder('.$row['pe_id'].') ;">ลบ</button>
                          </form>
+
                     </div>
                     </div>
 

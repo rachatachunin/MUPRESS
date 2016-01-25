@@ -35,6 +35,10 @@ function getOrder(str) {
 
         }
 
+ function deleteOrder(str){
+   var path = "deleteOrder.php?q=" + str  ;
+   window.location.href= path ;
+ }
 </script>
 </head>
 <body>
