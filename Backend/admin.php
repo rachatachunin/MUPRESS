@@ -78,7 +78,7 @@
     <div class="col-lg-4 text-center">
         <div class="jumbotron">
             <h2 class="lead">Contents Management</h2>
-              <h3 class="lead">(การจัดการเนื้อหาเวปไซ)<h3>
+              <h3 class="lead">(การจัดการเนื้อหาเวปไซต์)<h3>
 
             <p><a class="btn btn-primary btn-lg text-center" href="../content_mangement/content_management.html" role="button">Manage now<span class="glyphicon glyphicon-folder-open" style="margin-left:10px"></span></a></p>
         </div>
