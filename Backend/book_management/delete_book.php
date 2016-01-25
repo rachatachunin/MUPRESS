@@ -1,4 +1,5 @@
 <?php
+ob_start();
 $headTo = "book_management.html";
 $db_cont = "../../dbconnection.php";
 
