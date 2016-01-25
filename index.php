@@ -6,11 +6,11 @@ session_start();
 <html>
 <head>
     <meta http-equiv="content-Type" content="text/html; charset=utf-8">
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/index.css" rel="stylesheet">
     <script src="js/jq.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-
+    <script src="js/bootstrap.min.js"></script> -->
+<?php include "headFrontEnd.php" ?>
     <!--<link href="css/bootstrap-theme.min.css" rel="stylesheet">-->
     <title>MU PRESS</title>
     <style>
@@ -62,44 +62,29 @@ session_start();
     </script>
 </head>
 <body>
-
+  <?php include "header.php" ?>
+<!--
     <div class="page-header" >
         <div style="margin-left: 20px;margin-bottom: 20px;"><img src="image/logo_mupress.jpg">
             <?
-            if(!isset($_SESSION['login']))
-            {
-                echo '<a href="#" data-toggle="modal" data-target="#L_R" class="btn btn-primary btn-lg pull-right" role="button" style="margin-right: 20px">สมัครสมาชิก หรือ ลงชื่อเข้าใช้งาน</a></div>';
-            }
-            else
-            {
-                echo '<div class="pull-right" style="padding-top: 20px;">';
-                echo '<p class="lead pull-left" style="margin-right: 20px">'.$_SESSION['username'].'</p>';
-                echo '<a href="cart2.html" class="btn btn-info" style="margin-right: 20px" type="button">
-                สินค้าทั้งหมด <span class="badge">4</span>
-            ';
-                echo '<a href="disconnect.php" class="btn btn-danger" role="button" style="margin-right: 20px">ออกจากระบบ</a></div>';
-                echo '</div>';
-            }
+            // if(!isset($_SESSION['login']))
+            // {
+            //     echo '<a href="#" data-toggle="modal" data-target="#L_R" class="btn btn-primary btn-lg pull-right" role="button" style="margin-right: 20px">สมัครสมาชิก หรือ ลงชื่อเข้าใช้งาน</a></div>';
+            // }
+            // else
+            // {
+            //     echo '<div class="pull-right" style="padding-top: 20px;">';
+            //     echo '<p class="lead pull-left" style="margin-right: 20px">'.$_SESSION['username'].'</p>';
+            //     echo '<a href="cart2.html" class="btn btn-info" style="margin-right: 20px" type="button">
+            //     สินค้าทั้งหมด <span class="badge">4</span>
+            // ';
+            //     echo '<a href="disconnect.php" class="btn btn-danger" role="button" style="margin-right: 20px">ออกจากระบบ</a></div>';
+            //     echo '</div>';
+            // }
             ?>
         <!--<h1 style="margin-left: 30px; margin-bottom: 20px;">MU PRESS</h1>-->
+    <!-- </div>  -->
 
-    </div>
-
-    <nav class="navbar navbar-default" style="margin-top: -20px">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <!--<a class="navbar-brand" href="#">WebSiteName</a>-->
-            </div>
-            <div>
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">หน้าแรก</a></li>
-                    <li><a href="#">รายชื่อหนังสือ</a></li>
-                    <li><a href="#">ข่าวสารและกิจกรรม</a></li>
-                    <li><a href="#">โปรโมชั่น</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
 
     <div class="container-fluid">
         <div id="myCarousel" class="carousel slide" data-ride="carousel">
