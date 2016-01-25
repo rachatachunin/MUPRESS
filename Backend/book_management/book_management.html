@@ -6,6 +6,7 @@
     <link href="../../css/bootstrap.min.css" rel="stylesheet">
     <link href="../../css/index.css" rel="stylesheet">
     <script src="../../js/jq.js"></script>
+    <script src="../../js/jquery.maskedinput.js"></script>
     <script src="../../js/bootstrap.min.js"></script>
 
     <!--<link href="css/bootstrap-theme.min.css" rel="stylesheet">-->
@@ -99,6 +100,7 @@
                 <th></th>
                 <th>หมายเลขหนังสือ</th>
                 <th>ชื่อหนังสือ</th>
+                <th>ฉบับที่</th>
                 <th>ผู้เขียน</th>
                 <th>ราคา</th>
                 <th>แนะนำ</th>
@@ -145,26 +147,27 @@
 
 
     
-          <form method="post" action="add_book.php">
+          <form name="addForm" method="post" action="add_book.php" 
+          onsubmit="return validateFormAdd('add')">
             <div class="form-group">
               <label for="serial_no">หมายเลขหนังสือ</label>
-              <input type="text" class="form-control" name="serial_no" placeholder="หนังสือที่ต้องการจัดรายการ">
+              <input type="text" class="form-control" name="serial_no" id="serial_no" placeholder="หนังสือที่ต้องการจัดรายการ" required>
             </div>
             <div class="form-group">
               <label for="book">ชื่อหนังสือ</label>
-              <input type="text" class="form-control" name="title" placeholder="หนังสือที่ต้องการจัดรายการ">
+              <input type="text" class="form-control" name="title" placeholder="หนังสือที่ต้องการจัดรายการ" required>
             </div>
             <div class="form-group">
               <label for="author">ฉบับที่</label>
-              <input type="text" class="form-control" name="edition" placeholder="หนังสือที่ต้องการจัดรายการ">
+              <input type="text" class="form-control" name="edition" placeholder="หนังสือที่ต้องการจัดรายการ" required>
             </div>
             <div class="form-group">
               <label for="author">ชื่อผู้เขียน</label>
-              <input type="text" class="form-control" name="author" placeholder="หนังสือที่ต้องการจัดรายการ">
+              <input type="text" class="form-control" name="author" placeholder="หนังสือที่ต้องการจัดรายการ" required>
             </div>
             <div class="form-group">
               <label for="price">ราคา</label>
-              <input type="text" class="form-control" name="price" placeholder="หนังสือที่ต้องการจัดรายการ">
+              <input type="text" class="form-control" name="price" placeholder="หนังสือที่ต้องการจัดรายการ" id="price" required>
             </div>
             <div class="form-group">
               <label for="book_detail">รายละเอียดหนังสือ</label>
@@ -198,7 +201,8 @@
       </div>
       <div class="modal-body">
     
-          <form method="post" action="edit_book.php">
+          <form name="editForm" method="post" action="edit_book.php"
+          onsubmit="return validateFormAdd('edit')">
             <div class="form-group">
               <label for="book">หมายเลขหนังสือ</label>
               <input type="text" class="form-control" name="serial_no" placeholder="หนังสือที่ต้องการจัดรายการ" 
@@ -206,19 +210,19 @@
             </div>
             <div class="form-group">
               <label for="book">ชื่อหนังสือ</label>
-              <input type="text" class="form-control" name="title" placeholder="หนังสือที่ต้องการจัดรายการ">
+              <input type="text" class="form-control" name="title" placeholder="หนังสือที่ต้องการจัดรายการ" required>
             </div>
             <div class="form-group">
               <label for="author">ฉบับที่</label>
-              <input type="text" class="form-control" name="edition" placeholder="หนังสือที่ต้องการจัดรายการ">
+              <input type="text" class="form-control" name="edition" placeholder="หนังสือที่ต้องการจัดรายการ" required>
             </div>
             <div class="form-group">
               <label for="author">ชื่อผู้เขียน</label>
-              <input type="text" class="form-control" name="author" placeholder="หนังสือที่ต้องการจัดรายการ">
+              <input type="text" class="form-control" name="author" placeholder="หนังสือที่ต้องการจัดรายการ" required>
             </div>
             <div class="form-group">
               <label for="price">ราคา</label>
-              <input type="text" class="form-control" name="price" placeholder="หนังสือที่ต้องการจัดรายการ">
+              <input type="text" class="form-control" name="price" placeholder="หนังสือที่ต้องการจัดรายการ" required>
             </div>
             <div class="form-group">
               <label for="book_detail">รายละเอียดหนังสือ</label>
@@ -283,6 +287,41 @@ var bookarray;
 var totalPage;
 
 $(document).ready(function() {
+
+
+  jQuery(function($){
+   $("#serial_no").mask("999-999-999-999-9",{completed:function(){
+
+    $.ajax({
+      url: "request_book.php",
+      data: {
+        serial_no: this.val()
+      },
+
+      type: "GET",
+      dataType : "JSON",
+      success: function( json ) {
+        var book = json;
+        if(book.length > 0){
+          alert("This ISBN is already exist");
+          $("#serial_no").val("___-___-___-___-_");
+        }
+      },
+
+      error: function( xhr, status, errorThrown ) {
+        alert( "Sorry, there was a problem in check_book.php!" );
+        console.log( "Error: " + errorThrown );
+        console.log( "Status: " + status );
+        console.dir( xhr );
+      },
+    });
+
+  }});
+
+ });
+
+
+
  //////////////////////////////// Start Jquery for search ////////////////////////////////
   $('.search-panel .dropdown-menu').find('a').click(function(e) {
     e.preventDefault();
@@ -312,6 +351,48 @@ function searchBook(){
   var search_concept = $('.input-group #search_param').val();
   var keyword = document.getElementById('searchKeyword').value;
   getajax(1,search_concept,keyword);
+}
+
+function validateFormAdd(mode) {
+  var price;
+  var edition;
+
+
+  if( mode == "add"){
+  price    = Number(document.forms["addForm"]["price"].value);
+  edition  = Number(document.forms["addForm"]["edition"].value);
+  }
+  if( mode == "edit"){
+  price    = Number(document.forms["editForm"]["price"].value);
+  edition  = Number(document.forms["editForm"]["edition"].value);
+  }
+
+  if( isNaN(price)){
+    alert("ราคาหนังสือต้องเป็นตัวเลขเท่านั้น");
+    return false;
+  }
+  if( isNaN(edition)){
+    alert("ฉบับหนังสือต้องเป็นตัวเลขเท่านั้น");
+    return false;
+  }
+
+  if(edition < 1){
+    alert("ฉบับหนังสือต้องมีค่าตั้งแต่ 1 ขึ้นไป");
+    return false;
+  }
+
+  if(!(Number.isInteger(edition)) ){
+    alert("ฉบับหนังสือต้องเป็นจำนวนเต็ม");
+    return false;
+  }
+
+
+  if(price <= 0 ){
+    alert("ราคาไม่สามารถมีค่าเป็น ศุนย์ หรือ ติดลบ");
+    return false;
+  }
+
+    return true; 
 }
 
 function editBook(serial_no){
@@ -429,30 +510,30 @@ function tabledisplay(currentPage){
       table += "<tr>";
 
       table += "<td><button type='button' class='btn btn-info btn-xs'";
-      table += "onclick='editBook("+bookarray[i]['serial_no']+")'";
+      table += "onclick='editBook(\""+bookarray[i]['serial_no']+"\")'";
       table +=" >แก้ไข</button></td>";
 
       table += "<td>"+bookarray[i]['serial_no']+"</td>";
       table += "<td>"+bookarray[i]['title']+"</td>";
+      table += "<td>"+bookarray[i]['edition']+"</td>";
       table += "<td>"+bookarray[i]['author']+"</td>";
       table += "<td>"+bookarray[i]['price']+"</td>";
 
       if( bookarray[i]['recommend'] == 1){
       table += "<td><span class='glyphicon glyphicon-star'";
-      table += "onclick='recommendtoggle("+bookarray[i]['serial_no']+")'"
+      table += "onclick='recommendtoggle(\""+bookarray[i]['serial_no']+"\")' "
       table += "></span></td>"
       }
       else{
       table += "<td><span class='glyphicon glyphicon-star-empty' ";
-      table += "onclick='recommendtoggle("+bookarray[i]['serial_no']+")'";
+      table += "onclick='recommendtoggle(\""+bookarray[i]['serial_no']+"\")' ";
       table += "></span></td>";
       }
 
       table += "<td><button type='button' class='btn btn-danger btn-xs'";
-      table += "onclick='deletebook("+bookarray[i]['serial_no']+")'";
+      table += " onclick='deletebook(\""+bookarray[i]['serial_no']+"\")' ";
       table += ">ลบ</button></td>";
 
-   
 
       table += "</tr>"
     }
