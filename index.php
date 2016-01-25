@@ -236,11 +236,11 @@ session_start();
 
                             <form  method="post" action="Authentication/login.php">
 
-                                <input type="text" class="form-control" placeholder="Username" id= "username" name="username" required autofocus="true"><br>
+                                <input type="text" class="form-control" placeholder="Email" id= "username" name="username" required autofocus="true"><br>
                                 <input type="password" class="form-control" placeholder="Password"id= "password" name="password" required><br>
 
                                 <button class="btn btn-lg btn-primary btn-block" type="submit">
-                                    Sign in</button>
+                                    ลงชื่อเข้าใช้</button>
                                 <span class="clearfix"></span>
 
                             </form>
@@ -249,12 +249,12 @@ session_start();
                             <form class="form" method="post" action="Authentication/register.php">
 
                                 <div class="input-group">
-                                    <span class="input-group-addon" id="sizing-addon">First name:</span>
+                                    <span class="input-group-addon" id="sizing-addon">ชื่อ:</span>
                                     <input type="text" class="form-control" placeholder="" aria-describedby="sizing-addon" name="fname">
                                 </div>
                                 <br>
                                 <div class="input-group">
-                                    <span class="input-group-addon" id="sizing-addon2">Last name:</span>
+                                    <span class="input-group-addon" id="sizing-addon2">นามสกุล:</span>
                                     <input type="text" class="form-control" placeholder="" aria-describedby="sizing-addon2" name="lname">
                                 </div>
                                 <br>
@@ -269,12 +269,12 @@ session_start();
                                 </div>
                                 <br>
                                 <div class="input-group">
-                                    <span class="input-group-addon" id="sizing-addon5">Telephone:</span>
+                                    <span class="input-group-addon" id="sizing-addon5">เบอร์โทรศัพท์:</span>
                                     <input type="text" class="form-control" placeholder="" aria-describedby="sizing-addon5" name="tel">
                                 </div>
                                 <br>
                                 <button class="btn btn-lg btn-primary btn-block" type="submit">
-                                    Register</button>
+                                    สมัครสมาชิก</button>
                                 <span class="clearfix"></span>
 
                             </form>
