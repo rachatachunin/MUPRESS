@@ -3,7 +3,8 @@
   <?php
     include "../../dbconnection.php";
     include "../../head.php";
-    $sql_getPaymentEvidence = "SELECT * FROM payment_evidence ORDER BY payment_date ASC  ";
+    $sql_getPaymentEvidence = "SELECT * FROM payment_evidence LEFT JOIN order_book ON payment_evidence.order_id = order_book.order_id
+                               WHERE order_book.payment_status = 0 ORDER BY payment_date ASC  ";
     $result = mysqli_query($con,$sql_getPaymentEvidence);
 
   ?>
@@ -41,7 +42,7 @@ function getOrder(str) {
 
 <div class="container-fluid">
     <div class = "container" style="text-align: center">
-		<h2>การจัดการ รายการสั่งซื้อ</h2>
+		<h2>การจัดการ หลักฐานการโอน</h2>
         <h4>( Orders' evidence Management )</h4><br>
 	<div><h3 class="pull-left">รายการแจ้งโอน</h3></div><br><br><br>
 	<div class ="row">
@@ -56,9 +57,6 @@ function getOrder(str) {
                echo '</div></a>';
                    }
               ?>
-             <!-- <a href="#" class="list-group-item" data-toggle="modal"data-target="#OrderDetail" onclick ="getOrder">รายการสั่งซื้อที่ 1</a>
-             <a href="#" class="list-group-item" data-toggle="modal"data-target="#OrderDetail" onclick ="getOrder">รายการสั่งซื้อที่ 2</a>
-             <a href="#" class="list-group-item" data-toggle="modal"data-target="#OrderDetail" onclick ="getOrder">รายการสั่งซื้อที่ 3</a> -->
 
             </div>
 
@@ -70,39 +68,6 @@ function getOrder(str) {
 </div>
 </body>
 <div id ="getEvidence"> </div>
-
-<!--modal OrderDe-->
-<!-- <div class="modal fade" id="OrderDetail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">รายการสั่งซื้อ</h4>
-            </div>
-
-	            <div class="modal-body">
-
-	                รายการสั่งซื้อเลขที่ MUP 1 <br>
-	                นาย รชค ชูนิล <br>
-	                วันที่โอน 13/12/2015 <br>
-	                ธนาคาร ไทยภานิช <br>
-	                จำนวนเงิน  บาท <br>
-	                <div class ="text-center">
-		                <form action="#" method="post">
-		                	<button type = "submit" class = "btn btn-warning"> ยืนยันกาณโอน</button>
-		                </form>
-	             	</div>
-	            </div>
-
-
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">ปิด</button>
-            </div>
-
-		</div>
-	  </div>
-    </div> -->
 
 
 </html>
