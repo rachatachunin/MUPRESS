@@ -23,7 +23,6 @@ if($row['password']==$ps&&$row['user_type']==2)
     session_start();
     $_SESSION['login'] = 1;
     $_SESSION['username'] = $user;
-    $_SESSION['firstname'] = $row['user_fn'];
-    $_SESSION['lastname'] = $row['user_ln']
+    $_SESSION['user_id'] = $row['user_id'];
     header("Location: ../index.php");
 }

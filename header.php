@@ -1,11 +1,17 @@
 <!DOCTYPE html>
 <html>
+
 <style>
 .nav>li>a:hover {
      text-decoration: none;
      background-color: transparent;
-    color: grey !important;
+    color: grey !important;}
+
+
 </style>
+<!-- forsearch  -->
+
+
 </html>
 <?php
 ob_start();
@@ -76,6 +82,8 @@ if(!isset($_SESSION['login'])){
                    <li>
                        <a href="#" style="color: white;">ติดต่อเรา</a>
                    </li>
+                  
+
 
                </ul>
              </div>
@@ -106,7 +114,7 @@ else{
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul class="nav navbar-nav navbar-right">
                   <li>
-                    <a href="#" onclick="profile_request(\''.$_SESSION["username"].'\')" > '.$_SESSION['username'].'<br><i style ="font-size: 120%;">'.$_SESSION['firstname'].' '.$_SESSION['lastname'].'</i> </a>
+                    <a href="#" onclick="profile_request(\''.$_SESSION["username"].'\')" > '.$_SESSION['username'].' </a>
                   </li>
                   <li>
                     <a href="disconnect.php"> <i style ="font-size: 130%;">ออกจากระบบ</i></a>
@@ -269,3 +277,12 @@ else{
         </div>
     </div>
 </div>
+<script>
+  $(document).ready(function(){
+
+  });
+  window.onload = function(){
+      new UISearch( document.getElementById( 'sb-search' ) );
+  };
+
+</script>
