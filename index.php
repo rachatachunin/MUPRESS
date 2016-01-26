@@ -114,30 +114,30 @@ session_start();
             <div class="col-sm-6 col-md-4">
                 <div class="thumbnail">
                     <img class="img-responsive" src="image/medicine.jpg" alt="..." height="171" width="180">
-                    <div class="caption">
-                        <h4>การตรวจคัดกรองและการวินิจฉัยทางการแพทย์ : Screening and Diagnostic Tests in Medicine</h4>
+                    <div class="caption simpleCart_shelfItem">
+                        <h4 class="item_name">การตรวจคัดกรองและการวินิจฉัยทางการแพทย์ : Screening and Diagnostic Tests in Medicine</h4>
                         <p>ผู้แต่ง	ศิริวรรณ ตั้งจิตกมล และคณะ<br>
                             พิมพ์ครั้งที่ 1	344 หน้า<br>
                             นครปฐม :	มหาวิทยาลัยมหิดล, 2558<br>
                             <br>
-                            ISBN 978-616-279-701-9<br>
-                            ราคา 400 บาท</p>
-                        <p><a href="#" class="btn btn-primary" role="button">สั่งซื้อ</a> <a href="#" class="btn btn-default" role="button">ดูตัวอย่าง</a></p>
+                            ISBN 978-616-279-701-9<br></p>
+                            <p class="item_price">ราคา 400 บาท</p>
+                        <p><a href="javascript:;" class="btn btn-primary item_add" role="button">สั่งซื้อ</a> <a href="#" class="btn btn-default" role="button">ดูตัวอย่าง</a></p>
                     </div>
                 </div>
             </div>
             <div class="col-sm-6 col-md-4">
                 <div class="thumbnail">
                     <img class="img-responsive" src="image/health.jpg" alt="..." height="171" width="180">
-                    <div class="caption">
-                        <h4>นโยบายสุขภาพ : การจัดทำ วิเคราะห์ และประเมินผล</h4>
+                    <div class="caption simpleCart_shelfItem">
+                        <h4 class="item_name">นโยบายสุขภาพ : การจัดทำ วิเคราะห์ และประเมินผล</h4>
                         <p>ผู้แต่ง	นวรัตน์ สุวรรณผ่อง, รองศาสตราจารย์<br>
                             พิมพ์ครั้งที่ 1	216 หน้า<br>
                             นครปฐม :	มหาวิทยาลัยมหิดล, 2557<br>
                             <br>
-                            ISBN 978-616-279-581-7<br>
-                            ราคา 180 บาท</p>
-                        <p><a href="#" class="btn btn-primary" role="button">สั่งซื้อ</a> <a href="#" class="btn btn-default" role="button">ดูตัวอย่าง</a></p>
+                            ISBN 978-616-279-581-7<br></p>
+                            <p class="item_price">ราคา 180 บาท</p>
+                        <p><a href="javascript:;" class="btn btn-primary item_add" role="button">สั่งซื้อ</a> <a href="#" class="btn btn-default" role="button">ดูตัวอย่าง</a></p>
                     </div>
                 </div>
             </div>
