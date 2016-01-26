@@ -11,14 +11,69 @@
 </style>
 
 <script type="text/javascript">
+
       simpleCart({
         checkout: {
-          type: "PayPal",
-          email: "you@yours.com"
+          type: "SendForm",
+          url: "checkout.php",
+          method: "POST"
         },
         currency: "THB",
-        cartStyle: "table"
+        cartStyle: "table",
+        cartColumns: [
+            { attr: "name", label: "ชื่อหนังสือ"},
+            { view: "currency", attr: "price", label: "ราคา"},
+            { view: "decrement", label: false},
+            { attr: "quantity", label: "จำนวน"},
+            { view: "increment", label: false},
+            { view: "currency", attr: "total", label: "ราคารวม" },
+            { view: "remove", text: "ลบรายการ", label: false}
+        ]
       });
+      function checkcart(){
+        if(simpleCart.items().length == 0)
+        {
+          alert("ยังไม่มีสินค้าอยู่ในตะกร้า");
+        }
+        else{
+          $("#cart").modal('show');
+        }
+      }
+
+      function confirmaiton(){
+        if(!confirm('ยืนยันที่จะลบรายการทั้งหมด?'))e.preventDefault();
+                 else
+                     simpleCart.empty();
+      }
+
+      simpleCart.bind( 'beforeAdd' , function( item ){
+        if (simpleCart.has(item))
+        {
+            alert("มีหนังสทอเล่มนี้อยู่ในตะกร้าแล้ว");
+            return false;
+        }
+        else{
+            if(!confirm('ต้องการที่จะเพิ่มหนังสือเล่มนี้ลงในตะกร้า?'))e.preventDefault();
+        }
+      });
+
+      simpleCart.bind( "afterAdd" , function( item ){
+        alert("หนังสือเล่มนี้ได้ถูกเพิ่มลงในตะกร้าเรียบร้อย");
+      });
+
+      simpleCart.bind("afterCreate", function(){
+         $cart_table = $(".simpleCart_items table")
+         $cart_table.addClass("table").addClass("table-condensed")
+      });
+
+      simpleCart.bind( 'beforeCheckout' , function( data ){
+        if(!confirm('ยืนยันการสั่งซื้อ?'))e.preventDefault();
+        else{
+            simpleCart.empty();
+            return true;
+        }
+      });
+
 </script>
 
 
@@ -54,12 +109,12 @@ if(!isset($_SESSION['login'])){
                    <li>
 
                        <div style="margin-top: 5px" class="cart box_1">
-            						<a href="#" data-toggle="modal" data-target="#cart"">
+            						<a href="#" onclick="checkcart();"">
             							 <div class="total">
             								<span class="simpleCart_total"></span></div>
             								<img src="image/cart-2.png" alt="" />
             						</a>
-            						<p><a href="javascript:;" class="simpleCart_empty">Empty Cart</a></p>
+            						<p><a href="javascript:;" onclick="confirmaiton();">Empty Cart</a></p>
             						<div class="clearfix"> </div>
             					</div>
                    </li>
@@ -103,7 +158,7 @@ if(!isset($_SESSION['login'])){
                    <li>
                        <a href="#" style="color: white;">ติดต่อเรา</a>
                    </li>
-                  
+
 
 
                </ul>
@@ -139,15 +194,15 @@ else{
                   </li>
                   <li>
 
-                      <div style="margin-top: 5px" class="cart box_1">
-                       <a href="#" data-toggle="modal" data-target="#cart"">
-                          <div class="total">
-                           <span class="simpleCart_total"></span></div>
-                           <img src="image/cart-2.png" alt="" />
-                       </a>
-                       <p><a href="javascript:;" class="simpleCart_empty">Empty Cart</a></p>
-                       <div class="clearfix"> </div>
-                     </div>
+                        <div style="margin-top: 5px" class="cart box_1">
+                         <a href="#" onclick="checkcart();"">
+                            <div class="total">
+                             <span class="simpleCart_total"></span></div>
+                             <img src="image/cart-2.png" alt="" />
+                         </a>
+                         <p><a href="javascript:;" onclick="confirmaiton();">Empty Cart</a></p>
+                         <div class="clearfix"> </div>
+                       </div>
                   </li>
                   <li>
                     <a href="disconnect.php"> <i style ="font-size: 130%;">ออกจากระบบ</i></a>
@@ -322,23 +377,25 @@ else{
 </script>
 
 
-<div class="modal fade" id="cart" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="cart" tabindex="-1" style="font-size: 80%" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title text-center" id="myModalLabel">MU PRESS AND BOOK STORE</h4>
+                <h4 class="modal-title text-center" id="myModalLabel">ข้อมูลตะกร้าสินค้า</h4>
             </div>
 
                 <div class="modal-body">
-                <span class="simpleCart_quantity"></span> items - <span class="simpleCart_total"></span>
-                <a href="javascript:;" class="simpleCart_empty btn btn-danger">ลบรายการทั้งหมด</a>
+                <!-- <span class="simpleCart_quantity"></span> items - <span class="simpleCart_total"></span>
+                <a href="javascript:;" class="simpleCart_empty btn btn-danger">ลบรายการทั้งหมด</a> -->
                 <div>
                 <div class="simpleCart_items"></div>
                 </div>
-
                 </div>
                 <div class="modal-footer">
+                  <div class="">
+                    ราคารวมทั้งหมด<h5 class="simpleCart_total"></h5>
+                  </div>
                     <button type="submit" class="btn btn-primary simpleCart_checkout">สั่งซื้อ</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
@@ -346,4 +403,3 @@ else{
         </div>
     </div>
 </div>
-
