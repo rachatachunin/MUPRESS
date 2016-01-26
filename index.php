@@ -116,6 +116,7 @@ session_start();
                     <img class="img-responsive" src="image/medicine.jpg" alt="..." height="171" width="180">
                     <div class="caption simpleCart_shelfItem">
                         <h4 class="item_name">การตรวจคัดกรองและการวินิจฉัยทางการแพทย์ : Screening and Diagnostic Tests in Medicine</h4>
+                        <input type="text" name="name" class="item_bid" style="display: none" value="1">
                         <p>ผู้แต่ง	ศิริวรรณ ตั้งจิตกมล และคณะ<br>
                             พิมพ์ครั้งที่ 1	344 หน้า<br>
                             นครปฐม :	มหาวิทยาลัยมหิดล, 2558<br>
@@ -131,6 +132,7 @@ session_start();
                     <img class="img-responsive" src="image/health.jpg" alt="..." height="171" width="180">
                     <div class="caption simpleCart_shelfItem">
                         <h4 class="item_name">นโยบายสุขภาพ : การจัดทำ วิเคราะห์ และประเมินผล</h4>
+                        <input type="text" name="name" class="item_bid" style="display: none" value="2">
                         <p>ผู้แต่ง	นวรัตน์ สุวรรณผ่อง, รองศาสตราจารย์<br>
                             พิมพ์ครั้งที่ 1	216 หน้า<br>
                             นครปฐม :	มหาวิทยาลัยมหิดล, 2557<br>

@@ -7,6 +7,7 @@
 <link href="/MUPRESS_GIT/fonts/font_awesome.css" rel="stylesheet">
 <script src="/MUPRESS_GIT/js/jq.js"></script>
 <script src="/MUPRESS_GIT/js/list.js"></script>
+<script src="/MUPRESS_GIT/js/simpleCart.js"></script>
 <script src="/MUPRESS_GIT/js/bootstrap.min.js"></script>
 '
 ;
