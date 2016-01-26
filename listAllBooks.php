@@ -13,13 +13,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <?php
         include "headFrontEnd.php";
     ?>
-    <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
-    <!-- <link href="/MUPRESS/css/simplePagination.css" rel="stylesheet" type="text/css" media="all" /> -->
-    <script src="/MUPRESS_GIT/js/simpleCart.min.js"> </script>
-    <link href="/MUPRESS_GIT/css/memenu.css" rel="stylesheet" type="text/css" media="all" />
-    <script type="text/javascript" src="/MUPRESS_GIT/js/memenu.js"></script>
-      <script type="text/javascript" src="/MUPRESS_GIT/js/jquery.bootpag.min.js"></script>
-    <!-- <script src="//raw.github.com/botmonster/jquery-bootpag/master/lib/jquery.bootpag.min.js"></script> -->
+    
+
     <script>$(document).ready(function(){$(".memenu").memenu();});</script>
 
     <title>MU PRESS</title>
@@ -75,63 +70,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="container">
 
 			<div class="product-top" id="showProducts">
-				<!-- <div class="product-one">
-					<div class="col-md-3 product-left">
-						<div class="product-main simpleCart_shelfItem">
-							<a href="single.html" class="mask"><img class="img-responsive zoom-img" src="image/p-1.png" alt="" /></a>
-							<div class="product-bottom">
-								<h3>Smart Watches</h3>
-								<p>Explore Now</p>
-								<h4><a class="item_add" href="#"><i></i></a> <span class=" item_price">$ 329</span></h4>
-							</div>
-							<div class="srch">
-								<span>-50%</span>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-3 product-left">
-						<div class="product-main simpleCart_shelfItem">
-							<a href="single.html" class="mask"><img class="img-responsive zoom-img" src="image/p-2.png" alt="" /></a>
-							<div class="product-bottom">
-								<h3>Smart Watches</h3>
-								<p>Explore Now</p>
-								<h4><a class="item_add" href="#"><i></i></a> <span class=" item_price">$ 329</span></h4>
-							</div>
-							<div class="srch">
-								<span>-50%</span>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-3 product-left">
-						<div class="product-main simpleCart_shelfItem">
-							<a href="single.html" class="mask"><img class="img-responsive zoom-img" src="image/p-3.png"  alt="" /></a>
-							<div class="product-bottom">
-								<h3>Smart Watches</h3>
-								<p>Explore Now</p>
-								<h4><a class="item_add" href="#"><i></i></a> <span class=" item_price">$ 329</span></h4>
-							</div>
-							<div class="srch">
-								<span>-50%</span>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-3 product-left">
-						<div class="product-main simpleCart_shelfItem">
-							<a href="single.html" class="mask"><img class="img-responsive zoom-img" src="image/p-4.png" alt="" /></a>
-							<div class="product-bottom">
-								<h3>Smart Watches</h3>
-								<p>Explore Now</p>
-								<h4><a class="item_add" href="#"><i></i></a> <span class=" item_price">$ 329</span></h4>
-							</div>
-							<div class="srch">
-								<span>-50%</span>
-							</div>
-						</div>
-					</div>
-					<div class="clearfix"></div>
-				</div> -->
-
-
 
 				</div>
 			</div>
@@ -202,7 +140,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                                products += "<a href='#' class='mask'><img class='img-responsive zoom-img' src='image/p-3.png' alt='' /></a> ";
                                products += "<div class='product-bottom'>";
-                               products += "<h3>" + data[counter]['title'] + "</h3>" ;
+                               products += "<h3 class='item_name'>" + data[counter]['title'] + "</h3>" ;
                							   products +=	"<p>" + "ผู้เขียน " + data[counter]['author'] + "</p>" ;
                                products +=	"<p>" + "serial no. " + data[counter]['serial_no'] + "</p>" ;
                                products +=	"<p>" + "Edition  " + data[counter]['edition'] + "</p>" ;

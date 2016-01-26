@@ -279,18 +279,7 @@
                              </div>
                          </div>
 
-                         <!-- <div class="form-group" >
-                             <label for="password" class="col-md-3 control-label">Password</label>
-                             <div class="col-md-9">
-                               <div class="col-md-6">
-                                   <input type="password" class="form-control"  id ="mytext" value="" name="pass" placeholder="Password">
-                               </div>
-                               <div class="col-md-3">
-                                   <button type="button" class="btn btn-info" onclick="generateRandomString()" name="button">Generate Password</button>
-                               </div>
-                             </div>
-                         </div> -->
-
+                        
                          <div class="form-group">
                              <label for="phone" class="col-md-3 control-label">เบอร์โทรศัพท์ (ต้องการข้อมูล) </label>
                              <div class="col-md-9">
