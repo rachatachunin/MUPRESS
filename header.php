@@ -9,7 +9,17 @@
 
 
 </style>
-<!-- forsearch  -->
+
+<script type="text/javascript">
+      simpleCart({
+        checkout: {
+          type: "PayPal",
+          email: "you@yours.com"
+        },
+        currency: "THB",
+        cartStyle: "table"
+      });
+</script>
 
 
 </html>
@@ -41,7 +51,18 @@ if(!isset($_SESSION['login'])){
                    <li>
                        <a href="#" data-toggle="modal" data-target="#L_R"><h4>สมัครสมาชิก หรือ ลงชื่อเข้าใช้งาน</h4></a>
                    </li>
+                   <li>
 
+                       <div style="margin-top: 5px" class="cart box_1">
+            						<a href="#" data-toggle="modal" data-target="#cart"">
+            							 <div class="total">
+            								<span class="simpleCart_total"></span></div>
+            								<img src="image/cart-2.png" alt="" />
+            						</a>
+            						<p><a href="javascript:;" class="simpleCart_empty">Empty Cart</a></p>
+            						<div class="clearfix"> </div>
+            					</div>
+                   </li>
                </ul>
            </div>
            <!-- /.navbar-collapse -->
@@ -115,6 +136,18 @@ else{
               <ul class="nav navbar-nav navbar-right">
                   <li>
                     <a href="#" onclick="profile_request(\''.$_SESSION["username"].'\')" > '.$_SESSION['username'].' </a>
+                  </li>
+                  <li>
+
+                      <div style="margin-top: 5px" class="cart box_1">
+                       <a href="#" data-toggle="modal" data-target="#cart"">
+                          <div class="total">
+                           <span class="simpleCart_total"></span></div>
+                           <img src="image/cart-2.png" alt="" />
+                       </a>
+                       <p><a href="javascript:;" class="simpleCart_empty">Empty Cart</a></p>
+                       <div class="clearfix"> </div>
+                     </div>
                   </li>
                   <li>
                     <a href="disconnect.php"> <i style ="font-size: 130%;">ออกจากระบบ</i></a>
@@ -277,6 +310,7 @@ else{
         </div>
     </div>
 </div>
+
 <script>
   $(document).ready(function(){
 
@@ -286,3 +320,30 @@ else{
   };
 
 </script>
+
+
+<div class="modal fade" id="cart" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title text-center" id="myModalLabel">MU PRESS AND BOOK STORE</h4>
+            </div>
+
+                <div class="modal-body">
+                <span class="simpleCart_quantity"></span> items - <span class="simpleCart_total"></span>
+                <a href="javascript:;" class="simpleCart_empty btn btn-danger">ลบรายการทั้งหมด</a>
+                <div>
+                <div class="simpleCart_items"></div>
+                </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary simpleCart_checkout">สั่งซื้อ</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            <!--</form>-->
+        </div>
+    </div>
+</div>
+

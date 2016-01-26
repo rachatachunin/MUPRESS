@@ -24,5 +24,7 @@ if($row['password']==$ps&&$row['user_type']==2)
     $_SESSION['login'] = 1;
     $_SESSION['username'] = $user;
     $_SESSION['user_id'] = $row['user_id'];
+    $_SESSION['firstname'] = $row['user_fn'];
+    $_SESSION['lastname'] = $row['user_ln'];
     header("Location: ../index.php");
 }
