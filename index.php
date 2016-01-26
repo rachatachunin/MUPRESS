@@ -10,7 +10,13 @@ session_start();
     <link href="css/index.css" rel="stylesheet">
     <script src="js/jq.js"></script>
     <script src="js/bootstrap.min.js"></script> -->
-<?php include "headFrontEnd.php" ?>
+<?php include "headFrontEnd.php";
+include 'dbconnection.php';
+$sql = "SELECT * FROM book ORDER BY book_id ASC LIMIT 0,4";
+$sql2 = "SELECT * FROM book ORDER BY book_id ASC LIMIT 4,4";
+$result = mysqli_query($con,$sql);
+$result2 = mysqli_query($con,$sql2);
+ ?>
     <!--<link href="css/bootstrap-theme.min.css" rel="stylesheet">-->
     <title>MU PRESS</title>
     <style>
@@ -110,104 +116,69 @@ session_start();
 
         <h1 class="lead" style="text-decoration: underline;">List of Books</h1>
 
-        <div class="row">
-            <div class="col-sm-6 col-md-4">
-                <div class="thumbnail">
-                    <img class="img-responsive" src="image/medicine.jpg" alt="..." height="171" width="180">
-                    <div class="caption simpleCart_shelfItem">
-                        <h4 class="item_name">การตรวจคัดกรองและการวินิจฉัยทางการแพทย์ : Screening and Diagnostic Tests in Medicine</h4>
-                        <input type="text" name="name" class="item_bid" style="display: none" value="1">
-                        <p>ผู้แต่ง	ศิริวรรณ ตั้งจิตกมล และคณะ<br>
-                            พิมพ์ครั้งที่ 1	344 หน้า<br>
-                            นครปฐม :	มหาวิทยาลัยมหิดล, 2558<br>
-                            <br>
-                            ISBN 978-616-279-701-9<br></p>
-                            <p class="item_price">ราคา 400 บาท</p>
-                        <p><a href="javascript:;" class="btn btn-primary item_add" role="button">สั่งซื้อ</a> <a href="#" class="btn btn-default" role="button">ดูตัวอย่าง</a></p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 col-md-4">
-                <div class="thumbnail">
-                    <img class="img-responsive" src="image/health.jpg" alt="..." height="171" width="180">
-                    <div class="caption simpleCart_shelfItem">
-                        <h4 class="item_name">นโยบายสุขภาพ : การจัดทำ วิเคราะห์ และประเมินผล</h4>
-                        <input type="text" name="name" class="item_bid" style="display: none" value="2">
-                        <p>ผู้แต่ง	นวรัตน์ สุวรรณผ่อง, รองศาสตราจารย์<br>
-                            พิมพ์ครั้งที่ 1	216 หน้า<br>
-                            นครปฐม :	มหาวิทยาลัยมหิดล, 2557<br>
-                            <br>
-                            ISBN 978-616-279-581-7<br></p>
-                            <p class="item_price">ราคา 180 บาท</p>
-                        <p><a href="javascript:;" class="btn btn-primary item_add" role="button">สั่งซื้อ</a> <a href="#" class="btn btn-default" role="button">ดูตัวอย่าง</a></p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 col-md-4">
-                <div class="thumbnail">
-                    <img class="img-responsive" src="image/law.jpg" alt="..." height="171" width="180">
-                    <div class="caption">
-                        <h4>จริยธรรมในวิชาชีพกฎหมาย</h4>
-                        <p>ผู้แต่ง	ศาสตราจารย์ พิเศษ วิชา มหาคุณ และคณะ<br>
-                            พิมพ์ครั้งที่ 1	182 หน้า<br>
-                            นครปฐม :	มหาวิทยาลัยมหิดล, 2558<br>
-                            <br>
-                            ISBN 978-616-279-694-4<br>
-                            ราคา 200 บาท</p>
-                        <p><a href="#" class="btn btn-primary" role="button">สั่งซื้อ</a> <a href="#" class="btn btn-default" role="button">ดูตัวอย่าง</a></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-6 col-md-4">
-                <div class="thumbnail">
-                    <img class="img-responsive" src="image/behavioralgame.jpg" alt="..." height="171" width="180">
-                    <div class="caption">
-                        <h4>Behavioral Game experiments in Thailand, and Implications of Cross-Country Comparisons</h4>
-                        <p>ผู้แต่ง	Yingyot Chiaravutthi<br>
-                            พิมพ์ครั้งที่ 1	188 หน้า<br>
-                            นครปฐม :	มหาวิทยาลัยมหิดล, 2558<br>
-                            <br>
-                            ISBN 978-616-279-666-1<br>
-                            ราคา 220 บาท</p>
-                        <p><a href="#" class="btn btn-primary" role="button">สั่งซื้อ</a> <a href="#" class="btn btn-default" role="button">ดูตัวอย่าง</a></p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 col-md-4">
-                <div class="thumbnail">
-                    <img src="image/rome.jpg" alt="..." height="171" width="180">
-                    <div class="caption">
-                        <h4>อารยธรรมโรมัน : อารยธรรมตะวันตก</h4>
-                        <p>ผู้แต่ง	สุริยา รัตนกุล, ศาสตราจารย์คุณหญิง<br>
-                            พิมพ์ครั้งที่ 3	279 หน้า<br>
-                            นครปฐม :	มหาวิทยาลัยมหิดล, 2557<br>
-                            <br>
-                            ISBN 978-616-279-515-2<br>
-                            ราคา 240 บาท</p>
-                        <p><a href="#" class="btn btn-primary" role="button">สั่งซื้อ</a> <a href="#" class="btn btn-default" role="button">ดูตัวอย่าง</a></p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 col-md-4">
-                <div class="thumbnail">
-                    <img src="image/thai-music.jpg" alt="..." height="171" width="180">
-                    <div class="caption">
-                        <h4>สารานุกรมเพลงไทย</h4>
-                        <p>ผู้แต่ง	ณรงชัย ปิฎกรัชต์, รองศาสตราจารย์<br>
-                            พิมพ์ครั้งที่ 1	848 หน้า<br>
-                            นครปฐม :	มหาวิทยาลัยมหิดล, 2557<br>
-                            <br>
-                            ISBN 978-616-279-514-5<br>
-                            ราคา 749 บาท</p>
-                        <p><a href="#" class="btn btn-primary" role="button">สั่งซื้อ</a> <a href="#" class="btn btn-default" role="button">ดูตัวอย่าง</a></p>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <!--product-starts-->
+	<div class="product">
+		<div class="container">
+			<div class="product-top">
+				<div class="product-one">
+					<?php
+          while($row = mysqli_fetch_array($result)){
+            echo '<div class="product-one">
+    					     <div class="col-md-3 product-left">
+    						     <div class="product-main simpleCart_shelfItem">
+                      <a href="single.html" class="mask"><img class="img-responsive zoom-img" src="image/p-3.png" alt="" /></a>
+                      <div class="product-bottom">';
+            echo '<h3 class="item_name">'. $row['title'] . '</h3>' ;
+            echo '<p>' . 'ผู้เขียน' . $row['author'] . '</p>' ;
+            echo '<p>' . 'serial no. ' . $row['serial_no'] . '</p>' ;
+            echo '<p>' . 'Edition  ' . $row['edition'] . '</p>' ;
+            echo '<h4><a class="item_add" href="#"><i></i></a> <span class="item_price">' . $row['price'] .' บาท' . '</span></h4>'  ;
+            echo '</div>
+                   <div class="srch">
+                    <span>-50%</span>
+                   </div>
+                 </div>
+               </div>
+            </div>';
+          }
+          ?>
 
-    </div>
+					<div class="clearfix"></div>
+				</div>
+
+        <div class="product-one">
+					<?php
+          while($row2 = mysqli_fetch_array($result2)){
+            echo '<div class="product-one">
+    					     <div class="col-md-3 product-left">
+    						     <div class="product-main simpleCart_shelfItem">
+                      <a href="single.html" class="mask"><img class="img-responsive zoom-img" src="image/p-3.png" alt="" /></a>
+                      <div class="product-bottom">';
+            echo '<h3 class="item_name">'. $row2['title'] . '</h3>' ;
+            echo '<p>' . 'ผู้เขียน' . $row2['author'] . '</p>' ;
+            echo '<p>' . 'serial no. ' . $row2['serial_no'] . '</p>' ;
+            echo '<p>' . 'Edition  ' . $row2['edition'] . '</p>' ;
+            echo '<h4><a class="item_add" href="#"><i></i></a> <span class="item_price">' . $row2['price'] .' บาท' . '</span></h4>'  ;
+            echo '</div>
+                   <div class="srch">
+                    <span>-50%</span>
+                   </div>
+                 </div>
+               </div>
+            </div>';
+          }
+          ?>
+
+					<div class="clearfix"></div>
+				</div>
+
+
+
+	</div>
+	<!--product-end-->
+
+
+</div><br><br>
 </body>
 <footer class="panel-footer text-center"> Footer Mahidol University Press & Store </footer>
 
