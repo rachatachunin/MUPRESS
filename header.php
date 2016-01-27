@@ -140,9 +140,12 @@ if(!isset($_SESSION['login'])){
            </div>
 
            <div class="row">
-             <div class="col-md-12 col-md-offset-2 ">
+             <div class="col-md-12 ">
                <div class="collapse navbar-collapse" style="color:white;" >
                <ul class="nav navbar-nav"  >
+                   <li>
+                       <a href="index.php" style="color: white; ">หน้าแรก</a>
+                   </li>
                    <li>
                        <a href="listAllBooks.php" style="color: white; ">หนังสือทั้งหมด</a>
                    </li>
@@ -157,10 +160,13 @@ if(!isset($_SESSION['login'])){
                    </li>
                    <li>
                        <a href="#" style="color: white;">ติดต่อเรา</a>
+                   </li >
+                   <li>
+                   <div class="search-bar">
+               					<input type="text" style="color:white" value="Search" onfocus="this.value = \'\';">
+               					<input type="submit" value="">
+               				</div>
                    </li>
-
-
-
                </ul>
              </div>
 
@@ -230,9 +236,12 @@ else{
           </div>
 
           <div class="row">
-            <div class="col-md-12 col-md-offset-2 ">
+            <div class="col-md-12 ">
               <div class="collapse navbar-collapse" style="color:white;" >
               <ul class="nav navbar-nav"  >
+                  <li>
+                      <a href="index.php" style="color: white; ">หน้าแรก</a>
+                  </li>
                   <li>
                       <a href="listAllBooks.php" style="color: white; ">หนังสือทั้งหมด</a>
                   </li>

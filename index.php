@@ -71,6 +71,8 @@ $result2 = mysqli_query($con,$sql2);
   <?php include "header.php" ?>
 
     <div class="container-fluid">
+      <div class="container">
+      </div>
         <div id="myCarousel" class="carousel slide" data-ride="carousel">
             <!-- Indicators -->
             <ol class="carousel-indicators">
@@ -110,11 +112,16 @@ $result2 = mysqli_query($con,$sql2);
                 <span class="sr-only">Next</span>
             </a>
         </div>
+        <div class="container">
+        </div>
         <div class="jumbotron" style="margin-top: 20px">
             <h1>News</h1>
         </div>
+        <div class="container">
+            <h1  style="font-size: 50px; font-weight: 200;text-align: center">หนังสือล่าสุด</h1>
 
-        <h1 class="lead" style="text-decoration: underline;">List of Books</h1>
+        </div>
+
 
         <!--product-starts-->
 	<div class="product">
@@ -126,7 +133,7 @@ $result2 = mysqli_query($con,$sql2);
             echo '<div class="product-one">
     					     <div class="col-md-3 product-left">
     						     <div class="product-main simpleCart_shelfItem">
-                      <a href="single.html" class="mask"><img class="img-responsive zoom-img" src="image/p-3.png" alt="" /></a>
+                      <a href="single.html" class="mask"><img class="img-responsive zoom-img" src="image/law.jpg" alt="" /></a>
                       <div class="product-bottom">';
             echo '<h3 class="item_name">'. $row['title'] . '</h3>' ;
             echo '<p>' . 'ผู้เขียน' . $row['author'] . '</p>' ;
@@ -152,7 +159,7 @@ $result2 = mysqli_query($con,$sql2);
             echo '<div class="product-one">
     					     <div class="col-md-3 product-left">
     						     <div class="product-main simpleCart_shelfItem">
-                      <a href="single.html" class="mask"><img class="img-responsive zoom-img" src="image/p-3.png" alt="" /></a>
+                      <a href="single.html" class="mask"><img class="img-responsive zoom-img" src="image/law.jpg" alt="" /></a>
                       <div class="product-bottom">';
             echo '<h3 class="item_name">'. $row2['title'] . '</h3>' ;
             echo '<p>' . 'ผู้เขียน' . $row2['author'] . '</p>' ;
@@ -171,16 +178,25 @@ $result2 = mysqli_query($con,$sql2);
 
 					<div class="clearfix"></div>
 				</div>
-
-
-
+     </div>
 	</div>
+</div>
 	<!--product-end-->
 
+  <!--information-starts-->
+  	<!-- <div class="information">
+  		<div class="container">
+  			<div class="infor-top">
+  			</div>
+  		</div>
+  	</div> -->
+  	<!--information-end-->
 
-</div><br><br>
+<!--footer-starts-->
+<?php include "footer.php" ; ?>
+	<!--footer-end-->
+</div>
 </body>
-<footer class="panel-footer text-center"> Footer Mahidol University Press & Store </footer>
 
 <!---//////////////////////////////////////// Begin edit model  ///////////////////////////////////////////////-->
     <div class="modal fade" id="edit_Profile_Model" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
