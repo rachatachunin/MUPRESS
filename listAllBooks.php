@@ -138,7 +138,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                products += "<div class='col-md-3 product-left'>" ;
                                products += "<div class='product-main simpleCart_shelfItem' style='padding: 8px;'>";
 
-                               products += "<a href='#' class='mask'><img class='img-responsive zoom-img' src='image/law.jpg' alt='' /></a> ";
+                               products += "<a href='single.php?id=" + data[counter]['book_id'] + " ' " + "class='mask'><img class='img-responsive zoom-img' src='image/law.jpg' alt='' /></a> ";
                                products += "<div class='product-bottom'>";
                                products += "<h3 class='item_name'>" + data[counter]['title'] + "</h3>" ;
                							   products +=	"<p>" + "ผู้เขียน " + data[counter]['author'] + "</p>" ;

@@ -133,7 +133,7 @@ $result2 = mysqli_query($con,$sql2);
             echo '<div class="product-one">
     					     <div class="col-md-3 product-left">
     						     <div class="product-main simpleCart_shelfItem">
-                      <a href="single.html" class="mask"><img class="img-responsive zoom-img" src="image/law.jpg" alt="" /></a>
+                      <a href="single.php?id='.$row['book_id'].' " class="mask"><img class="img-responsive zoom-img" src="image/law.jpg" alt="" /></a>
                       <div class="product-bottom">';
             echo '<h3 class="item_name">'. $row['title'] . '</h3>' ;
             echo '<p>' . 'ผู้เขียน' . $row['author'] . '</p>' ;

@@ -10,7 +10,8 @@
   $tel = $_POST['phone'];
   //  var_dump($pass);
 
-  $query = "INSERT into user (email,password,user_fn,user_ln,gender,tel,address,user_type) values('".$email."',null,'".$fname."','".$lname."','".$gender."','".$tel."','".$address."','2') " ;
+   $query = "INSERT into user (email,password,user_fn,user_ln,gender,tel,address,user_type) values('".$email."','','".$fname."','".$lname."','".$gender."','".$tel."','".$address."','2') " ;
+// var_dump($query);
   mysqli_query($con,$query);
 
 

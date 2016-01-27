@@ -41,10 +41,14 @@
       }
 
       function confirmaiton(){
-        if(!confirm('ยืนยันที่จะลบรายการทั้งหมด?'))e.preventDefault();
-                 else
-                     simpleCart.empty();
+        if(!confirm('ยืนยันที่จะลบรายการทั้งหมด?')){
+          e.preventDefault();
+        }
+        else{
+          simpleCart.empty();
+        }
       }
+
 
       simpleCart.bind( 'beforeAdd' , function( item ){
         if (simpleCart.has(item))
@@ -114,7 +118,7 @@ if(!isset($_SESSION['login'])){
             								<span class="simpleCart_total"></span></div>
             								<img src="image/cart-2.png" alt="" />
             						</a>
-            						<p><a href="javascript:;" onclick="confirmaiton();">Empty Cart</a></p>
+            						<p><a href="javascript:;" style="text-decoration:none;" onclick="confirmaiton();">Empty Cart</a></p>
             						<div class="clearfix"> </div>
             					</div>
                    </li>
@@ -206,7 +210,7 @@ else{
                              <span class="simpleCart_total"></span></div>
                              <img src="image/cart-2.png" alt="" />
                          </a>
-                         <p><a href="javascript:;" onclick="confirmaiton();">Empty Cart</a></p>
+                         <p><a href="javascript:;" style="text-decoration:none;" onclick="confirmaiton();">Empty Cart</a></p>
                          <div class="clearfix"> </div>
                        </div>
                   </li>
@@ -256,6 +260,12 @@ else{
                   </li>
                   <li>
                       <a href="#" style="color: white;">ติดต่อเรา</a>
+                  </li>
+                  <li>
+                  <div class="search-bar">
+                       <input type="text" style="color:white" value="Search" onfocus="this.value = \'\';">
+                       <input type="submit" value="">
+                     </div>
                   </li>
 
               </ul>
