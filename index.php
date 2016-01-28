@@ -12,8 +12,8 @@ session_start();
     <script src="js/bootstrap.min.js"></script> -->
 <?php include "headFrontEnd.php";
 include 'dbconnection.php';
-$sql = "SELECT * FROM book ORDER BY book_id ASC LIMIT 0,4";
-$sql2 = "SELECT * FROM book ORDER BY book_id ASC LIMIT 4,4";
+$sql = "SELECT * FROM book LEFT JOIN current_stock on book.book_id = current_stock.book_id  ORDER BY book.book_id DESC LIMIT 0,4";
+$sql2 = "SELECT * FROM book LEFT JOIN current_stock on book.book_id = current_stock.book_id ORDER BY book.book_id DESC LIMIT 4,4";
 $result = mysqli_query($con,$sql);
 $result2 = mysqli_query($con,$sql2);
  ?>
@@ -117,6 +117,36 @@ $result2 = mysqli_query($con,$sql2);
         <div class="jumbotron" style="margin-top: 20px">
             <h1>News</h1>
         </div>
+
+        <!--information-starts-->
+          <div class="jumbotron" style="margin-top: 20px;">
+        <div class="contact-text">
+				<div class="col-md-4 text-center">
+						<div class="address" style="margin-left:50px;">
+							<h5>สนใจสมัครเป็นผู้เขียน</h5>
+
+						</div>
+
+					</div>
+					<div class="col-md-8  " style="margin-top:10px;">
+            <div class="container">
+						<form>
+							<input type="text" placeholder="Name">
+							<input type="text" placeholder="Phone">
+							<input type="text"  placeholder="Email">
+						</form><br>
+            <div style="margin-left:220px;">
+                <button class="btn btn-info" type="button" name="button">SUBMIT</button>
+            </div>
+          </div>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+      </div>
+
+  </div>
+          <!--information-end-->
+
         <div class="container">
             <h1  style="font-size: 50px; font-weight: 200;text-align: center">หนังสือล่าสุด</h1>
 
@@ -129,7 +159,11 @@ $result2 = mysqli_query($con,$sql2);
 			<div class="product-top">
 				<div class="product-one">
 					<?php
+
+
           while($row = mysqli_fetch_array($result)){
+
+
             echo '<div class="product-one">
     					     <div class="col-md-3 product-left">
     						     <div class="product-main simpleCart_shelfItem">
@@ -137,9 +171,13 @@ $result2 = mysqli_query($con,$sql2);
                       <div class="product-bottom">';
             echo '<h3 class="item_name">'. $row['title'] . '</h3>' ;
             echo '<p>' . 'ผู้เขียน' . $row['author'] . '</p>' ;
-            echo '<p>' . 'serial no. ' . $row['serial_no'] . '</p>' ;
+            echo '<p>' . 'ISBN ' . $row['serial_no'] . '</p>' ;
             echo '<p>' . 'Edition  ' . $row['edition'] . '</p>' ;
-            echo '<h4><a class="item_add" href="#"><i></i></a> <span class="item_price">' . $row['price'] .' บาท' . '</span></h4>'  ;
+            if($row['current_amount'] > 0){
+            echo '<h4><a class="item_add" href="#"><i></i></a> <span class="item_price">' . $row['price'] .' บาท'.'</span><span style=" margin-left:40px; color: green;"> มีสินค้า</span></h4>'  ;
+            }else {
+            echo '<h4><a class="item_add" href="#"><i></i></a> <span class="item_price">' . $row['price'] .' บาท'.'</span><span style=" margin-left:40px; color: red;"> สินค้าหมด</span></h4>'  ;
+            }
             echo '</div>
                    <div class="srch">
                     <span>-50%</span>
@@ -156,16 +194,29 @@ $result2 = mysqli_query($con,$sql2);
         <div class="product-one">
 					<?php
           while($row2 = mysqli_fetch_array($result2)){
+            // check stock
+            $sqlcheckin = "SELECT sum(amount) amount FROM book_stock WHERE book_id = '".$row2['book_id']."' AND action = 'IN' ";
+            $sqlcheckout = "SELECT sum(amount) amount FROM book_stock WHERE book_id = '".$row2['book_id']."' AND action = 'OUT' ";
+            $resultin = mysqli_query($con,$sqlcheckin);
+            $resultout = mysqli_query($con,$sqlcheckout);
+            $rowIn = mysqli_fetch_array($resultin);
+            $rowOut= mysqli_fetch_array($resultout);
+            $total  = intval($rowIn['amount']) - intval($rowOut['amount']) ;
+            // end check stock
             echo '<div class="product-one">
     					     <div class="col-md-3 product-left">
     						     <div class="product-main simpleCart_shelfItem">
-                      <a href="single.html" class="mask"><img class="img-responsive zoom-img" src="image/law.jpg" alt="" /></a>
+                      <a href="single.php?id='.$row2['book_id'].'" class="mask"><img class="img-responsive zoom-img" src="image/law.jpg" alt="" /></a>
                       <div class="product-bottom">';
             echo '<h3 class="item_name">'. $row2['title'] . '</h3>' ;
             echo '<p>' . 'ผู้เขียน' . $row2['author'] . '</p>' ;
-            echo '<p>' . 'serial no. ' . $row2['serial_no'] . '</p>' ;
+            echo '<p>' . 'ISBN ' . $row2['serial_no'] . '</p>' ;
             echo '<p>' . 'Edition  ' . $row2['edition'] . '</p>' ;
-            echo '<h4><a class="item_add" href="#"><i></i></a> <span class="item_price">' . $row2['price'] .' บาท' . '</span></h4>'  ;
+            if($row2['current_amount'] > 0){
+            echo '<h4><a class="item_add" href="#"><i></i></a> <span class="item_price">' . $row2['price'] .' บาท'.'</span><span style=" margin-left:40px; color: green;"> มีสินค้า</span></h4>'  ;
+            }else {
+            echo '<h4><a class="item_add" href="#"><i></i></a> <span class="item_price">' . $row2['price'] .' บาท'.'</span><span style=" margin-left:40px; color: red;"> สินค้าหมด</span></h4>'  ;
+            }
             echo '</div>
                    <div class="srch">
                     <span>-50%</span>
@@ -183,14 +234,6 @@ $result2 = mysqli_query($con,$sql2);
 </div>
 	<!--product-end-->
 
-  <!--information-starts-->
-  	<!-- <div class="information">
-  		<div class="container">
-  			<div class="infor-top">
-  			</div>
-  		</div>
-  	</div> -->
-  	<!--information-end-->
 
 <!--footer-starts-->
 <?php include "footer.php" ; ?>

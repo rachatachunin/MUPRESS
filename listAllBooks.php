@@ -23,7 +23,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
   <?php
       include "header.php";
   ?>
-<div class="container-fluid">
+
+  <!--start-breadcrumbs-->
+<div class="breadcrumbs">
+  <div class="container">
+    <div class="breadcrumbs-main">
+      <ol class="breadcrumb">
+        <li><a href="index.php">หน้าแรก</a></li>
+        <li class="active">หนังสือทั้งหมด</li>
+      </ol>
+    </div>
+  </div>
+</div><br><br>
+<!--end-breadcrumbs-->
+<div class="container">
   <div id="myCarousel" class="carousel slide" data-ride="carousel">
       <!-- Indicators -->
       <ol class="carousel-indicators">
@@ -144,7 +157,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                							   products +=	"<p>" + "ผู้เขียน " + data[counter]['author'] + "</p>" ;
                                products +=	"<p>" + "serial no. " + data[counter]['serial_no'] + "</p>" ;
                                products +=	"<p>" + "Edition  " + data[counter]['edition'] + "</p>" ;
-                               products += "<h4><a class='item_add' href='#'><i></i></a> <span class='item_price'>" + data[counter]['price'] +" บาท"+"</span></h4>"  ;
+                               if(data[counter]['current_amount']>0){
+                                  products += "<h4><a class='item_add' href='#'><i></i></a> <span class='item_price'>" + data[counter]['price'] +" บาท"+"</span><span style='margin-left:20px; color: green;'>มีสินค้า</span></h4>"  ;
+                               }else{
+                                  products += "<h4><a class='item_add' href='#'><i></i></a> <span class='item_price'>" + data[counter]['price'] +" บาท"+"</span><span style='margin-left:20px; color: red;'>สินค้าหมด</span></h4>"  ;
+                               }
+
                                products += "</div>";
 
                                products += "<div class='srch'>";
@@ -164,23 +182,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             $("#showProducts").html(products);
                           }
                       </script>
-                </div>
+                </div><br><br>
 
   <!-- pagina-end -->
 
-  <!--footer-starts-->
-  	<div class="footer">
-  		<div class="container">
-  			<div class="footer-top">
 
-  				<div class="col-md-12 footer-right">
-  					<p>© 2015 Mahidol University Press. All Rights Reserved | Design by  <a href="http://w3layouts.com/" target="_blank">Mahidol Students</a> </p>
-  				</div>
-  				<div class="clearfix"></div>
-  			</div>
-  		</div>
-  	</div>
+
+  <!--footer-starts-->
+  <?php include "footer.php" ; ?>
   	<!--footer-end-->
+
 
 </body>
 
