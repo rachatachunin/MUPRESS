@@ -15,7 +15,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     ?>
     <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
     <!-- <link href="/MUPRESS/css/simplePagination.css" rel="stylesheet" type="text/css" media="all" /> -->
-    <script src="/MUPRESS_GIT/js/simpleCart.min.js"> </script>
+    <!-- <script src="/MUPRESS_GIT/js/simpleCart.min.js"> </script> -->
     <link href="/MUPRESS_GIT/css/memenu.css" rel="stylesheet" type="text/css" media="all" />
     <script type="text/javascript" src="/MUPRESS_GIT/js/memenu.js"></script>
       <script type="text/javascript" src="/MUPRESS_GIT/js/jquery.bootpag.min.js"></script>

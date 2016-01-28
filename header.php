@@ -74,6 +74,20 @@
         }
       });
 
+      if(localStorage.simpleCart_timeout){
+      var timeout = new Date(localStorage.simpleCart_timeout);
+
+      var now = new Date();
+      if(now > timeout) {
+        simpleCart.empty();
+      }
+
+    }
+
+    var timeout = new Date();
+    timeout.setMinutes(timeout.getMinutes() + 15);
+    localStorage.simpleCart_timeout = timeout;
+
 </script>
 
 
@@ -110,9 +124,10 @@ if(!isset($_SESSION['login'])){
 
                        <div style="margin-top: 5px" class="cart box_1">
             						<a href="#" onclick="checkcart();"">
-            							 <div class="total">
-            								<span class="simpleCart_total"></span></div>
+
             								<img src="image/cart-2.png" alt="" />
+                            <div class="total">
+             								<span class="simpleCart_total"></span></div>
             						</a>
             						<p><a href="javascript:;" onclick="confirmaiton();">Empty Cart</a></p>
             						<div class="clearfix"> </div>
