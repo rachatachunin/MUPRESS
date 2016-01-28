@@ -12,9 +12,9 @@ $pageNum 	= $_GET['pageNumber'];
 unset($_GET['pageNumber']);
 
 if($pageNum == 1){
-$sql = "SELECT * FROM book ORDER BY book_id ASC LIMIT 0,21";
+$sql = "SELECT * FROM book ORDER BY book_id ASC LIMIT 0,20";
 }else if($pageNum == 2){
-$sql = "SELECT * FROM book ORDER BY book_id ASC LIMIT 21,41";
+$sql = "SELECT * FROM book ORDER BY book_id ASC LIMIT 20,20";
 }
 
 $result = mysqli_query($con,$sql);
