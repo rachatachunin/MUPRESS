@@ -27,6 +27,7 @@ foreach($book as $item){
 
 foreach($book as $item){
     mysqli_query($con, "insert into book_stock(amount,action,book_id) values ('".$item['amount']."','OUT','".$item['id']."')");
+    mysqli_query($con, "update current_stock set current_amount = current_amount-".$item['amount']" where book_id = '".$item['id']."'");
 }
 mysqli_close($con);
 var_dump(null);
