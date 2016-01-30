@@ -107,16 +107,20 @@ $book_id = $_GET['id'];
                 </li>
                 <?php
                 if($row['current_amount']>0){ ?>
-                <li style="color: green;">มีสินค้า</li>
+                <li>สถานะ
+                  <span style="color: green; margin-left: 16%;"> มีสินค้า</span>
+                </li>
                 <?php }else{ ?>
-                  <li style="color: red;">สินค้าหมด</li>
+                  <li>สถานะ
+                    <span style="color: red; margin-left: 16%;"> สินค้าหมด</span>
+                  </li>
                 <?php }  ?>
 
 								<div class="clearfix"> </div>
 							</ul>
 						</div>
               <?php  if($row['current_amount']>0){ ?>
-								<button type="button" name="button" class="btn btn-info">ใส่ตระกร้า</button>
+								<button type="button" name="button" class="btn btn-success">ใส่ตระกร้า</button>
                 <?php }else{ ?>
                 <button type="button" name="button" class="btn btn-danger" disabled="true">ใส่ตระกร้า</button>
                 <?php }  ?>
