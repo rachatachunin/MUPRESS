@@ -307,8 +307,10 @@ else{
                   </li>
                   <li>
                   <div class="search-bar">
+                      <form action="searchBookPage.php" method="post" >
                        <input type="text" style="color:white" value="Search" onfocus="this.value = \'\';">
                        <input type="submit" value="">
+                       </form>
                      </div>
                   </li>
 
