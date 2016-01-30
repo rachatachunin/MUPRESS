@@ -122,7 +122,7 @@
 
 </html>
 <?php
-ob_start()=
+ob_start();
 session_start();
 // include "dbconnect.php";
 // $sql="SELECT image FROM it_man LEFT JOIN user ON it_man.it_id = user.it_id  WHERE user.username = '".$_COOKIE['username']."'";
