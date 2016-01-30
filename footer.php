@@ -13,10 +13,10 @@ echo '
                 <a href="listAllBooks.php" style="font-size:13px; ">หนังสือทั้งหมด</a>
             </li>
             <li>
-                <a href="#" style="font-size:13px; ">โปรโมชั่น</a>
+                <a href="promotion.php" style="font-size:13px; ">โปรโมชั่น</a>
             </li>
             <li>
-                <a href="#" style="font-size:13px; ">ข่าวสารและกิจกรรม</a>
+                <a href="newsandactivities.php" style="font-size:13px; ">ข่าวสารและกิจกรรม</a>
             </li>
             <li>
                 <a href="contactus.php" style="font-size:13px; ">ติดต่อเรา</a>
