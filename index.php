@@ -173,11 +173,17 @@ $result2 = mysqli_query($con,$sql2);
             echo '<p>' . 'ผู้เขียน' . $row['author'] . '</p>' ;
             echo '<p>' . 'ISBN ' . $row['serial_no'] . '</p>' ;
             echo '<p>' . 'Edition  ' . $row['edition'] . '</p>' ;
+
             if($row['current_amount'] > 0){
             echo '<h4><a class="item_add" href="#"><i></i></a> <span class="item_price">' . $row['price'] .' บาท'.'</span><span style=" margin-left:40px; color: green;"> มีสินค้า</span></h4>'  ;
+            echo '<input type="text" name="name" class="item_bid" style="display: none" value="1">';
+            echo '<input type="text" name="name" class="item_dc" style="display: none" value="18">';
             }else {
             echo '<h4><a class="item_add" href="#"><i></i></a> <span class="item_price">' . $row['price'] .' บาท'.'</span><span style=" margin-left:40px; color: red;"> สินค้าหมด</span></h4>'  ;
+            echo '<input type="text" name="name" class="item_bid" style="display: none" value="1">';
+            echo '<input type="text" name="name" class="item_dc" style="display: none" value="18">';
             }
+
             echo '</div>
                    <div class="srch">
                     <span>-50%</span>
@@ -212,14 +218,20 @@ $result2 = mysqli_query($con,$sql2);
             echo '<p>' . 'ผู้เขียน' . $row2['author'] . '</p>' ;
             echo '<p>' . 'ISBN ' . $row2['serial_no'] . '</p>' ;
             echo '<p>' . 'Edition  ' . $row2['edition'] . '</p>' ;
+
             if($row2['current_amount'] > 0){
             echo '<h4><a class="item_add" href="#"><i></i></a> <span class="item_price">' . $row2['price'] .' บาท'.'</span><span style=" margin-left:40px; color: green;"> มีสินค้า</span></h4>'  ;
+            echo '<input type="text" name="name" class="item_bid" style="display: none" value="1">';
+            echo '<input type="text" name="name" class="item_dc" style="display: none" value="18">';
             }else {
             echo '<h4><a class="item_add" href="#"><i></i></a> <span class="item_price">' . $row2['price'] .' บาท'.'</span><span style=" margin-left:40px; color: red;"> สินค้าหมด</span></h4>'  ;
+            echo '<input type="text" name="name" class="item_bid" style="display: none" value="1">';
+            echo '<input type="text" name="name" class="item_dc" style="display: none" value="18">';
             }
+
             echo '</div>
                    <div class="srch">
-                    <span>-50%</span>
+                    <span class="item_dc">-50%</span>
                    </div>
                  </div>
                </div>

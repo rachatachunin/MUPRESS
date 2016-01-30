@@ -26,7 +26,8 @@
             { view: "decrement", label: false},
             { attr: "quantity", label: "จำนวน"},
             { view: "increment", label: false},
-            { view: "currency", attr: "total", label: "ราคารวม" },
+            { view: function(item, column){return item.get("dc")+"%";}, attr: "dc", label: "ส่วนลด"},
+            { view: function(item, column){return "฿"+parseFloat(parseFloat(item.total())*((100.00-parseFloat(item.get("dc")))/100.00)).toFixed(2);}, attr: "total", label: "ราคารวม" },
             { view: "remove", text: "ลบรายการ", label: false}
         ]
       });
@@ -58,8 +59,21 @@
         }
         else{
             if(!confirm('ต้องการที่จะเพิ่มหนังสือเล่มนี้ลงในตะกร้า?'))e.preventDefault();
+            //item.get("price")*((100.00-(item.get("dc")))/100);
         }
       });
+
+      // simpleCart.total(function( item ){
+      //   return item.price()*((100.00-(item.get("dc")))/100);
+      // });
+      simpleCart.total = function(){
+          var total = 0;
+      	simpleCart.each(function (item) {
+      	    total += (item.price()*((100.00-(item.get("dc")))/100))*item.quantity();
+      	});
+
+      	return parseFloat(total).toFixed(2);
+      }
 
       simpleCart.bind( "afterAdd" , function( item ){
         alert("หนังสือเล่มนี้ได้ถูกเพิ่มลงในตะกร้าเรียบร้อย");
@@ -71,19 +85,44 @@
       });
 
       simpleCart.bind( 'beforeCheckout' , function( data ){
-        if(!confirm('ยืนยันการสั่งซื้อ?'))e.preventDefault();
+        var sessionValue = $("#loginC").val();
+        alert(sessionValue);
+        if(sessionValue==1){
+          if(!confirm('ยืนยันการสั่งซื้อ?'))e.preventDefault();
+          else{
+              simpleCart.empty();
+              return true;
+          }
+        }
         else{
-            simpleCart.empty();
-            return true;
+          alert("กรุณาเข้าสู่ระบบก่อนทำการสั่งซื้อ");
+          $("#cart").modal('hide');
+          $("#L_R").modal('show');
+          $("#uLogin").get(0).focus();
+          return false;
         }
       });
+
+      if(localStorage.simpleCart_timeout){
+      var timeout = new Date(localStorage.simpleCart_timeout);
+
+      var now = new Date();
+      if(now > timeout) {
+        simpleCart.empty();
+      }
+
+    }
+
+    var timeout = new Date();
+    timeout.setMinutes(timeout.getMinutes() + 15);
+    localStorage.simpleCart_timeout = timeout;
 
 </script>
 
 
 </html>
 <?php
-ob_start();
+ob_start()=
 session_start();
 // include "dbconnect.php";
 // $sql="SELECT image FROM it_man LEFT JOIN user ON it_man.it_id = user.it_id  WHERE user.username = '".$_COOKIE['username']."'";
@@ -114,11 +153,13 @@ if(!isset($_SESSION['login'])){
 
                        <div style="margin-top: 5px" class="cart box_1">
             						<a href="#" onclick="checkcart();"">
-            							 <div class="total">
-            								<span class="simpleCart_total"></span></div>
+
             								<img src="image/cart-2.png" alt="" />
+                            <div class="total">
+             								<span class="simpleCart_total"></span></div>
             						</a>
             						<p><a href="javascript:;" style="text-decoration:none;" onclick="confirmaiton();">Empty Cart</a></p>
+                        <input type="hidden" id="loginC" value="<?=$_SESSION[\'login\'];?>"></input>
             						<div class="clearfix"> </div>
             					</div>
                    </li>
@@ -206,11 +247,13 @@ else{
 
                         <div style="margin-top: 5px" class="cart box_1">
                          <a href="#" onclick="checkcart();"">
+                         <img src="image/cart-2.png" alt="" />
                             <div class="total">
                              <span class="simpleCart_total"></span></div>
-                             <img src="image/cart-2.png" alt="" />
+
                          </a>
                          <p><a href="javascript:;" style="text-decoration:none;" onclick="confirmaiton();">Empty Cart</a></p>
+                         <input type="hidden" id="loginC" value="<?=$_SESSION[\'login\'];?>"></input>
                          <div class="clearfix"> </div>
                        </div>
                   </li>
