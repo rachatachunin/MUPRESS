@@ -130,7 +130,28 @@ $book_id = $_GET['id'];
 				</div>
 				<div class="tabs" style="margin-top:0px;">
 					<ul class="menu_drop">
-				<li class="item1"><a href="#"><i class = "glyphicon glyphicon-book"></i>&nbsp ตัวอย่างเนื้อหา</a>
+				<li class="item1"><a href="#"><i class = "glyphicon glyphicon-book"></i>&nbsp คำนำ</a>
+					<ul>
+					 <li >
+					   <?php  echo $row['content_preview']; ?>
+					 </li>
+					</ul>
+				</li>
+        <li class="item2"><a href="#"><i class = "glyphicon glyphicon-book"></i>&nbsp คำนิยม</a>
+					<ul>
+					 <li >
+					   <?php  echo $row['content_preview']; ?>
+					 </li>
+					</ul>
+				</li>
+        <li class="item3"><a href="#"><i class = "glyphicon glyphicon-book"></i>&nbsp บรรณานุกรม</a>
+					<ul>
+					 <li >
+					   <?php  echo $row['content_preview']; ?>
+					 </li>
+					</ul>
+				</li>
+        <li class="item4"><a href="#"><i class = "glyphicon glyphicon-book"></i>&nbsp สารบัญ</a>
 					<ul>
 					 <li >
 					   <?php  echo $row['content_preview']; ?>
