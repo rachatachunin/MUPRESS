@@ -12,8 +12,8 @@ session_start();
     <script src="js/bootstrap.min.js"></script> -->
 <?php include "headFrontEnd.php";
 include 'dbconnection.php';
-$sql = "SELECT * FROM book LEFT JOIN current_stock on book.book_id = current_stock.book_id  ORDER BY book.book_id DESC LIMIT 0,4";
-$sql2 = "SELECT * FROM book LEFT JOIN current_stock on book.book_id = current_stock.book_id ORDER BY book.book_id DESC LIMIT 4,4";
+$sql = "SELECT book.book_id , title , author ,price, edition, serial_no ,recommend,image,content_preview,cs_id,current_amount FROM book LEFT JOIN current_stock on book.book_id = current_stock.book_id ORDER BY book.book_id DESC LIMIT 0,4";
+$sql2 = "SELECT book.book_id , title , author,price , edition, serial_no ,recommend,image,content_preview,cs_id,current_amount FROM book LEFT JOIN current_stock on book.book_id = current_stock.book_id ORDER BY book.book_id DESC LIMIT 4,4";
 $result = mysqli_query($con,$sql);
 $result2 = mysqli_query($con,$sql2);
  ?>

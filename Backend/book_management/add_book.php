@@ -36,8 +36,11 @@ unset($_POST['file']);
 $sql = "INSERT INTO book (serial_no, title, author,edition,price,image)
 VALUES ('$serial_no', '$title', '$author','$edition','$price','$image')";
 
+
 if (mysqli_query($con, $sql)) {
     echo "New book created successfully";
+    $id = mysqli_insert_id($con);
+    mysqli_query($con, "insert into current_stock(book_id,current_amount) values ('".$id."',0)");
 } else {
     echo "Error: " . $sql . "<br>" . mysqli_error($con);
 }
