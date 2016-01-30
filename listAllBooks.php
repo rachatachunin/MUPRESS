@@ -168,7 +168,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                if(data[counter]['current_amount']>0){
                                   products += "<h4><a class='item_add' href='#'><i></i></a> <span class='item_price'>" + data[counter]['price'] +" บาท"+"</span><span style='margin-left:20px; color: green;'>มีสินค้า</span></h4>"  ;
                                }else{
-                                  products += "<h4><a class='item_add' href='#'><i></i></a> <span class='item_price'>" + data[counter]['price'] +" บาท"+"</span><span style='margin-left:20px; color: red;'>สินค้าหมด</span></h4>"  ;
+                                  products += "<h4><a class='item_add' href='#' style='pointer-events:none; cursor: default;'><i></i></a> <span class='item_price'>" + data[counter]['price'] +" บาท"+"</span><span style='margin-left:20px; color: red;'>สินค้าหมด</span></h4>"  ;
                                }
 
                                products += "</div>";
