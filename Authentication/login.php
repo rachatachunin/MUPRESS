@@ -19,7 +19,6 @@ if($row['password']==$ps&&$row['user_type']==1)
 }
 if($row['password']==$ps&&$row['user_type']==2)
 {
-    ob_start();
     session_start();
     $_SESSION['login'] = 1;
     $_SESSION['username'] = $user;

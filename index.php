@@ -140,6 +140,8 @@ $result2 = mysqli_query($con,$sql2);
             echo '<p>' . 'serial no. ' . $row['serial_no'] . '</p>' ;
             echo '<p>' . 'Edition  ' . $row['edition'] . '</p>' ;
             echo '<h4><a class="item_add" href="#"><i></i></a> <span class="item_price">' . $row['price'] .' บาท' . '</span></h4>'  ;
+            echo '<input type="text" name="name" class="item_bid" style="display: none" value="1">';
+            echo '<input type="text" name="name" class="item_dc" style="display: none" value="18">';
             echo '</div>
                    <div class="srch">
                     <span>-50%</span>
@@ -166,9 +168,11 @@ $result2 = mysqli_query($con,$sql2);
             echo '<p>' . 'serial no. ' . $row2['serial_no'] . '</p>' ;
             echo '<p>' . 'Edition  ' . $row2['edition'] . '</p>' ;
             echo '<h4><a class="item_add" href="#"><i></i></a> <span class="item_price">' . $row2['price'] .' บาท' . '</span></h4>'  ;
+            echo '<input type="text" name="name" class="item_bid" style="display: none" value="1">';
+            echo '<input type="text" name="name" class="item_dc" style="display: none" value="18">';
             echo '</div>
                    <div class="srch">
-                    <span>-50%</span>
+                    <span class="item_dc">-50%</span>
                    </div>
                  </div>
                </div>
