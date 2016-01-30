@@ -131,7 +131,7 @@ if(!isset($_SESSION['login'])){
 
    <!-- Page Header -->
    <!-- Set your background image for this header on the line below. -->
-   <header class="intro-header" style="background-image: url(\'image/home-bg.jpg\')">
+   <header class="intro-header" style="background-image: url(\'image/mu.jpg\'); opacity: 0.8;">
        <div class="container">
            <div class="row">
                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
@@ -154,10 +154,10 @@ if(!isset($_SESSION['login'])){
                        <a href="listAllBooks.php" style="color: white; ">หนังสือทั้งหมด</a>
                    </li>
                    <li>
-                       <a href="#" style="color: white;">โปรโมชั่น</a>
+                       <a href="promotion.php" style="color: white;">โปรโมชั่น</a>
                    </li>
                    <li>
-                       <a href="#" style="color: white;">ข่าวสารและกิจกรรม</a>
+                       <a href="newsandactivities.php" style="color: white;">ข่าวสารและกิจกรรม</a>
                    </li>
                    <li>
                        <a href="#" style="color: white;">รายการสินค้าของคุณ</a>
@@ -227,7 +227,7 @@ else{
 
   <!-- Page Header -->
   <!-- Set your background image for this header on the line below. -->
-  <header class="intro-header" style="background-image: url(\'image/home-bg.jpg\')">
+  <header class="intro-header" style="background-image: url(\'image/mu.jpg\'); opacity: 0.8;">
       <div class="container">
           <div class="row">
               <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">

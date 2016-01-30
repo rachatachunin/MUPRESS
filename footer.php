@@ -25,7 +25,7 @@ echo '
         </div>
       </div>
       <div class="col-md-6 footer-left">
-        <p>© 2016 Mahidol University Press. All Rights Reserved | Design by Faculty of ICT  </p>
+        <p>© 2016 Mahidol University Press. All Rights| Design by Faculty of ICT  </p>
       </div>
       <div class="clearfix"></div>
     </div>
