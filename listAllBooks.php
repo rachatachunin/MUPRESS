@@ -170,9 +170,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                   products += '<input type="text" name="name" class="item_bid" style="display: none" value="'+ data[counter]['book_id']+'">';
                                   products += '<input type="text" name="name" class="item_dc" style="display: none" value="18">';
                                }else{
-                                  products += "<h4><a class='item_add' href='#'><i></i></a> <span class='item_price'>" + data[counter]['price'] +" บาท"+"</span><span style='margin-left:20px; color: red;'>สินค้าหมด</span></h4>"  ;
+
                                   products += '<input type="text" name="name" class="item_bid" style="display: none" value="'+ data[counter]['book_id']+'">';
                                   products += '<input type="text" name="name" class="item_dc" style="display: none" value="18">';
+
+                                  products += "<h4><a class='item_add' href='#' style='pointer-events:none; cursor: default;'><i></i></a> <span class='item_price'>" + data[counter]['price'] +" บาท"+"</span><span style='margin-left:20px; color: red;'>สินค้าหมด</span></h4>"  ;
+
                                }
 
                                products += "</div>";

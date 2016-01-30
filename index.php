@@ -129,15 +129,8 @@ $result2 = mysqli_query($con,$sql2);
 
 					</div>
 					<div class="col-md-8  " style="margin-top:10px;">
-            <div class="container">
-						<form>
-							<input type="text" placeholder="Name">
-							<input type="text" placeholder="Phone">
-							<input type="text"  placeholder="Email">
-						</form><br>
-            <div style="margin-left:220px;">
-                <button class="btn btn-info" type="button" name="button">SUBMIT</button>
-            </div>
+            <div class="container text-center">
+						ติดต่อ โทร. 0-2800-2680-9 ต่อ 4302 หรือ <br>e-mail : mupress@mahidol.ac.th
           </div>
 					</div>
 					<div class="clearfix"></div>
@@ -162,8 +155,6 @@ $result2 = mysqli_query($con,$sql2);
 
 
           while($row = mysqli_fetch_array($result)){
-
-
             echo '<div class="product-one">
     					     <div class="col-md-3 product-left">
     						     <div class="product-main simpleCart_shelfItem">
@@ -175,6 +166,7 @@ $result2 = mysqli_query($con,$sql2);
             echo '<p>' . 'Edition  ' . $row['edition'] . '</p>' ;
 
             if($row['current_amount'] > 0){
+
             echo '<h4><a class="item_add" href="#"><i></i></a> <span class="item_price">' . $row['price'] .' บาท'.'</span><span style=" margin-left:40px; color: green;"> มีสินค้า</span></h4>'  ;
             echo '<input type="text" name="name" class="item_bid" style="display: none" value="'.$row['book_id'].'">';
             echo '<input type="text" name="name" class="item_dc" style="display: none" value="18">';
@@ -200,15 +192,7 @@ $result2 = mysqli_query($con,$sql2);
         <div class="product-one">
 					<?php
           while($row2 = mysqli_fetch_array($result2)){
-            // check stock
-            $sqlcheckin = "SELECT sum(amount) amount FROM book_stock WHERE book_id = '".$row2['book_id']."' AND action = 'IN' ";
-            $sqlcheckout = "SELECT sum(amount) amount FROM book_stock WHERE book_id = '".$row2['book_id']."' AND action = 'OUT' ";
-            $resultin = mysqli_query($con,$sqlcheckin);
-            $resultout = mysqli_query($con,$sqlcheckout);
-            $rowIn = mysqli_fetch_array($resultin);
-            $rowOut= mysqli_fetch_array($resultout);
-            $total  = intval($rowIn['amount']) - intval($rowOut['amount']) ;
-            // end check stock
+
             echo '<div class="product-one">
     					     <div class="col-md-3 product-left">
     						     <div class="product-main simpleCart_shelfItem">
@@ -224,6 +208,7 @@ $result2 = mysqli_query($con,$sql2);
             echo '<input type="text" name="name" class="item_bid" style="display: none" value="'.$row['book_id'].'">';
             echo '<input type="text" name="name" class="item_dc" style="display: none" value="18">';
             }else {
+
             echo '<h4><a class="item_add" href="#"><i></i></a> <span class="item_price">' . $row2['price'] .' บาท'.'</span><span style=" margin-left:40px; color: red;"> สินค้าหมด</span></h4>'  ;
             echo '<input type="text" name="name" class="item_bid" style="display: none" value="'.$row['book_id'].'">';
             echo '<input type="text" name="name" class="item_dc" style="display: none" value="18">';
