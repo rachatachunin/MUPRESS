@@ -86,7 +86,6 @@
 
       simpleCart.bind( 'beforeCheckout' , function( data ){
         var sessionValue = $("#loginC").val();
-        alert(sessionValue);
         if(sessionValue==1){
           if(!confirm('ยืนยันการสั่งซื้อ?'))e.preventDefault();
           else{
@@ -159,7 +158,8 @@ if(!isset($_SESSION['login'])){
              								<span class="simpleCart_total"></span></div>
             						</a>
             						<p><a href="javascript:;" style="text-decoration:none;" onclick="confirmaiton();">Empty Cart</a></p>
-                        <input type="hidden" id="loginC" value="<?=$_SESSION[\'login\'];?>"></input>
+                        <input type="hidden" id="loginC" value="'; echo $_SESSION['login'];
+                        echo '"></input>
             						<div class="clearfix"> </div>
             					</div>
                    </li>
@@ -253,7 +253,8 @@ else{
 
                          </a>
                          <p><a href="javascript:;" style="text-decoration:none;" onclick="confirmaiton();">Empty Cart</a></p>
-                         <input type="hidden" id="loginC" value="<?=$_SESSION[\'login\'];?>"></input>
+                         <input type="hidden" id="loginC" value="'; echo $_SESSION['login'];
+                         echo '"></input>
                          <div class="clearfix"> </div>
                        </div>
                   </li>
