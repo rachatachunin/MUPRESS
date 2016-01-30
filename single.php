@@ -120,7 +120,7 @@ $book_id = $_GET['id'];
 							</ul>
 						</div>
               <?php  if($row['current_amount']>0){ ?>
-								<button type="button" name="button" class="btn btn-success">ใส่ตระกร้า</button>
+								<button type="button" name="button" class="btn btn-success item_add">ใส่ตระกร้า</button>
                 <?php }else{ ?>
                 <button type="button" name="button" class="btn btn-danger" disabled="true">ใส่ตระกร้า</button>
                 <?php }  ?>

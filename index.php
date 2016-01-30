@@ -12,8 +12,8 @@ session_start();
     <script src="js/bootstrap.min.js"></script> -->
 <?php include "headFrontEnd.php";
 include 'dbconnection.php';
-$sql = "SELECT * FROM book LEFT JOIN current_stock on book.book_id = current_stock.book_id  ORDER BY book.book_id DESC LIMIT 0,4";
-$sql2 = "SELECT * FROM book LEFT JOIN current_stock on book.book_id = current_stock.book_id ORDER BY book.book_id DESC LIMIT 4,4";
+$sql = "SELECT book.book_id , title , author ,price, edition, serial_no ,recommend,image,content_preview,cs_id,current_amount FROM book LEFT JOIN current_stock on book.book_id = current_stock.book_id ORDER BY book.book_id DESC LIMIT 0,4";
+$sql2 = "SELECT book.book_id , title , author,price , edition, serial_no ,recommend,image,content_preview,cs_id,current_amount FROM book LEFT JOIN current_stock on book.book_id = current_stock.book_id ORDER BY book.book_id DESC LIMIT 4,4";
 $result = mysqli_query($con,$sql);
 $result2 = mysqli_query($con,$sql2);
  ?>
@@ -166,12 +166,13 @@ $result2 = mysqli_query($con,$sql2);
             echo '<p>' . 'Edition  ' . $row['edition'] . '</p>' ;
 
             if($row['current_amount'] > 0){
-            echo '<h4><a class="item_add" href="#" ><i></i></a> <span class="item_price">' . $row['price'] .' บาท'.'</span><span style=" margin-left:40px; color: green;"> มีสินค้า</span></h4>'  ;
-            echo '<input type="text" name="name" class="item_bid" style="display: none" value="1">';
+
+            echo '<h4><a class="item_add" href="#"><i></i></a> <span class="item_price">' . $row['price'] .' บาท'.'</span><span style=" margin-left:40px; color: green;"> มีสินค้า</span></h4>'  ;
+            echo '<input type="text" name="name" class="item_bid" style="display: none" value="'.$row['book_id'].'">';
             echo '<input type="text" name="name" class="item_dc" style="display: none" value="18">';
             }else {
-            echo '<h4><a class="item_add" href="#" style="pointer-events:none; cursor: default;"><i></i></a> <span class="item_price">' . $row['price'] .' บาท'.'</span><span style=" margin-left:40px; color: red;"> สินค้าหมด</span></h4>'  ;
-            echo '<input type="text" name="name" class="item_bid" style="display: none" value="1">';
+            echo '<h4><a class="item_add" href="#"><i></i></a> <span class="item_price">' . $row['price'] .' บาท'.'</span><span style=" margin-left:40px; color: red;"> สินค้าหมด</span></h4>'  ;
+            echo '<input type="text" name="name" class="item_bid" style="display: none" value="'.$row['book_id'].'">';
             echo '<input type="text" name="name" class="item_dc" style="display: none" value="18">';
             }
 
@@ -204,11 +205,12 @@ $result2 = mysqli_query($con,$sql2);
 
             if($row2['current_amount'] > 0){
             echo '<h4><a class="item_add" href="#"><i></i></a> <span class="item_price">' . $row2['price'] .' บาท'.'</span><span style=" margin-left:40px; color: green;"> มีสินค้า</span></h4>'  ;
-            echo '<input type="text" name="name" class="item_bid" style="display: none" value="1">';
+            echo '<input type="text" name="name" class="item_bid" style="display: none" value="'.$row['book_id'].'">';
             echo '<input type="text" name="name" class="item_dc" style="display: none" value="18">';
             }else {
-            echo '<h4><a class="item_add" href="#" style="pointer-events:none; cursor: default;"><i></i></a> <span class="item_price">' . $row2['price'] .' บาท'.'</span><span style=" margin-left:40px; color: red;"> สินค้าหมด</span></h4>'  ;
-            echo '<input type="text" name="name" class="item_bid" style="display: none" value="1">';
+
+            echo '<h4><a class="item_add" href="#"><i></i></a> <span class="item_price">' . $row2['price'] .' บาท'.'</span><span style=" margin-left:40px; color: red;"> สินค้าหมด</span></h4>'  ;
+            echo '<input type="text" name="name" class="item_bid" style="display: none" value="'.$row['book_id'].'">';
             echo '<input type="text" name="name" class="item_dc" style="display: none" value="18">';
             }
 
