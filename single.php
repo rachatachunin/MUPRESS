@@ -15,7 +15,7 @@ $book_id = $_GET['id'];
             include "headFrontEnd.php";
             include "dbconnection.php";
 
-            $sqlgetBookSingle = "SELECT * FROM book WHERE book_id = '".$book_id."' ";
+            $sqlgetBookSingle = "SELECT * FROM book LEFT JOIN current_stock on book.book_id = current_stock.book_id  WHERE book.book_id = '".$book_id."' ";
 
             $result = mysqli_query($con,$sqlgetBookSingle);
             $row = mysqli_fetch_array($result);
@@ -96,8 +96,8 @@ $book_id = $_GET['id'];
 									<li>ผู้เขียน
 										<span style="margin-left:16%;"><?php echo $row['author']; ?></span>
                 </li>
-								<li>Serial no.
-                    	<span style="margin-left:16%;"><?php echo $row['serial_no']; ?></span>
+								<li>ISBN
+                    	<span style="margin-left:20%;"><?php echo $row['serial_no']; ?></span>
                 </li>
                 <li>Edition
                     	<span style="margin-left:130px;"><?php echo $row['edition']; ?></span>
@@ -105,12 +105,21 @@ $book_id = $_GET['id'];
                 <li>พิมพ์ครั้งที่
                     	<span style="margin-left:102px;">1</span>
                 </li>
+                <?php
+                if($row['current_amount']>0){ ?>
+                <li style="color: green;">มีสินค้า</li>
+                <?php }else{ ?>
+                  <li style="color: red;">สินค้าหมด</li>
+                <?php }  ?>
+
 								<div class="clearfix"> </div>
 							</ul>
 						</div>
-
-								<a href="#" class="add-cart item_add">ใส่ตระกร้า</a>
-
+              <?php  if($row['current_amount']>0){ ?>
+								<button type="button" name="button" class="btn btn-info">ใส่ตระกร้า</button>
+                <?php }else{ ?>
+                <button type="button" name="button" class="btn btn-danger" disabled="true">ใส่ตระกร้า</button>
+                <?php }  ?>
 						</div>
 					</div>
 					<div class="clearfix"> </div>

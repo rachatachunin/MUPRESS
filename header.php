@@ -204,7 +204,7 @@ if(!isset($_SESSION['login'])){
                        <a href="#" style="color: white;">รายการสินค้าของคุณ</a>
                    </li>
                    <li>
-                       <a href="#" style="color: white;">ติดต่อเรา</a>
+                       <a href="contactus.php" style="color: white;">ติดต่อเรา</a>
                    </li >
                    <li>
                    <div class="search-bar">
@@ -302,7 +302,7 @@ else{
                       <a href="#" style="color: white;">รายการสินค้าของคุณ</a>
                   </li>
                   <li>
-                      <a href="#" style="color: white;">ติดต่อเรา</a>
+                      <a href="contactus.php" style="color: white;">ติดต่อเรา</a>
                   </li>
                   <li>
                   <div class="search-bar">

@@ -19,7 +19,7 @@ echo '
                 <a href="#" style="font-size:13px; ">ข่าวสารและกิจกรรม</a>
             </li>
             <li>
-                <a href="#" style="font-size:13px; ">ติดต่อเรา</a>
+                <a href="contactus.php" style="font-size:13px; ">ติดต่อเรา</a>
             </li>
         </ul>
         </div>
