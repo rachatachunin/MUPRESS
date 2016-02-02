@@ -38,7 +38,6 @@
         }
         else{
           $("#cart").modal('show');
-          //$(".simpleCart_increment").addClass('btn btn-success btn-xs');
         }
       }
 
@@ -80,28 +79,9 @@
         alert("หนังสือเล่มนี้ได้ถูกเพิ่มลงในตะกร้าเรียบร้อย");
       });
 
-      simpleCart.bind( "update" , function( item ){
-        if(simpleCart.items().length == 0)
-        {
-          $("#cart").modal('hide');
-        }
-      });
-
       simpleCart.bind("afterCreate", function(){
          $cart_table = $(".simpleCart_items table")
          $cart_table.addClass("table").addClass("table-condensed")
-         $(".simpleCart_items").addClass('text-center');
-         $(".headerRow").addClass('text-center');
-         $(".item-price").css({"width":"50px","text-align":"center"});
-         $(".item-name").css({"width":"50%","text-align":"center"});
-         $(".simpleCart_decrement").addClass('btn btn-danger btn-xs');
-         $(".item-decrement").css({"width":"20px","text-align":"center"});
-         $(".item-increment").css({"width":"20px","text-align":"center"});
-         $(".simpleCart_increment").addClass('btn btn-success btn-xs');
-         $(".item-quantity").css({"width":"50px","text-align":"center"});
-         $(".item-dc").css({"width":"50px","text-align":"center"});
-         $(".item-total").css({"width":"150px","text-align":"center"});
-         $(".item-remove").css({"width":"100px","text-align":"center"});
       });
 
       simpleCart.bind( 'beforeCheckout' , function( data ){
@@ -159,7 +139,7 @@ if(!isset($_SESSION['login'])){
                    <span class="icon-bar"></span>
                    <span class="icon-bar"></span>
                </button>
-               <a class="navbar-brand" href="index.php">Start Bootstrap</a>
+               <a class="navbar-brand" href="index.php"><img width= "100px" height="100px"src="image/logo.jpg"></a>
            </div>
 
            <!-- Collect the nav links, forms, and other content for toggling -->
