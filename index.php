@@ -171,7 +171,7 @@ $result2 = mysqli_query($con,$sql2);
             echo '<input type="text" name="name" class="item_bid" style="display: none" value="'.$row['book_id'].'">';
             echo '<input type="text" name="name" class="item_dc" style="display: none" value="18">';
             }else {
-            echo '<h4><a class="item_add" href="#" style="pointer-events:none; cursor: default;"><i></i></a> <span class="item_price">' . $row['price'] .' บาท'.'</span><span style=" margin-left:40px; color: red;"> สินค้าหมด</span></h4>'  ;
+            echo '<h4><a class="item_add" href="#"><i></i></a> <span class="item_price">' . $row['price'] .' บาท'.'</span><span style=" margin-left:40px; color: red;"> สินค้าหมด</span></h4>'  ;
             echo '<input type="text" name="name" class="item_bid" style="display: none" value="'.$row['book_id'].'">';
             echo '<input type="text" name="name" class="item_dc" style="display: none" value="18">';
             }
@@ -209,7 +209,7 @@ $result2 = mysqli_query($con,$sql2);
             echo '<input type="text" name="name" class="item_dc" style="display: none" value="18">';
             }else {
 
-            echo '<h4><a class="item_add" href="#" style="pointer-events:none; cursor: default;"><i></i></a> <span class="item_price">' . $row2['price'] .' บาท'.'</span><span style=" margin-left:40px; color: red;"> สินค้าหมด</span></h4>'  ;
+            echo '<h4><a class="item_add" href="#"><i></i></a> <span class="item_price">' . $row2['price'] .' บาท'.'</span><span style=" margin-left:40px; color: red;"> สินค้าหมด</span></h4>'  ;
             echo '<input type="text" name="name" class="item_bid" style="display: none" value="'.$row['book_id'].'">';
             echo '<input type="text" name="name" class="item_dc" style="display: none" value="18">';
             }
