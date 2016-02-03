@@ -19,7 +19,7 @@ $sql = "";
 
 
 if($searchBy == "none" || $searchBy == "all"){
-$sql = "SELECT * FROM book";
+$sql = "SELECT *,CONCAT_WS(' ', user_fn, user_ln) AS author FROM book INNER JOIN user ON book.author_id = user.user_id";
 }
 else{
 $sql = "SELECT * FROM book WHERE $searchBy LIKE '%$keyword%' ";

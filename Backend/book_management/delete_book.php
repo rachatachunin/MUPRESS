@@ -12,16 +12,42 @@ if(!@file_exists("./".$db_cont) ) {
 $serialno 	= $_GET['serial_no'];
 unset($_GET['serial_no']);
 
-$sql = "DELETE FROM book WHERE serial_no = '$serialno'";
-if (mysqli_query($con, $sql)) {
-    echo "New book created successfully";
+$dir = 'book_image' . DIRECTORY_SEPARATOR . $serialno;
+
+if (file_exists($dir)) {
+    echo "The folder to deleted exists";
 } else {
-    echo "Error: " . $sql . "<br>" . mysqli_error($con);
+    echo "The folder to deleted does not exist";
+    mkdir($dir);
 }
+
+$it = new RecursiveDirectoryIterator($dir, RecursiveDirectoryIterator::SKIP_DOTS);
+$files = new RecursiveIteratorIterator($it,
+             RecursiveIteratorIterator::CHILD_FIRST);
+foreach($files as $file) {
+    if ($file->isDir()){
+        rmdir($file->getRealPath());
+    } else {
+        unlink($file->getRealPath());
+    }
+}
+rmdir($dir);
+
+
+	$sql = "DELETE FROM book WHERE serial_no = '$serialno'";
+	if (mysqli_query($con, $sql)) {
+	    echo "The book was deleted";
+	} else {
+	    echo "Error: " . $sql . "<br>" . mysqli_error($con);
+	}
+
+
+
 
 mysqli_close($con);
 
 
 header("Location: $headTo");
+
 
 ?>
