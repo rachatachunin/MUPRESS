@@ -103,28 +103,52 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                   <div id="content"></div>
                   <div id="page-selection" class="text-center"></div>
                       <script>
+                       var numPerpage = 20 ;
+                       var totalPage;
                         window.onload = function(){
+                          $.ajax({
+                             url: "request_totalPageBook.php",
+                             data: {
+                                 page: 1 ,
+                                 numPerpage: numPerpage,
+                             },
+                             type: "GET",
+                             dataType : "text",
+                             success: function( json ) {
+                                 totalPage = parseInt(json);
+
+                                 // init bootpag
+                                 $('#page-selection').bootpag({
+                                   total:  totalPage,
+                                   page: 1,
+                                   maxVisible: 5,
+                                   leaps: true,
+                                   firstLastUse: true,
+                                   first: '←',
+                                   last: '→',
+                                   wrapClass: 'pagination',
+                                   activeClass: 'active',
+                                   disabledClass: 'disabled',
+                                   nextClass: 'next',
+                                   prevClass: 'prev',
+                                   lastClass: 'last',
+                                   firstClass: 'first'
+                                 }).on("page", function(event, num){
+                                   getAjax(num);
+
+                            });
+                             },
+                             error: function( xhr, status, errorThrown ) {
+                                 alert( "Sorry, there was a problem!" );
+                                 console.log( "Error: " + errorThrown );
+                                 console.log( "Status: " + status );
+                                 console.dir( xhr );
+                             },
+                         });
                           getAjax(1);
                         };
-                          // init bootpag
-                          $('#page-selection').bootpag({
-                            total: 2,
-                            page: 1,
-                            maxVisible: 5,
-                            leaps: true,
-                            firstLastUse: true,
-                            first: '←',
-                            last: '→',
-                            wrapClass: 'pagination',
-                            activeClass: 'active',
-                            disabledClass: 'disabled',
-                            nextClass: 'next',
-                            prevClass: 'prev',
-                            lastClass: 'last',
-                            firstClass: 'first'
-                          }).on("page", function(event, num){
-                            getAjax(num);
-                       });
+
+
 
                           function getAjax(num){
 
@@ -132,6 +156,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                            url: "getBookDetail.php",
                            data: {
                                pageNumber: num ,
+                               numPerpage:numPerpage ,
                            },
                            type: "GET",
                            dataType : "JSON",
