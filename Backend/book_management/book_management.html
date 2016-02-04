@@ -147,7 +147,7 @@
 
 
     
-          <form name="addForm" method="post" action="add_book.php" 
+          <form name="addForm" method="post" action="add_book.php" enctype="multipart/form-data"
           onsubmit="return validateFormAdd('add')">
             <div class="form-group">
               <label for="serial_no">หมายเลขหนังสือ</label>
@@ -158,24 +158,22 @@
               <input type="text" class="form-control" name="title" placeholder="หนังสือที่ต้องการจัดรายการ" required>
             </div>
             <div class="form-group">
-              <label for="author">ฉบับที่</label>
+              <label for="edition">ฉบับที่</label>
               <input type="text" class="form-control" name="edition" placeholder="หนังสือที่ต้องการจัดรายการ" required>
             </div>
+            <div class="form-group" id="author_form">
+              
+            </div>
             <div class="form-group">
-              <label for="author">ชื่อผู้เขียน</label>
-              <input type="text" class="form-control" name="author" placeholder="หนังสือที่ต้องการจัดรายการ" required>
+              <input type="hidden" class="form-control" name="author" id="author"  required>
             </div>
             <div class="form-group">
               <label for="price">ราคา</label>
               <input type="text" class="form-control" name="price" placeholder="หนังสือที่ต้องการจัดรายการ" id="price" required>
             </div>
             <div class="form-group">
-              <label for="book_detail">รายละเอียดหนังสือ</label>
-              <textarea  class="form-control" name="book_detail" placeholder=""></textarea>
-            </div>
-            <div class="form-group">
               <label for="file">กรุณาเลือกไฟล์</label>
-              <input type="file" name="file">
+              <input type="file" name="fileToUpload">
             </div>
  
       </div>
@@ -201,38 +199,41 @@
       </div>
       <div class="modal-body">
     
-          <form name="editForm" method="post" action="edit_book.php"
+          <form name="editForm" method="post" action="edit_book.php" enctype="multipart/form-data"
           onsubmit="return validateFormAdd('edit')">
             <div class="form-group">
-              <label for="book">หมายเลขหนังสือ</label>
+              <label for="bookid">หมายเลขหนังสือ</label>
               <input type="text" class="form-control" name="serial_no" placeholder="หนังสือที่ต้องการจัดรายการ" 
               readonly="readonly">
             </div>
             <div class="form-group">
-              <label for="book">ชื่อหนังสือ</label>
+              <label for="title">ชื่อหนังสือ</label>
               <input type="text" class="form-control" name="title" placeholder="หนังสือที่ต้องการจัดรายการ" required>
             </div>
             <div class="form-group">
-              <label for="author">ฉบับที่</label>
+              <label for="edition">ฉบับที่</label>
               <input type="text" class="form-control" name="edition" placeholder="หนังสือที่ต้องการจัดรายการ" required>
             </div>
+            <div class="form-group" id="author_form">
+              
+            </div>
             <div class="form-group">
-              <label for="author">ชื่อผู้เขียน</label>
-              <input type="text" class="form-control" name="author" placeholder="หนังสือที่ต้องการจัดรายการ" required>
+              <input type="hidden" class="form-control" name="author" id="author" required>
             </div>
             <div class="form-group">
               <label for="price">ราคา</label>
               <input type="text" class="form-control" name="price" placeholder="หนังสือที่ต้องการจัดรายการ" required>
             </div>
-            <div class="form-group">
-              <label for="book_detail">รายละเอียดหนังสือ</label>
-              <textarea  class="form-control" name="book_detail" placeholder=""></textarea>
+            <div>
+              <label for="oldimage">รูปภาพปัจจุบัน</label>
+              <div id="Imagedisplay"></div>
             </div>
             <div class="form-group">
               <label for="file">กรุณาเลือกไฟล์</label>
-              <input type="file" name="file">
+              <input type="file" name="fileToUpload">
             </div>
- 
+          
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">ยกเลิก</button>
@@ -287,8 +288,7 @@ var bookarray;
 var totalPage;
 
 $(document).ready(function() {
-
-
+//////////////////////////////// Start ISBN check //////////////////////////////////////////
   jQuery(function($){
    $("#serial_no").mask("999-999-999-999-9",{completed:function(){
 
@@ -319,7 +319,7 @@ $(document).ready(function() {
   }});
 
  });
-
+//////////////////////////////// End ISBN check //////////////////////////////////////////
 
 
  //////////////////////////////// Start Jquery for search ////////////////////////////////
@@ -336,6 +336,8 @@ $(document).ready(function() {
 
 window.onload = function() {
  getajax(1,"none",null);
+ getAuthorName();
+
 };
 
 function deletebook(serial_no){
@@ -356,15 +358,18 @@ function searchBook(){
 function validateFormAdd(mode) {
   var price;
   var edition;
+  var authorid;
 
 
   if( mode == "add"){
   price    = Number(document.forms["addForm"]["price"].value);
   edition  = Number(document.forms["addForm"]["edition"].value);
+  authorid = Number(document.forms["addForm"]["author_id"].value);
   }
   if( mode == "edit"){
   price    = Number(document.forms["editForm"]["price"].value);
   edition  = Number(document.forms["editForm"]["edition"].value);
+  authorid = Number(document.forms["editForm"]["author_id"].value);
   }
 
   if( isNaN(price)){
@@ -380,6 +385,12 @@ function validateFormAdd(mode) {
     alert("ฉบับหนังสือต้องมีค่าตั้งแต่ 1 ขึ้นไป");
     return false;
   }
+  if(authorid == 0){
+    alert("กรุณาเลือกผู้เขียน")
+    return false;
+  }
+
+
 
   if(!(Number.isInteger(edition)) ){
     alert("ฉบับหนังสือต้องเป็นจำนวนเต็ม");
@@ -393,6 +404,49 @@ function validateFormAdd(mode) {
   }
 
     return true; 
+}
+function changeAuthorName(name){
+    $("#addbook #author").val(name);
+    $("#editbookmodel #author").val(name);
+  
+}
+
+function getAuthorName(){
+
+  $.ajax({
+    url: "request_authorName.php",
+    data: {
+    },
+
+    type: "GET",
+
+    dataType : "JSON",
+
+    success: function( json ) {
+    var author = json;
+    var authorNameform = "";
+      authorNameform += "<label for='author'>ชื่อผู้เขียน</label>";
+      authorNameform += "<select class='form-control' name='author_id' onchange='changeAuthorName(this.options[this.selectedIndex].innerHTML)'>";
+      authorNameform += "<option value='0' disabled selected>กรุณาเลือกผู้เขียน</option>";
+      for(var i=0;i< author.length ;i++){
+        var fullName = author[i]['user_fn']+" "+author[i]['user_ln'];
+        authorNameform += "<option value='"+author[i]['user_id']+"'>"+fullName+"</option>";
+      }
+      authorNameform += "</select>";
+
+    $("#addbook #author_form").html(authorNameform);
+    $("#editbookmodel #author_form").html(authorNameform);
+    },
+
+    error: function( xhr, status, errorThrown ) {
+        alert( "Sorry, there was a problem in request_authorName.php!" );
+        console.log( "Error: " + errorThrown );
+        console.log( "Status: " + status );
+        console.dir( xhr );
+    },
+ 
+  });
+
 }
 
 function editBook(serial_no){
@@ -414,13 +468,14 @@ function editBook(serial_no){
     // the response is passed to the function
     success: function( json ) {
     var book = json;
+    var img  = new Image();
     $("#editbookmodel input[name='serial_no']").val(book[0]['serial_no']);
     $("#editbookmodel input[name='title']").val(book[0]['title']);
     $("#editbookmodel input[name='edition']").val(book[0]['edition']);
-    $("#editbookmodel input[name='author']").val(book[0]['author']);
+    $("#editbookmodel select[name='author_id']").val(book[0]['author_id']);
     $("#editbookmodel input[name='price']").val(book[0]['price']);
-    $("#editbookmodel input[name='book_detail']").val(book[0]['book_detail']);
-    $("#editbookmodel input[name='file']").val(book[0]['file']);
+    img.src = book[0]['image'];
+    $("#editbookmodel #Imagedisplay").html(img);
 
     },
  
@@ -464,6 +519,7 @@ function getajax(page , searchBy , keyword){
     // the response is passed to the function
     success: function( json ) {
         bookarray = json;
+        //alert(bookarray);
         totalPage = Math.ceil(bookarray.length/10);
         tabledisplay(1);
         pageGenerator();

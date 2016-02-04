@@ -8,18 +8,22 @@ if(!@file_exists("./".$db_cont) ) {
    require("./".$db_cont);
 }
 
-$serial_no 	= $_GET['serial_no'];
-unset($_GET['serial_no']);
-
-$sql = "SELECT * FROM book WHERE serial_no = '$serial_no'";
-
+$sql = "";
+$sql = "SELECT user_id,user_fn,user_ln FROM user WHERE user_type = 3";
 $result = mysqli_query($con,$sql);
 $data = array();
+
+    // output data of each row
 while($r = mysqli_fetch_assoc($result)) {
     $data[] = $r;
 }
+
+
 mysqli_close($con);
 //print_r($data);
 
 echo json_encode($data);
+
+
+
 ?>

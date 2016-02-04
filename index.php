@@ -34,6 +34,27 @@ $result2 = mysqli_query($con,$sql2);
             margin-top: 20px;
             margin-bottom: 20px;
         }
+        #partner {
+          color: #fff;
+          text-align: center;
+          padding-bottom: 40px;
+        }
+        #partner {
+          background: url(/MUPRESS_GIT/image/partner_bg.png) 50% 50% no-repeat;
+          background-size: cover;
+        }
+        .partners ul li {
+          display: inline-block;
+          float: left;
+          width: 30%;
+          margin-left: 20px;
+        }
+        .center {
+          text-align: center;
+          padding-bottom: 30px;
+        }
+
+
     </style>
     <script type="text/javascript">
     function validateCus(e){
@@ -230,6 +251,26 @@ $result2 = mysqli_query($con,$sql2);
 	</div>
 </div>
 	<!--product-end-->
+
+  <!-- start- partners -->
+  <section id="partner">
+        <div class="container">
+            <div class="center">
+                <h2>ผู้ร่วมงาน</h2>
+                <p class="lead">เป็นการร่วมงานระหว่าง คณะ เทคโนโลยีสาระสนเทศและการสื่อสาร และ สำนักพิมพ์มหาวิทยาลัย มหิดล<br>โดย<br> นาย ศุภณัฐ จันทร์แจ่ม<br>นาย รชต ชูนิล <br> นาย อานัน ตันติวรพันธ์</p>
+            </div>
+
+            <div class="partners">
+                <ul style="padding-left:200px;">
+                    <li > <a href="#"><img class="img-responsive"  src="image/partner1.png"></a></li>
+                    <li > <a href="#"><img class="img-responsive "  src="image/partner2.png"></a></li>
+                    <li > <a href="#"><img class="img-responsive "  src="image/partner3.png"></a></li>
+                </ul>
+            </div>
+        </div><!--/.container-->
+    </section>
+
+ <!--end-partner-->
 
 
 <!--footer-starts-->

@@ -159,7 +159,9 @@ if(!isset($_SESSION['login'])){
                    <span class="icon-bar"></span>
                    <span class="icon-bar"></span>
                </button>
-               <a class="navbar-brand" href="index.php">Start Bootstrap</a>
+
+               <a class="navbar-brand" style="width:430px; height:70px;" href="index.php#partner"></a></a>
+
            </div>
 
            <!-- Collect the nav links, forms, and other content for toggling -->
@@ -192,7 +194,7 @@ if(!isset($_SESSION['login'])){
 
    <!-- Page Header -->
    <!-- Set your background image for this header on the line below. -->
-   <header class="intro-header" style="background-image: url(\'image/mu.jpg\'); opacity: 0.9;">
+   <header class="intro-header" style="background-image: url(\'image/bg_1.jpg\'); opacity: 0.9;">
        <div class="container">
            <div class="row">
                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
@@ -254,7 +256,7 @@ else{
                   <span class="icon-bar"></span>
                   <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="index.php">Start Bootstrap</a>
+            <a class="navbar-brand" style="width:430px; height:70px;" href="index.php#partner"></a>
           </div>
 
           <!-- Collect the nav links, forms, and other content for toggling -->
