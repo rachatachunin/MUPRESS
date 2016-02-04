@@ -26,4 +26,9 @@ if($row['password']==$ps&&$row['user_type']==2)
     $_SESSION['firstname'] = $row['user_fn'];
     $_SESSION['lastname'] = $row['user_ln'];
     header("Location: ../index.php");
+}else{
+    echo '<script>';
+    echo 'alert("Username or Password Invalid!");';
+    echo 'location.href="/MUPRESS_GIT/index.php"';
+    echo '</script>';
 }

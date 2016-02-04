@@ -44,13 +44,12 @@ for($i=1; $i < $content['itemCount'] + 1; $i++) {
  $split_dc = explode(":", $split_options[1]);
  $quantity =  $content['item_quantity_'.$i];
  $price = $content['item_price_'.$i];
- $dcprice = ((int) $quantity * ((double) $price*((100.0-(int) $split_dc[1])/100.00)));
- mysqli_query($con,"insert into order_line(amount,price,discount,book_id,order_id) values ('".$quantity."','".$dcprice."','".$split_dc[1]."','".$split_id[1]."','".$id."')");
+ mysqli_query($con,"insert into order_line(amount,price,discount,book_id,order_id) values ('".$quantity."','".$price."','".$split_dc[1]."','".$split_id[1]."','".$id."')");
 }
 
 mysqli_close($con);
-header("Location: checkout_success.php?order_id=".$id);
-
+//header("Location: index.php");
+var_dump($content);
 
 
  ?>

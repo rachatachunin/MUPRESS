@@ -12,6 +12,11 @@ session_start();
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
     <?php
         include "headFrontEnd.php";
+        include "dbconnection.php";
+        // get promotion
+        $sql = "SELECT b.title,b.author,p.promotion_name,p.promotion_detail, p.book_serial_no,p.discount,p.image FROM promotion as p LEFT JOIN book as b ON p.book_serial_no = b.serial_no ORDER BY p.promotion_id DESC ";
+        $result = mysqli_query($con,$sql);
+
     ?>
 </head>
 <body>
@@ -32,7 +37,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
   <!--end-breadcrumbs-->
   <br><br>
 
-  <!-- start news -->
+  <!-- start promotion -->
   <div class="contact-top heading">
 				<h2>โปรโมชั่น</h2>
   </div><br>
@@ -50,17 +55,31 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
       </div>
     </div>
 
-  </div><br>
+  </div><br><br>
   <!-- end news -->
 
-  <!-- start activities -->
-  <div class="container" style="height: 600px; border: solid;">
-
-
+  <!-- start promotion list -->
+  <div class="contact-top heading">
+        <h3>รายการโปรโมชั่น</h3>
+  </div><br>
+  <div class="container" style="height: 1250px; ">
+    <ul class="list-group" sytle="overflow:auto;">
+      <?php
+      while($row1 = mysqli_fetch_array($result)){
+       echo '<li class = "list-group-item" style="height:250px;"><div class="col-xs-12">' ;
+       echo '<div class="col-xs-4 text-center"><img src="image/law.jpg" class="img-rounded" style="height:230px;"></div>';
+       echo "ชื่อหนังสือ:  " . $row1['title'] . '<br>' .
+            "ผู้แต่ง:  " . $row1['author'] .'<br>'.
+            "ISBN:  " . $row1['book_serial_no'] .'<br>'.
+            "ส่วนลด:  ". $row1['discount'] . " %" . '<br>' .
+            "รายละเอียด:  ". $row1['promotion_detail'];
+       echo '</div></li>';
+           }
+      ?>
+   </ul>
   </div>
 
   <!-- end activities -->
-
 
   <!--footer-starts-->
   <?php include "footer.php" ; ?>
