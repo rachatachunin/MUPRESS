@@ -32,15 +32,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
   <!--end-breadcrumbs-->
   <br><br>
 
-  <!-- start books -->
+  <!-- start news -->
   <div class="contact-top heading">
 				<h2>รายการหนังสือ</h2>
   </div><br>
-  <div class="container" style="height:200 px; border: solid;">
+  <div class="container" style="height: 200px; border: solid;">
 
 
   </div><br>
-  <!-- end books -->
+  <!-- end news -->
 
 
   <!--footer-starts-->
