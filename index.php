@@ -262,9 +262,9 @@ $result2 = mysqli_query($con,$sql2);
 
             <div class="partners">
                 <ul style="padding-left:200px;">
-                    <li > <a href="#"><img class="img-responsive"  src="image/partner1.png"></a></li>
-                    <li > <a href="#"><img class="img-responsive "  src="image/partner2.png"></a></li>
-                    <li > <a href="#"><img class="img-responsive "  src="image/partner3.png"></a></li>
+                    <li > <a href="#"><img class="img-responsive"  src="image/mu.png"></a></li>
+                    <li > <a href="#"><img class="img-responsive "  src="image/press.png"></a></li>
+                    <li > <a href="#"><img class="img-responsive "  src="image/ict.png"></a></li>
                 </ul>
             </div>
         </div><!--/.container-->

@@ -1,19 +1,17 @@
 <?php
 ob_start();
 session_start();
-$_SESSION['user_id'] = 1;
 ?>
 <html>
 <head>
-    <meta http-equiv="content-Type" content="text/html; charset=utf-8">
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/index.css" rel="stylesheet">
-    <script src="js/jq.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.bootpag.js"></script>
-    <script src="js/jquery.bootpag.min.js"></script>
-
-    <!--<link href="css/bootstrap-theme.min.css" rel="stylesheet">-->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="content-Type" content="text/html; charset=utf-8" />
+  <meta name="keywords" content="Luxury Watches Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
+ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+     <?php
+         include "headFrontEnd.php";
+         include "dbconnection.php";
+     ?>
     <title>MU PRESS</title>
     <style>
         .carousel-inner > .item > img,
@@ -33,8 +31,24 @@ $_SESSION['user_id'] = 1;
     </style>
 </head>
 <body>
+  <?php
+      include "header.php";
+  ?>
+    <!--start-breadcrumbs-->
+  <div class="breadcrumbs">
+    <div class="container">
+      <div class="breadcrumbs-main">
+        <ol class="breadcrumb">
+          <li><a href="index.php">หน้าแรก</a></li>
+          <li class="active">รายการสินค้าของคุณ</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+  <!--end-breadcrumbs-->
+  <br><br>
 
-<div class = "container-fluid">
+<div class = "container">
     <!--///////////////////////////// Start history tabel /////////////////////////// -->
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
@@ -86,14 +100,14 @@ $_SESSION['user_id'] = 1;
             <div class="col-xs-10 col-sm-10 col-md-10">
             <span id="userName"></span>
             </div>
-              
+
             <div class="col-xs-2 col-sm-2 col-md-2">
             <span>ที่อยู่ผู้ส่ง</span>
             </div>
             <div class="col-xs-10 col-sm-10 col-md-10">
             <span id="senderAddress"></span>
             </div>
-               
+
             <div class="col-xs-2 col-sm-2 col-md-2">
             <span>ที่อยู่ผู้รับ</span>
             </div>
@@ -114,7 +128,7 @@ $_SESSION['user_id'] = 1;
             <div class="col-xs-10 col-sm-10 col-md-10">
             <span id="status"></span>
             </div>
-            
+
 
         </div>
         <hr>
@@ -158,7 +172,7 @@ var totalPage;
 var rowsPerpage = 20;
 $(document).ready(function() {
 
-     
+
 });
 
 window.onload = function() {
