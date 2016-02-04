@@ -201,9 +201,6 @@ if(!isset($_SESSION['login'])){
                        <a href="newsandactivities.php" style="color: white;">ข่าวสารและกิจกรรม</a>
                    </li>
                    <li>
-                       <a href="#" style="color: white;">รายการสินค้าของคุณ</a>
-                   </li>
-                   <li>
                        <a href="contactus.php" style="color: white;">ติดต่อเรา</a>
                    </li >
                    <li>
@@ -294,13 +291,13 @@ else{
                       <a href="listAllBooks.php" style="color: white; ">หนังสือทั้งหมด</a>
                   </li>
                   <li>
-                      <a href="#" style="color: white;">โปรโมชั่น</a>
+                      <a href="promotion.php" style="color: white;">โปรโมชั่น</a>
                   </li>
                   <li>
-                      <a href="#" style="color: white;">ข่าวสารและกิจกรรม</a>
+                      <a href="newsandactivities.php" style="color: white;">ข่าวสารและกิจกรรม</a>
                   </li>
                   <li>
-                      <a href="#" style="color: white;">รายการสินค้าของคุณ</a>
+                      <a href="order_history.php" style="color: white;">รายการสินค้าของคุณ</a>
                   </li>
                   <li>
                       <a href="contactus.php" style="color: white;">ติดต่อเรา</a>
