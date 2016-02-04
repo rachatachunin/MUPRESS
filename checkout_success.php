@@ -13,7 +13,7 @@ session_start();
 <?php include "headFrontEnd.php";
 include 'dbconnection.php';
 $orderid = $_GET['order_id'];
-$result2 = mysqli_query($con,"select * from order_book left join order_line on order_book.order_id = order_line.order_id left join book on order_line.book_id = book.book_id where order_book.order_id = '".$orderid."'");
+$result2 = mysqli_query($con,"select title,order_line.price as dcprice , amount,discount,book.price as bprice from order_book left join order_line on order_book.order_id = order_line.order_id left join book on order_line.book_id = book.book_id where order_book.order_id = '".$orderid."'");
 $result = mysqli_query($con , "select * from order_book where order_id='".$orderid."'");
 $order = mysqli_fetch_array($result);
  ?>
@@ -87,16 +87,16 @@ $order = mysqli_fetch_array($result);
         $counter++;
         echo $counter.") ";
         echo $row['title'].' ราคาเล่มละ ';
-        echo $row['price'].' บาท จำนวน ';
+        echo $row['bprice'].' บาท จำนวน ';
         echo $row['amount'].' เล่ม ส่วนลด';
         echo $row['discount'].'% เป็นจำนวนเงินทั้งหมด ';
-        echo $row['price'].' บาท<br>';
+        echo $row['dcprice'].' บาท<br>';
       }
        ?>
 
        <div class="pull-right">
          <br>
-         <?php echo 'รวมเป็นเงินทั้งสิ้น '.$order['total_price'].'บาท'; ?>
+         <?php echo 'รวมเป็นเงินทั้งสิ้น '.$order['total_price'].' บาท'; ?>
        </div>
 
     </div>

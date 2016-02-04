@@ -23,9 +23,9 @@
         cartColumns: [
             { attr: "name", label: "ชื่อหนังสือ"},
             { view: "currency", attr: "price", label: "ราคา"},
-            { view: "decrement", label: false},
+            { view: "increment", label: "เพิ่ม"},
+            { view: "decrement", label: "ลด"},
             { attr: "quantity", label: "จำนวน"},
-            { view: "increment", label: false},
             { view: function(item, column){return item.get("dc")+"%";}, attr: "dc", label: "ส่วนลด"},
             { view: function(item, column){return "฿"+parseFloat(parseFloat(item.total())*((100.00-parseFloat(item.get("dc")))/100.00)).toFixed(2);}, attr: "total", label: "ราคารวม" },
             { view: "remove", text: "ลบรายการ", label: false}
@@ -64,9 +64,10 @@
         }
       });
 
-      // simpleCart.total(function( item ){
-      //   return item.price()*((100.00-(item.get("dc")))/100);
-      // });
+      simpleCart.bind( 'beforeRemove' , function( item ){
+        if(!confirm('ต้องการที่จะลบหนังสือเล่มนี้จากตะกร้า?'))e.preventDefault();
+      });
+
       simpleCart.total = function(){
           var total = 0;
       	simpleCart.each(function (item) {
@@ -102,6 +103,7 @@
          $(".item-dc").css({"width":"50px","text-align":"center"});
          $(".item-total").css({"width":"150px","text-align":"center"});
          $(".item-remove").css({"width":"100px","text-align":"center"});
+         $(".simpleCart_remove").addClass('btn btn-danger btn-xs');
       });
 
       simpleCart.bind( 'beforeCheckout' , function( data ){
