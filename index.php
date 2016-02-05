@@ -42,6 +42,7 @@ $result2 = mysqli_query($con,$sql2);
         #partner {
           background: url(/MUPRESS_GIT/image/partner_bg.png) 50% 50% no-repeat;
           background-size: cover;
+
         }
         .partners ul li {
           display: inline-block;
@@ -256,15 +257,16 @@ $result2 = mysqli_query($con,$sql2);
   <section id="partner">
         <div class="container">
             <div class="center">
-                <h2>ผู้ร่วมงาน</h2>
+                
                 <p class="lead">เป็นการร่วมงานระหว่าง คณะ เทคโนโลยีสาระสนเทศและการสื่อสาร และ สำนักพิมพ์มหาวิทยาลัย มหิดล<br>โดย<br> นาย ศุภณัฐ จันทร์แจ่ม<br>นาย รชต ชูนิล <br> นาย อนันต์ บุญถาวรทวี</p>
             </div>
 
             <div class="partners">
                 <ul style="padding-left:200px;">
-                    <li > <a href="#"><img class="img-responsive"  src="image/mu.png"></a></li>
-                    <li > <a href="#"><img class="img-responsive "  src="image/press.png"></a></li>
-                    <li > <a href="#"><img class="img-responsive "  src="image/ict.png"></a></li>
+                    <li > <a href="#"><img class="img-responsive" width="100"   src="image/mu.png"></a></li>
+                    <li > <a href="#"><img class="img-responsive " width="200"  src="image/ict.png"></a></li>
+                    <li > <a href="#"><img class="img-responsive " width="200"  src="image/press.png"></a></li>
+
                 </ul>
             </div>
         </div><!--/.container-->
