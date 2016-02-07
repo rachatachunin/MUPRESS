@@ -14,7 +14,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         include "headFrontEnd.php";
     ?>
 
-    <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <!-- <link href="css/style.css" rel="stylesheet" type="text/css" media="all" /> -->
     <!-- <link href="/MUPRESS/css/simplePagination.css" rel="stylesheet" type="text/css" media="all" /> -->
     <!-- <script src="/MUPRESS_GIT/js/simpleCart.min.js"> </script> -->
     <link href="/MUPRESS_GIT/css/memenu.css" rel="stylesheet" type="text/css" media="all" />
