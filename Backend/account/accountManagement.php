@@ -6,7 +6,7 @@
   $sql_getCustomer = "SELECT * FROM user ORDER BY user_fn ASC  ";
   $sql_getOrganization = "SELECT comp.user_id, comp.organization_name FROM organization as comp LEFT JOIN user ON comp.user_id = user.user_id
                           ORDER BY comp.organization_name ASC ";
-  $sql_getAuthor ="SELECT * FROM user WHERE user_group_id = 3 ORDER BY user_fn ASC ";
+  $sql_getAuthor ="SELECT * FROM user WHERE user_type = 3 ORDER BY user_fn ASC ";
   //query data
   $result = mysqli_query($con,$sql_getCustomer);
   $result2 = mysqli_query($con,$sql_getOrganization);
@@ -156,6 +156,28 @@
                 }
             }
             xmlhttp.open("GET","editOrganizationDetail.php?q="+str,true);
+            xmlhttp.send();
+        }
+    }
+    function editAT(str) {
+        if (str == "") {
+            document.getElementById("editAuthor").innerHTML = "";
+            return;
+        } else {
+            if (window.XMLHttpRequest) {
+                // code for IE7+, Firefox, Chrome, Opera, Safari
+                xmlhttp = new XMLHttpRequest();
+            } else {
+                // code for IE6, IE5
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xmlhttp.onreadystatechange = function() {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    document.getElementById("editAuthor").innerHTML = xmlhttp.responseText;
+                    $('#EditAT'+str).modal('show');
+                }
+            }
+            xmlhttp.open("GET","editAuthorDetail.php?q="+str,true);
             xmlhttp.send();
         }
     }
@@ -440,15 +462,17 @@
             <div class="boxes">
             <ul class ="list-group" id = "authorUL">
             <?php
-          //   while($row3 = mysqli_fetch_array($result3)){
-          //     echo '<li class = "list-group-item">' ;
-          //     echo $row3['user_fn']."  ".$row3['user_ln'];
-          //     echo '<a href="#" class="icon pull-right" onclick="editAT('.$row3['user_id'].')">
-          //           <span class="glyphicon glyphicon-cog"></span>
-          //           </a>
-          //           </li>';
-          //         }
-          //  }
+
+            while($row3 = mysqli_fetch_array($result3)){
+              // var_dump($row3);
+              echo '<li class = "list-group-item">' ;
+              echo $row3['user_fn']."  ".$row3['user_ln'];
+              echo '<a href="#" class="icon pull-right" onclick="editCUS('.$row3['user_id'].')">
+                    <span class="glyphicon glyphicon-cog"></span>
+                    </a>
+                    </li>';
+                  }
+
             ?>
             </ul>
           </div>
