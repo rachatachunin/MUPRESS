@@ -9,6 +9,32 @@
           $(document).ready(function () {
                    $('.chosen-select').chosen();
            });
+
+           function validateOrder(e){
+             var filter = /[ก-๙a-zA-Z]/ ;
+             var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+             var book = document.getElementById("bn").value ;
+             var amount = document.getElementById("am").value ;
+             var discount = document.getElementById("dc").value ;
+
+
+             if(book == "" || book == 0){
+               alert("กรุณาเลือกหนังสือ");
+               return false ;
+             }
+              if(amount == "" || amount < 0 || (amount % 1) != 0  ){
+               alert("กรุณากรอกจำนวนให้ถูกต้อง");
+               return false ;
+             }
+              if(discount == "" || discount < 0 || (discount % 1) != 0 || dicsount > 100){
+               alert("กรุณากรอกส่วนลดให้ถูกต้อง");
+               return false ;
+             }
+              getBooklist();
+
+
+           }
+
     </script>
 </head>
 <?php
@@ -44,7 +70,7 @@
                     <div class="input-group">
                         <span class="input-group-addon" id="sizing-addon">ชื่อหนังสือ:</span>
                         <select name="bookname" id="bn" class="form-control" aria-describedby="sizing-addon">
-                            <option selected disabled>เลือกหนังสือ</option>
+                            <option selected disabled value="0">เลือกหนังสือ</option>
                             <?php
                             while($row = mysqli_fetch_array($book)){
                                 echo '<option value="'.$row['book_id'].'" price="'.$row['price'].'" >'.$row['title'].'</option>';
@@ -66,7 +92,7 @@
                         <div class="input-group-addon">%</div>
                     </div>
                     <br>
-                        <button type="button" id="addbook" onclick="getBooklist()" class="btn btn-success" >เพิ่ม</button>
+                        <button type="button" id="addbook" onclick="validateOrder()" class="btn btn-success" >เพิ่ม</button>
                     </form>
 
                 </div>
