@@ -11,7 +11,7 @@
 </style>
 
 <script type="text/javascript">
-
+      var empty = 0;
       simpleCart({
         checkout: {
           type: "SendForm",
@@ -47,25 +47,45 @@
           e.preventDefault();
         }
         else{
+          empty = 1;
           simpleCart.empty();
         }
       }
 
 
       simpleCart.bind( 'beforeAdd' , function( item ){
+        var check = 0;
         if (simpleCart.has(item))
         {
             alert("มีหนังสือเล่มนี้อยู่ในตะกร้าแล้ว");
+            check=1;
             return false;
         }
         else{
+          simpleCart.each(function( eitem , x ){
+              if(item.get("bid")==eitem.get("bid")){
+                alert("มีหนังสือเล่มนี้อยู่ในตะกร้าแล้ว");
+                check=1;
+                return false;
+              }
+              // else{
+              //   if(!confirm('ต้องการที่จะเพิ่มหนังสือเล่มนี้ลงในตะกร้า?'))e.preventDefault();
+              // }
+          });
+          if(check==0){
             if(!confirm('ต้องการที่จะเพิ่มหนังสือเล่มนี้ลงในตะกร้า?'))e.preventDefault();
+          }
             //item.get("price")*((100.00-(item.get("dc")))/100);
         }
       });
 
       simpleCart.bind( 'beforeRemove' , function( item ){
+        if(empty==1){
+          empty == 0;
+        }else{
+
         if(!confirm('ต้องการที่จะลบหนังสือเล่มนี้จากตะกร้า?'))e.preventDefault();
+        }
       });
 
       simpleCart.total = function(){
@@ -111,6 +131,7 @@
         if(sessionValue==1){
           if(!confirm('ยืนยันการสั่งซื้อ?'))e.preventDefault();
           else{
+              empty = 1;
               simpleCart.empty();
               return true;
           }

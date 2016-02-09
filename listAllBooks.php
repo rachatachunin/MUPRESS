@@ -181,6 +181,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             // first row
                              var products = "";
                              var counter = 0 ;
+                             var dc = "";
                           for(var j = 0 ; j < 5  ; j++){
                             if(counter >= data.length) {break;}
                             products += "<div class='product-top'>";
@@ -195,14 +196,23 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                							   products +=	"<p>" + "ผู้เขียน " + data[counter]['author'] + "</p>" ;
                                products +=	"<p>" + "serial no. " + data[counter]['serial_no'] + "</p>" ;
                                products +=	"<p>" + "Edition  " + data[counter]['edition'] + "</p>" ;
+
+                               if(data[counter]['discount']==undefined){
+                                 data[counter]['discount']=0;
+                                 dc = "ไม่ลดราคา";
+                               }
+                               else {
+                                 dc = "-"+data[counter]['discount']+"%";
+                               }
+
                                if(data[counter]['current_amount']>0){
                                   products += "<h4><a class='item_add' href='#'><i></i></a> <span class='item_price'>" + data[counter]['price'] +" บาท"+"</span><span style='margin-left:20px; color: green;'>มีสินค้า</span></h4>"  ;
                                   products += '<input type="text" name="name" class="item_bid" style="display: none" value="'+ data[counter]['book_id']+'">';
-                                  products += '<input type="text" name="name" class="item_dc" style="display: none" value="18">';
+                                  products += '<input type="text" name="name" class="item_dc" style="display: none" value="'+data[counter]['discount']+'">';
                                }else{
 
                                   products += '<input type="text" name="name" class="item_bid" style="display: none" value="'+ data[counter]['book_id']+'">';
-                                  products += '<input type="text" name="name" class="item_dc" style="display: none" value="18">';
+                                  products += '<input type="text" name="name" class="item_dc" style="display: none" value="'+data[counter]['discount']+'">';
 
                                   products += "<h4><a class='item_add' href='#' style='pointer-events:none; cursor: default;'><i></i></a> <span class='item_price'>" + data[counter]['price'] +" บาท"+"</span><span style='margin-left:20px; color: red;'>สินค้าหมด</span></h4>"  ;
 
@@ -211,7 +221,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                products += "</div>";
 
                                products += "<div class='srch'>";
-                               products += "<span>" + "-50" + "</span>" ;
+                               products += "<span>"+dc+"</span>" ;
                                products += "</div>";
 
                                products += "</div>";
