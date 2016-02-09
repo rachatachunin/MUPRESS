@@ -91,7 +91,7 @@ $result2 = mysqli_query($con,$sql2);
     </script>
 </head>
 <body>
-  <?php include "header.php" ?>
+  <?php include "header.php"; ?>
 
     <div class="container-fluid">
       <div class="container">
@@ -277,7 +277,7 @@ $result2 = mysqli_query($con,$sql2);
 
 
 <!--footer-starts-->
-<?php include "footer.php" ; ?>
+<?php include "footer.php"; ?>
 	<!--footer-end-->
 </div>
 </body>
@@ -380,7 +380,7 @@ $result2 = mysqli_query($con,$sql2);
 
 <script type="text/javascript">
 $(document).ready(function() {
-  if(<?php echo isset($_SESSION['success']) ?>){
+  if(<?php echo isset($_SESSION['success']); ?>){
     sweetAlert("สำเร็จ!", "หลักฐานการโอนได้ถูกบันทึกเรียบร้อยแล้วสามารถเข้าไปดูสถานะได้ที่ รายการสินค้าของคุณ", "success");
     <?php unset($_SESSION['success']); ?>
   }
