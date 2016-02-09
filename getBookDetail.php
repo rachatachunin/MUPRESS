@@ -15,7 +15,9 @@ unset($_GET['pageNumber']);
 $startFrom  = ($pageNum-1)*$Numperpage;
 
 
-$sql = "SELECT book.book_id , title ,price, author , edition, serial_no ,recommend,image,content_preview,cs_id,current_amount FROM book LEFT JOIN current_stock on book.book_id = current_stock.book_id ORDER BY book.book_id DESC LIMIT $startFrom,$Numperpage";
+$sql = "SELECT book.book_id , title ,price, author , edition, serial_no ,recommend,book.image,content_preview,cs_id,current_amount,discount FROM book
+LEFT JOIN current_stock on book.book_id = current_stock.book_id
+LEFT JOIN promotion on book.serial_no = promotion.book_serial_no ORDER BY book.book_id DESC LIMIT $startFrom,$Numperpage";
 
 
 $result = mysqli_query($con,$sql);
