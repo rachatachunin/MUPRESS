@@ -34,7 +34,7 @@ header("Location: ../index.php");
 // header("Location: ../index.php");
 }else if(mysqli_num_rows($count) == 0){
 
-$sql="INSERT into user(email,password,user_fn,user_ln,gender,tel,address,user_type) values ('".$email."','".$password."','".$fn."','".$ln."','".$gender."','".$address."','".$tel."',2)";
+$sql="INSERT into user(email,password,user_fn,user_ln,gender,tel,address,user_type) values ('".$email."','".$password."','".$fn."','".$ln."','".$gender."','".$tel."','".$address."',2)";
 // var_dump($sql);
 mysqli_query($con,$sql);
 
@@ -45,7 +45,7 @@ $_SESSION['user_id'] = $row['user_id'];
 $_SESSION['firstname'] = $row['user_fn'];
 $_SESSION['lastname'] = $row['user_ln'];
 // mysql_close();
-header("Location: ../index.php");
+header("Location: ../index.php?ss=1");
 }
 
 ?>
