@@ -1,7 +1,7 @@
 <?php
 ob_start();
 session_start();
-$headTo = "book_management.html";
+$headTo = "book_management.php";
 $db_cont = "../../dbconnection.php";
 
 if(!@file_exists("./".$db_cont) ) {
@@ -50,7 +50,7 @@ if(move_uploaded_file($_FILES['fileToUpload']['tmp_name'], $file_path)) {
 	}
 	mysqli_close($con);
 
-}
+} 
 else{
     echo "fail";
 }

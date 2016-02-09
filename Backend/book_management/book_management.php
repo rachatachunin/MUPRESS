@@ -1,3 +1,7 @@
+<?php
+ob_start();
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 
@@ -8,6 +12,8 @@
     <script src="../../js/jq.js"></script>
     <script src="../../js/jquery.maskedinput.js"></script>
     <script src="../../js/bootstrap.min.js"></script>
+    <script src="../../js/jquery.bootpag.js"></script>
+    <script src="../../js/jquery.bootpag.min.js"></script>
 
     <!--<link href="css/bootstrap-theme.min.css" rel="stylesheet">-->
     <title>MU PRESS</title>
@@ -47,7 +53,6 @@
     </div>
 <div class = "container-fluid ">
 <!--///////////////////////////// End page header /////////////////////////// -->
-
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-top: 20px">
           <h1>การจัดการหนังสือ</h1>
@@ -55,13 +60,23 @@
     </div>
 <!--///////////////////////////// Start insert,update,delete /////////////////////////// -->
     <div class="row">
-        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" style="margin-top: 20px">
+        <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5" style="margin-top: 20px">
 
-        <!-- Start add Button trigger modal -->
+        <!-- Start add BOOK Button trigger modal -->
         <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#addbook">
             เพิ่มหนังสือ
         </button>
-        <!-- END ADD Button trigger modal -->
+        <!-- END ADD BOOK Button trigger modal -->
+                <!-- Start add author Button trigger modal -->
+        <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#addauthor">
+            เพิ่มผู้เขียน
+        </button>
+        <!-- END ADD author Button trigger modal -->
+        <!-- Start view all Button -->
+        <button type="button" class="btn btn-info btn-lg" onclick="viewAllBook()">
+            ดูทั้งหมด
+        </button>
+        <!-- END view all Button -->
         </div>
         <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 pull-right" style="margin-top: 20px">
         <!-- Start Search Button  -->
@@ -77,7 +92,7 @@
                       <li class="divider"></li>
                     </ul>
                 </div>
-                <input type="hidden" name="search_param" value="all" id="search_param">         
+                <input type="hidden" name="search_param" value="" id="search_param">         
                 <input type="text" id= "searchKeyword" class="form-control" name="x" placeholder="คำที่ต้องการค้าหา ....">
                 <span class="input-group-btn">
                     <button class="btn btn-default" type="button" onclick="searchBook()"><span class="glyphicon glyphicon-search"></span></button>
@@ -85,12 +100,17 @@
         </div>
         <!-- END Search Button  -->
         </div>
-
-
       
     </div>
 <!--///////////////////////////// End insert,update,delete /////////////////////////// -->
-
+<!--///////////////////////////// START row search/////////////////////////// -->
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div id="searchtext">
+        </div>
+      </div>
+    </div>
+<!--///////////////////////////// END row search/////////////////////////// -->
 <!--///////////////////////////// Start book tabel /////////////////////////// -->
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
@@ -117,19 +137,12 @@
 
 <!--///////////////////////////// End   book tabel /////////////////////////// -->
 
-<!--///////////////////////////// Start page dropdown  /////////////////////////// -->
-    <div class="row">
-      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">  
-        <div class="pull-right">
-        
-            <select id="page_list" onchange="tabledisplay(this.value)">
-          
-            </select>
-
-        </div>
-      </div>    
-    </div>
-<!--///////////////////////////// END page dropdown  /////////////////////////// -->
+<!--///////////////////////////// Start page selection /////////////////////////// -->
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div id="page-selection" class="pull-right"></div>
+    </div></div>
+<!--///////////////////////////// End page selection /////////////////////////// -->
 </div>
 
 
@@ -144,9 +157,6 @@
         <h4 class="modal-title" id="myModalLabel">เพิ่มหนังสือ</h4>
       </div>
       <div class="modal-body">
-
-
-    
           <form name="addForm" method="post" action="add_book.php" enctype="multipart/form-data"
           onsubmit="return validateFormAdd('add')">
             <div class="form-group">
@@ -247,6 +257,79 @@
 </div>
 <!--//////////////////////////// END Modal Edit book ///////////////////////////////////////////////-->
 
+<!--//////////////////////////// Modal add author ///////////////////////////////////////////////-->
+<div class="modal fade" id="addauthor" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">เพิ่มผู้เขียน</h4>
+      </div>
+      <div class="modal-body">
+
+          <form id="addAuthorForm" onsubmit="return validateCus();" action ="add_author.php" method="post" class="form-horizontal" role="form" style="margin-top: 20px">
+                               <!-- <form class="from" onsubmit="return confirm('Do you really want to submit?');" method="post" action="AddCustomer.php" style="margin-top: 20px"> -->
+                           <div class="form-group">
+                               <label for="firstname" class="col-md-3 control-label">ชื่อ (ต้องการข้อมูล)</label>
+                               <div class="col-md-9">
+                                   <input type="text"  id = "fn_cus" class="form-control" name="firstname" placeholder="ชื่อ" required="true">
+                               </div>
+                           </div>
+
+                           <div class="form-group">
+                               <label for="lastname" class="col-md-3 control-label">นามสกุล    (ต้องการข้อมูล)</label>
+                               <div class="col-md-9">
+                                   <input type="text"  id = "ln_cus"class="form-control" name="lastname" placeholder="นามสกุล" required="true">
+                               </div>
+                           </div>
+
+                           <div class="form-group">
+                               <label for="email" class="col-md-3 control-label">Email    (ต้องการข้อมูล)</label>
+                               <div class="col-md-9">
+                                   <input type="text"  id= "email_cus" class="form-control" name="email" placeholder="Email Address" required="true">
+                               </div>
+                           </div>
+
+
+                            <div class="form-group">
+                               <label for="gender" class="col-md-3 control-label">เพศ</label>
+                               <div class="col-md-9">
+                                   <select name="gender" class="form-control" aria-describedby="sizing-addon" required="ture">
+                                       <option value="">เลือกเพศ</option>
+                                       <option value="M">ชาย</option>
+                                       <option value="F">หญิง</option>
+                                   </select>
+                               </div>
+                           </div>
+                           <div class="form-group">
+                               <label for="address" class="col-md-3 control-label">ที่อยู่   (ต้องการข้อมูล) </label>
+                               <div class="col-md-9">
+                                   <textarea  name="address" id="address_cus"  cols="50" rows="5"></textarea>
+                               </div>
+                           </div>
+
+
+                           <div class="form-group">
+                               <label for="phone" class="col-md-3 control-label">เบอร์โทรศัพท์ (ต้องการข้อมูล) </label>
+                               <div class="col-md-9">
+                                   <input type="text" class="form-control"  id="tel_cus" name="phone" placeholder="เบอร์โทรศัพท์" required="ture">
+                               </div>
+                           </div>
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">ยกเลิก</button>
+        <button type="submit" class="btn btn-success">เพิ่ม</button>
+      </div>
+         </form>
+ 
+    </div>
+  </div>
+  </div>
+</div>
+<!--//////////////////////////// END Modal add author ///////////////////////////////////////////////-->
+
 <!--//////////////////////////// Start Modal rec toggle ///////////////////////////////////////////////-->
 <div class="modal fade" id="recommendmodel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
@@ -284,8 +367,11 @@
 <!--//////////////////////////// END Modal Delete book ///////////////////////////////////////////////-->
 </body>
 <script>
+
 var bookarray;
 var totalPage;
+var rowsPerpage = 20;
+
 
 $(document).ready(function() {
 //////////////////////////////// Start ISBN check //////////////////////////////////////////
@@ -303,7 +389,7 @@ $(document).ready(function() {
       success: function( json ) {
         var book = json;
         if(book.length > 0){
-          alert("This ISBN is already exist");
+          alert("รหัสหนังสือนี้มีอยู่แล้ว");
           $("#serial_no").val("___-___-___-___-_");
         }
       },
@@ -333,9 +419,16 @@ $(document).ready(function() {
   });
  //////////////////////////////// END  Jquery for search ////////////////////////////////
 });
-
+/////////////////////////////// End document ready function ////////
 window.onload = function() {
- getajax(1,"none",null);
+
+  if(sessionStorage.getItem('Page') == null)          sessionStorage.Page = 1;
+  if(sessionStorage.getItem('SearchBy') == null)      sessionStorage.SearchBy = "";
+  if(sessionStorage.getItem('SearchKeyword') == null) sessionStorage.SearchKeyword = "";
+  if(sessionStorage.SearchBy !="" && sessionStorage.SearchKeyword != "")
+   $("#searchtext").html("ค้าหา :"+getSearchByText(sessionStorage.SearchBy)+" โดยคำว่า :"+sessionStorage.SearchKeyword);
+ getTotalPage();
+ getajax(sessionStorage.Page,sessionStorage.SearchBy,sessionStorage.SearchKeyword);
  getAuthorName();
 
 };
@@ -352,15 +445,106 @@ function recommendtoggle(serial_no){
 function searchBook(){
   var search_concept = $('.input-group #search_param').val();
   var keyword = document.getElementById('searchKeyword').value;
-  getajax(1,search_concept,keyword);
+  if(search_concept == "" || search_concept == null){
+    alert("กรุณาเลือกวิธีการค้นหา");
+    return -1;
+  }
+  if(keyword == "" || keyword == null){
+    alert("กรุณาใส่คำที่ต้องการค้นหา");
+    return -1;
+  }
+  sessionStorage.Page           = 1;
+  sessionStorage.SearchBy       = search_concept;
+  sessionStorage.SearchKeyword  = keyword;
+
+  $("#searchtext").html("ค้าหา :"+getSearchByText(sessionStorage.SearchBy)+" โดยคำว่า :"+sessionStorage.SearchKeyword);
+  
+
+
+  getTotalPage()
+  getajax(sessionStorage.Page ,sessionStorage.SearchBy ,sessionStorage.SearchKeyword);
 }
+
+function getTotalPage(){
+ // alert("search by: "+ sessionStorage.SearchBy );
+ // alert("keyword: "+sessionStorage.SearchKeyword);
+
+  $.ajax({
+    url: "request_totalPageBook.php",
+    data: {
+        rowsPerpage: rowsPerpage ,
+        searchBy: sessionStorage.SearchBy ,
+        keyword : sessionStorage.SearchKeyword ,
+    },
+    type: "GET",
+    dataType : "text",
+    success: function( json ) {
+        totalPage = parseInt(json);
+//        alert(totalPage);
+        // init bootpag
+      $('#page-selection').bootpag({
+        total: totalPage,
+        page: sessionStorage.Page,
+        maxVisible: 5,
+        leaps: true,
+        firstLastUse: true,
+        first: '←',
+        last: '→',
+        wrapClass: 'pagination',
+        activeClass: 'active',
+        disabledClass: 'disabled',
+        nextClass: 'next',
+        prevClass: 'prev',
+        lastClass: 'last',
+        firstClass: 'first'
+      }).on("page", function(event, num){
+        sessionStorage.Page = num;
+        getajax(num,sessionStorage.SearchBy,sessionStorage.SearchKeyword);
+   });
+    },
+    error: function( xhr, status, errorThrown ) {
+        alert( "Sorry, there was a problem on get totalPage!" );
+        console.log( "Error: " + errorThrown );
+        console.log( "Status: " + status );
+        console.dir( xhr );
+    },
+});
+}
+
+function validateCus(e){
+      var filter = /[ก-๙a-zA-Z]/ ;
+      var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      var fname = document.getElementById("fn_cus").value ;
+      var lname = document.getElementById("ln_cus").value ;
+      var email = document.getElementById("email_cus").value ;
+      var address = document.getElementById("address_cus").value ;
+      var tel = document.getElementById("tel_cus").value ;
+
+      if(fname == "" || !filter.test(fname)){
+        alert("กรุณากรอกชื่อของลูกค้าให้ถูกต้อง");
+        return false ;
+      }else if(lname== "" || !filter.test(lname) ){
+        alert("กรุณากรอกนามสกุลของลูกค้าให้ถูกต้อง");
+        return false ;
+     }else if(email == "" || !re.test(email) ){
+        alert("กรุณากรอก e-mail ของลูกค้าให้ถูกต้อง");
+        return false ;
+     }else if(address == "" ){
+        alert("กรุณากรอกที่อยู่ลูกค้าให้ถูกต้อง");
+        return false ;
+    }else if(tel == "" || filter.test(tel) || tel.length != 10  ){
+        alert("กรุณากรอกเบอร์โทรลูกค้าให้ถูกต้อง");
+        return false ;
+    }else{
+        return confirm("คุณต้องการจะเพิ่มผู้เขียนใหม่หรือไม่ ?");
+      }
+}
+
 
 function validateFormAdd(mode) {
   var price;
   var edition;
   var authorid;
-
-
   if( mode == "add"){
   price    = Number(document.forms["addForm"]["price"].value);
   edition  = Number(document.forms["addForm"]["edition"].value);
@@ -389,15 +573,10 @@ function validateFormAdd(mode) {
     alert("กรุณาเลือกผู้เขียน")
     return false;
   }
-
-
-
   if(!(Number.isInteger(edition)) ){
     alert("ฉบับหนังสือต้องเป็นจำนวนเต็ม");
     return false;
   }
-
-
   if(price <= 0 ){
     alert("ราคาไม่สามารถมีค่าเป็น ศุนย์ หรือ ติดลบ");
     return false;
@@ -458,7 +637,6 @@ function editBook(serial_no){
     data: {
         serial_no: serial_no 
     },
- 
     // Whether this is a POST or GET request
     type: "GET",
     // The type of data we expect back
@@ -478,7 +656,7 @@ function editBook(serial_no){
     $("#editbookmodel #Imagedisplay").html(img);
 
     },
- 
+
     // Code to run if the request fails; the raw request and
     // status codes are passed to the function
     error: function( xhr, status, errorThrown ) {
@@ -486,9 +664,7 @@ function editBook(serial_no){
         console.log( "Error: " + errorThrown );
         console.log( "Status: " + status );
         console.dir( xhr );
-    },
- 
-  
+    }, 
   });
 
   $("#editbookmodel").modal(); ///enable edit model
@@ -506,7 +682,8 @@ function getajax(page , searchBy , keyword){
     data: {
         page: page ,
         searchBy: searchBy ,
-        keyword: keyword
+        keyword: keyword ,
+        rowsPerpage : rowsPerpage ,
     },
  
     // Whether this is a POST or GET request
@@ -519,17 +696,20 @@ function getajax(page , searchBy , keyword){
     // the response is passed to the function
     success: function( json ) {
         bookarray = json;
-        //alert(bookarray);
-        totalPage = Math.ceil(bookarray.length/10);
-        tabledisplay(1);
-        pageGenerator();
-
+        if(bookarray.length > 0){
+          tabledisplay(page);
+        }
+        else{
+          alert("ไม่มีขือมูลหนังสือที่ค้นหา");
+          $("#book_list > tbody ").html("ไม่มีขือมูลหนังสือที่ค้นหา");
+          $("#page-selection").html("");
+        }
     },
  
     // Code to run if the request fails; the raw request and
     // status codes are passed to the function
     error: function( xhr, status, errorThrown ) {
-        alert( "Sorry, there was a problem!" );
+        alert( "Sorry, there was a problem on getajax!" );
         console.log( "Error: " + errorThrown );
         console.log( "Status: " + status );
         console.dir( xhr );
@@ -539,27 +719,17 @@ function getajax(page , searchBy , keyword){
   });
 }
 
-function pageGenerator(){
-
-    var selectpage = "";
-    for(var i=1;i <= totalPage ;i++){
-      selectpage += "<option value="+i+">หน้าที่ "+i+" / "+totalPage+"</option>";
-    }
-
-      $("#page_list").html(selectpage);
-
-}
 
 function tabledisplay(currentPage){
 
     var table = "";
-    var startAt = (currentPage-1)*10;
+    var startAt = 0;
     var endAt;
 
     if(currentPage == totalPage)
         endAt   = bookarray.length;
     else
-        endAt   = startAt+10;
+        endAt   = startAt+rowsPerpage;
 
    for(var i =startAt; i < endAt;i++) {
 
@@ -597,6 +767,27 @@ function tabledisplay(currentPage){
 
     $("#book_list > tbody ").html(table);
 }
+
+function viewAllBook(){
+  $("#searchtext").html("");
+sessionStorage.Page          = 1;
+sessionStorage.SearchBy      = "";
+sessionStorage.SearchKeyword = "";
+getTotalPage();
+getajax(sessionStorage.Page,sessionStorage.SearchBy,sessionStorage.SearchKeyword);
+}
+function getSearchByText(str){
+  var text = "";
+   if(str == "serial_no")
+      text = "หมายเลขหนังสือ";
+   else if(str == "title")
+      text = "ชื่อหนังสือ";
+   else
+      text = "ผู้เขียน";
+
+  return text;
+}
+
 
 </script>
 </html>

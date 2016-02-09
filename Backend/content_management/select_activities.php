@@ -15,10 +15,13 @@ unset($_GET['rowsPerpage']);
 unset($_GET['page']);
 
 
-
 $sql = "";
 
-$sql = "SELECT * FROM news LIMIT $startFrom,$rowsPerpage";
+
+$sql = "SELECT * FROM activities 
+ORDER BY activities_id ASC
+LIMIT $startFrom,$rowsPerpage";
+
 
 
 
@@ -32,7 +35,10 @@ while($r = mysqli_fetch_assoc($result)) {
     $data[] = $r;
 }
  
+
+
 mysqli_close($con);
+//print_r($data);
 
 echo json_encode($data);
 

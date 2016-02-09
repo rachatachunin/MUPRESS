@@ -1,6 +1,8 @@
 <?php
+ob_start();
+session_start();
 
-$headTo = "content_management.html";
+$headTo = "content_management.php";
 $db_cont = "../../dbconnection.php";
 if(!@file_exists("./".$db_cont) ) {
 	echo 'can not include db_cont.php in add promotion';
@@ -18,22 +20,30 @@ unset($_POST['book_serial_no']);
 unset($_POST['discount']);
 unset($_POST['promotion_detail']);
 
-/*echo $promotion_name."\n";
-echo $book_serial_no;
-echo $discount;
-echo $promotion_detail;*/
+$file_path = "promotion_image/";
 
-$sql = "INSERT INTO promotion (promotion_name, book_serial_no, discount,promotion_detail)
-VALUES ('$promotion_name', '$book_serial_no', '$discount','$promotion_detail')";
+$temp = explode(".", $_FILES["fileToUpload"]["name"]);
+$newfilename = round(microtime(true)) . '.' . end($temp);
+$file_path   = $file_path.$newfilename;
 
-if (mysqli_query($con, $sql)) {
-	echo "New promotion created successfully";
-} else {
-	echo "Error: " . $sql . "<br>" . mysqli_error($con);
+if(move_uploaded_file($_FILES['fileToUpload']['tmp_name'], $file_path)){
+	$sql = "INSERT INTO promotion (promotion_name, book_serial_no, discount,promotion_detail,image)
+	VALUES ('$promotion_name', '$book_serial_no', '$discount','$promotion_detail','$file_path')";
+
+}
+else{
+    $sql = "INSERT INTO promotion (promotion_name, book_serial_no, discount,promotion_detail)
+	VALUES ('$promotion_name', '$book_serial_no', '$discount','$promotion_detail')";
 }
 
 
-mysqli_close($con);
+if (mysqli_query($con, $sql)) {
+		echo "New promotion created successfully";
+	} else {
+		echo "Error: " . $sql . "<br>" . mysqli_error($con);
+	}
+	mysqli_close($con);
+
 header("Location: $headTo");
 
 ?>

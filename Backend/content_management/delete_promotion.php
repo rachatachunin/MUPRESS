@@ -1,5 +1,5 @@
 <?php
-$headTo = "content_management.html";
+$headTo = "content_management.php";
 $db_cont = "../../dbconnection.php";
 
 if(!@file_exists("./".$db_cont) ) {
