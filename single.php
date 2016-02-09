@@ -78,7 +78,7 @@ $book_id = $_GET['id'];
 					</div>
 					<div class="col-md-7 single-top-right">
 						<div class="single-para simpleCart_shelfItem">
-						<h2><?php echo $row['title']; ?></h2>
+						<h2 class="item_name"><?php echo $row['title']; ?></h2>
 							<div class="star-on">
 								<ul class="star-footer">
 										<li><a href="#"><i> </i></a></li>
@@ -91,7 +91,14 @@ $book_id = $_GET['id'];
 							<div class="clearfix"> </div>
 							</div>
 
-							<h5 class="item_price">฿ <?php echo $row['price'] ; ?>    <span style="color: red;"> ส่วนลด <?php echo $row['discount']; ?>  % </span></h5>
+
+              <input type="text" name="name" class="item_bid hidden" style="display: none" value="<?php echo $row['book_id'] ; ?>">
+              <?php
+              if($row['discount']==NULL){ $dc = 0;}else{ $dc= $row['discount'];}
+              ?>
+              <input type="text" name="name" class="item_dc hidden" style="display: none" value="<?php echo $dc; ?>">
+							<h5 class="item_price">฿ <?php echo $row['price'] ; ?> </h5><h5><span style="color: red;"> ส่วนลด <?php if($row['discount']==NULL){ echo 0; }else{echo $row['discount'];} ?>  % </span></h5>
+
 
 							<div class="available">
 								<ul>
@@ -126,6 +133,8 @@ $book_id = $_GET['id'];
                 <?php }else{ ?>
                 <button type="button" name="button" class="btn btn-danger" disabled="true">ใส่ตระกร้า</button>
                 <?php }  ?>
+                <br>
+                <br>
 						</div>
 					</div>
 					<div class="clearfix"> </div>
