@@ -26,6 +26,14 @@ echo ' <div class="modal fade" id="Detail'.$row['pe_id'].'" tabindex="-1" role="
                      <div class="row">
                       <div class="col-xs-6">
                            <div class="text-center"><h4>หลักฐานการโอน</h4> </div>
+                          ';
+                        if($row['image'] != null || $row['image'] != ''){
+                        echo '
+                           <div class ="text-center">
+                             <img src = "/MUPRESS_GIT/evidence_image/'.$row['image'].'" width="270px" height="350px"><br><br>
+                           </div>' ;
+                         }
+                         echo '
                           รายการสั่งซื้อเลขที่ MUP '.$row['order_id'].' <br>
                           นาย '.$row['sendFname'].'  '.$row['sendLname'].' <br>
                           วันที่โอน '.$row['pay_date'].' <br>

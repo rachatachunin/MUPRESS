@@ -45,7 +45,7 @@ $_SESSION['user_id'] = $row['user_id'];
 $_SESSION['firstname'] = $row['user_fn'];
 $_SESSION['lastname'] = $row['user_ln'];
 // mysql_close();
-header("Location: ../index.php");
+header("Location: ../index.php?ss=1");
 }
 
 ?>
