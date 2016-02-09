@@ -103,13 +103,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                   <div id="content"></div>
                   <div id="page-selection" class="text-center"></div>
                       <script>
-                      window.onload = function(){
-                        if(sessionStorage.getItem('Page') == null) sessionStorage.Page = 1 ;
-                      }
+
 
                        var numPerpage = 20 ;
                        var totalPage;
                         window.onload = function(){
+                            if(sessionStorage.getItem('Page') == null) sessionStorage.Page = 1 ;
                           $.ajax({
                              url: "request_totalPageBook.php",
                              data: {
@@ -167,6 +166,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                            dataType : "JSON",
                            success: function( json ) {
                              var bookArray = json ;
+                            // alert(bookArray.length);
                              showAllbook(bookArray);
                            },
                            error: function( xhr, status, errorThrown ) {

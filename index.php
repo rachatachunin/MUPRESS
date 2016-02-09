@@ -6,10 +6,7 @@ session_start();
 <html>
 <head>
     <meta http-equiv="content-Type" content="text/html; charset=utf-8">
-    <!-- <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/index.css" rel="stylesheet">
-    <script src="js/jq.js"></script>
-    <script src="js/bootstrap.min.js"></script> -->
+
 <?php include "headFrontEnd.php";
 include 'dbconnection.php';
 $sql = "SELECT book.book_id , title , author ,price, edition, serial_no ,recommend,image,content_preview,cs_id,current_amount FROM book LEFT JOIN current_stock on book.book_id = current_stock.book_id ORDER BY book.book_id DESC LIMIT 0,4";
@@ -286,76 +283,6 @@ $result2 = mysqli_query($con,$sql2);
 </div>
 </body>
 
-<!---//////////////////////////////////////// Begin edit model  ///////////////////////////////////////////////-->
-    <div class="modal fade" id="edit_Profile_Model" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title text-center" id="myModalLabel">แก้ไขประวัติส่วนตัว</h4>
-
-            </div>
-
-            <!--<form method="post" >-->
-                <div class="modal-body">
-
-                    <form class="form" method="post" action="edit_profile.php">
-                        <div class="input-group">
-                            <span class="input-group-addon" id="sizing-addon3">Email</span>
-                            <input type="text" value="<?php echo $_SESSION['username']; ?>" class="form-control" placeholder="" aria-describedby="sizing-addon3" name="email" readonly="true">
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="col-xs-6 col-sm-6 col-md-6">
-                              <div class="form-group">
-                                <span class="input-group-addon" id="sizing-addon1">ชื่อ</span>
-                                <input type="text" name="fname" id="firstname" class="form-control input-sm" placeholder="ชื่อ" aria-describedby="sizing-addon1">
-                              </div>
-                            </div>
-                            <div class="col-xs-6 col-sm-6 col-md-6">
-                              <div class="form-group">
-                                <span class="input-group-addon" id="sizing-addon2">นามสกุล</span>
-                                <input type="text" name="lname" id="lastname" class="form-control input-sm" placeholder="นามสกุล" aria-describedby="sizing-addon2">
-                              </div>
-                            </div>
-                          </div>
-                          <div class="form-group">
-                            <span class="input-group-addon" id="sizing-addon4">เพศ</span>
-                            <select name="gender" class="form-control input-sm" aria-describedby="sizing-addon" aria-describedby="sizing-addon4" required="ture">
-                                <option value="">เลือกเพศ</option>
-                                <option value="M">ชาย</option>
-                                <option value="F">หญิง</option>
-                            </select>
-                          </div>
-
-                          <div class="row">
-                            <div class="col-xs-6 col-sm-6 col-md-6">
-                              <div class="form-group">
-                                <span class="input-group-addon" id="sizing-addon7">เบอร์โทรศัพท์</span>
-                                <input type="text" name="tel" id="tel" class="form-control input-sm" placeholder="เบอร์โทรศัพท์" aria-describedby="sizing-addon7">
-                              </div>
-                            </div>
-                          </div>
-                          <div class="form-group">
-                            <span class="input-group-addon" id="sizing-addon8">ที่อยู่</span>
-                            <textarea name="address" placeholder="ที่อยู่" class="form-control input-sm"  aria-describedby="sizing-addon8"></textarea>
-                          </div>
-                          <button class="btn btn-lg btn-primary btn-block" type="submit">
-                              แก้ไข</button>
-                          <span class="clearfix"></span>
-
-                    </form>
-
-                </div>
-                <div class="modal-footer">
-                    <!--<button type="submit" class="btn btn-primary">Add</button>-->
-                    <button type="button" class="btn btn-default" data-dismiss="modal">ปิด</button>
-                </div>
-            <!--</form>-->
-        </div>
-    </div>
-</div>
-<!---//////////////////////////////////////// End edit model  ///////////////////////////////////////////////-->
 
 <!---//////////////////////////////////////// Begin success model  ///////////////////////////////////////////////-->
 <div class="modal fade" id="Modals" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">

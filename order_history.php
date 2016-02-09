@@ -342,6 +342,8 @@ function tabledisplay(currentPage){
       table += " onclick='viewHistoryModel(\""+orderArray[i]['order_id']+"\")' ";
       table += ">ดู</button></td>";
 
+  
+
       table += "</tr>"
     }
 
