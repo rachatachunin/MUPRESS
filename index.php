@@ -59,6 +59,20 @@ $result2 = mysqli_query($con,$sql2);
     </style>
     <script type="text/javascript">
 
+    $(document).ready(function() {
+      if(<?php echo isset($_SESSION['success']); ?>){
+        sweetAlert("สำเร็จ!", "หลักฐานการโอนได้ถูกบันทึกเรียบร้อยแล้วสามารถเข้าไปดูสถานะได้ที่ รายการสินค้าของคุณ", "success");
+        <?php unset($_SESSION['success']); ?>
+      }
+      if(<?php echo isset($_SESSION['Modelon']); ?>){
+        $("#Modals").modal();
+         <?php unset($_SESSION['Modelon']); ?>
+      }
+
+    });
+
+
+
     function validateCus(e){
 
       var filter = /[ก-๙a-zA-Z]/ ;
@@ -377,21 +391,3 @@ $result2 = mysqli_query($con,$sql2);
 </div>
 <!---//////////////////////////////////////// End edit model  ///////////////////////////////////////////////-->
 </html>
-
-<script type="text/javascript">
-$(document).ready(function() {
-  if(<?php echo isset($_SESSION['success']) ?>){
-    sweetAlert("สำเร็จ!", "หลักฐานการโอนได้ถูกบันทึกเรียบร้อยแล้วสามารถเข้าไปดูสถานะได้ที่ รายการสินค้าของคุณ", "success");
-    <?php unset($_SESSION['success']); ?>
-  }
-
-});
-
-
-
-
-if(<?php echo isset($_SESSION['Modelon']); ?>){
-  $("#Modals").modal();
-  <?php unset($_SESSION['Modelon']); ?>
-}
-</script>

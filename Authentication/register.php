@@ -26,7 +26,7 @@ if(mysqli_num_rows($count) > 0){
 
   $sqlUpdatePass = "UPDATE user SET password = '".$newpass."' WHERE user_id = '".$UP['user_id']."'  " ;
   // var_dump($sqlUpdatePass);
-  mysqli_query($con,$sqlUpdatePass);
+  // mysqli_query($con,$sqlUpdatePass);
 
 $_SESSION['Modelon'] = 1;
 header("Location: ../index.php");
