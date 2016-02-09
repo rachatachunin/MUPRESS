@@ -76,7 +76,7 @@ $book_id = $_GET['id'];
 					</div>
 					<div class="col-md-7 single-top-right">
 						<div class="single-para simpleCart_shelfItem">
-						<h2><?php echo $row['title']; ?></h2>
+						<h2 class="item_name"><?php echo $row['title']; ?></h2>
 							<div class="star-on">
 								<ul class="star-footer">
 										<li><a href="#"><i> </i></a></li>
@@ -90,7 +90,7 @@ $book_id = $_GET['id'];
 							</div>
 
 							<h5 class="item_price">฿ <?php echo $row['price'] ; ?></h5>
-
+              <h5 class="item_bid hidden">฿ <?php echo $row['book_id'] ; ?></h5>
 							<div class="available">
 								<ul>
 									<li>ผู้เขียน

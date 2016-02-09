@@ -9,8 +9,10 @@ session_start();
 
 <?php include "headFrontEnd.php";
 include 'dbconnection.php';
-$sql = "SELECT book.book_id , title , author ,price, edition, serial_no ,recommend,image,content_preview,cs_id,current_amount FROM book LEFT JOIN current_stock on book.book_id = current_stock.book_id ORDER BY book.book_id DESC LIMIT 0,4";
-$sql2 = "SELECT book.book_id , title , author,price , edition, serial_no ,recommend,image,content_preview,cs_id,current_amount FROM book LEFT JOIN current_stock on book.book_id = current_stock.book_id ORDER BY book.book_id DESC LIMIT 4,4";
+$sql = "SELECT book.book_id , title , author ,price, edition, serial_no ,recommend,book.image,content_preview,cs_id,current_amount,promotion.discount FROM book LEFT JOIN current_stock on book.book_id = current_stock.book_id
+LEFT JOIN promotion on book.serial_no = promotion.book_serial_no ORDER BY book.book_id DESC LIMIT 0,4";
+$sql2 = "SELECT book.book_id , title , author,price , edition, serial_no ,recommend,book.image,content_preview,cs_id,current_amount,promotion.discount FROM book LEFT JOIN current_stock on book.book_id = current_stock.book_id
+LEFT JOIN promotion on book.serial_no = promotion.book_serial_no ORDER BY book.book_id DESC LIMIT 4,4";
 $result = mysqli_query($con,$sql);
 $result2 = mysqli_query($con,$sql2);
 
@@ -189,20 +191,28 @@ $result2 = mysqli_query($con,$sql2);
             echo '<p>' . 'ISBN ' . $row['serial_no'] . '</p>' ;
             echo '<p>' . 'Edition  ' . $row['edition'] . '</p>' ;
 
+            if($row['discount']==NULL){
+              $row['discount']=0;
+              $dc = "ไม่ลดราคา";
+            }
+            else {
+              $dc = "-".$row['discount']."%";
+            }
+
             if($row['current_amount'] > 0){
 
             echo '<h4><a class="item_add" href="#"><i></i></a> <span class="item_price">' . $row['price'] .' บาท'.'</span><span style=" margin-left:40px; color: green;"> มีสินค้า</span></h4>'  ;
             echo '<input type="text" name="name" class="item_bid" style="display: none" value="'.$row['book_id'].'">';
-            echo '<input type="text" name="name" class="item_dc" style="display: none" value="18">';
+            echo '<input type="text" name="name" class="item_dc" style="display: none" value="'.$row['discount'].'">';
             }else {
             echo '<h4><a class="item_add" href="#"><i></i></a> <span class="item_price">' . $row['price'] .' บาท'.'</span><span style=" margin-left:40px; color: red;"> สินค้าหมด</span></h4>'  ;
             echo '<input type="text" name="name" class="item_bid" style="display: none" value="'.$row['book_id'].'">';
-            echo '<input type="text" name="name" class="item_dc" style="display: none" value="18">';
+            echo '<input type="text" name="name" class="item_dc" style="display: none" value="'.$row['discount'].'">';
             }
 
             echo '</div>
                    <div class="srch">
-                    <span>-50%</span>
+                    <span>'.$dc.'</span>
                    </div>
                  </div>
                </div>
@@ -227,20 +237,28 @@ $result2 = mysqli_query($con,$sql2);
             echo '<p>' . 'ISBN ' . $row2['serial_no'] . '</p>' ;
             echo '<p>' . 'Edition  ' . $row2['edition'] . '</p>' ;
 
+            if($row2['discount']==NULL){
+              $row2['discount']=0;
+              $dc = "ไม่ลดราคา";
+            }
+            else {
+              $dc = "-".$row2['discount']."%";
+            }
+
             if($row2['current_amount'] > 0){
             echo '<h4><a class="item_add" href="#"><i></i></a> <span class="item_price">' . $row2['price'] .' บาท'.'</span><span style=" margin-left:40px; color: green;"> มีสินค้า</span></h4>'  ;
-            echo '<input type="text" name="name" class="item_bid" style="display: none" value="'.$row['book_id'].'">';
-            echo '<input type="text" name="name" class="item_dc" style="display: none" value="18">';
+            echo '<input type="text" name="name" class="item_bid" style="display: none" value="'.$row2['book_id'].'">';
+            echo '<input type="text" name="name" class="item_dc" style="display: none" value="'.$row2['discount'].'">';
             }else {
 
             echo '<h4><a class="item_add" href="#"><i></i></a> <span class="item_price">' . $row2['price'] .' บาท'.'</span><span style=" margin-left:40px; color: red;"> สินค้าหมด</span></h4>'  ;
-            echo '<input type="text" name="name" class="item_bid" style="display: none" value="'.$row['book_id'].'">';
-            echo '<input type="text" name="name" class="item_dc" style="display: none" value="18">';
+            echo '<input type="text" name="name" class="item_bid" style="display: none" value="'.$row2['book_id'].'">';
+            echo '<input type="text" name="name" class="item_dc" style="display: none" value="'.$row2['discount'].'">';
             }
 
             echo '</div>
                    <div class="srch">
-                    <span class="item_dc">-50%</span>
+                    <span>'.$dc.'</span>
                    </div>
                  </div>
                </div>
