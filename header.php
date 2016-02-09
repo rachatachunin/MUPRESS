@@ -55,7 +55,7 @@
       simpleCart.bind( 'beforeAdd' , function( item ){
         if (simpleCart.has(item))
         {
-            alert("มีหนังสทอเล่มนี้อยู่ในตะกร้าแล้ว");
+            alert("มีหนังสือเล่มนี้อยู่ในตะกร้าแล้ว");
             return false;
         }
         else{

@@ -380,9 +380,13 @@ $result2 = mysqli_query($con,$sql2);
 
 <script type="text/javascript">
 $(document).ready(function() {
-
+  if(<?php echo isset($_SESSION['success']) ?>){
+    sweetAlert("สำเร็จ!", "หลักฐานการโอนได้ถูกบันทึกเรียบร้อยแล้วสามารถเข้าไปดูสถานะได้ที่ รายการสินค้าของคุณ", "success");
+    <?php unset($_SESSION['success']); ?>
+  }
 
 });
+
 
 function profile_request(email){
      $.ajax({
