@@ -103,13 +103,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                   <div id="content"></div>
                   <div id="page-selection" class="text-center"></div>
                       <script>
+                      window.onload = function(){
+                        if(sessionStorage.getItem('Page') == null) sessionStorage.Page = 1 ;
+                      }
+
                        var numPerpage = 20 ;
                        var totalPage;
                         window.onload = function(){
                           $.ajax({
                              url: "request_totalPageBook.php",
                              data: {
-                                 page: 1 ,
+                                 page: sessionStorage.Page ,
                                  numPerpage: numPerpage,
                              },
                              type: "GET",
@@ -120,7 +124,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                  // init bootpag
                                  $('#page-selection').bootpag({
                                    total:  totalPage,
-                                   page: 1,
+                                   page: sessionStorage.Page,
                                    maxVisible: 5,
                                    leaps: true,
                                    firstLastUse: true,
@@ -134,7 +138,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                    lastClass: 'last',
                                    firstClass: 'first'
                                  }).on("page", function(event, num){
-                                   getAjax(num);
+                                   sessionStorage.Page = num ;
+                                   getAjax(sessionStorage.Page);
 
                             });
                              },
@@ -145,7 +150,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                  console.dir( xhr );
                              },
                          });
-                          getAjax(1);
+                          getAjax(sessionStorage.Page);
                         };
 
 

@@ -78,7 +78,14 @@ session_start();
     </div></div>
 <!--///////////////////////////// End page selection /////////////////////////// -->
 </div>
+
+<!--footer-starts-->
+<?php include "footer.php" ; ?>
+  <!--footer-end-->
+
 </body>
+
+
 <!--///////////////////////////// Start  history Model /////////////////////////// -->
 <div class="modal fade" id="orderModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog modal-lg" role="document">
@@ -165,6 +172,8 @@ session_start();
 </div>
 </div>
 <!--///////////////////////////// End  history Model /////////////////////////// -->
+
+
 </html>
 <script>
 var orderArray;

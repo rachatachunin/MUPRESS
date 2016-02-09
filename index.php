@@ -16,6 +16,9 @@ $sql = "SELECT book.book_id , title , author ,price, edition, serial_no ,recomme
 $sql2 = "SELECT book.book_id , title , author,price , edition, serial_no ,recommend,image,content_preview,cs_id,current_amount FROM book LEFT JOIN current_stock on book.book_id = current_stock.book_id ORDER BY book.book_id DESC LIMIT 4,4";
 $result = mysqli_query($con,$sql);
 $result2 = mysqli_query($con,$sql2);
+
+
+
  ?>
     <!--<link href="css/bootstrap-theme.min.css" rel="stylesheet">-->
     <title>MU PRESS</title>
@@ -382,15 +385,16 @@ $result2 = mysqli_query($con,$sql2);
 
 <script type="text/javascript">
 $(document).ready(function() {
+  if(<?php echo isset($_GET['ss']) & $_GET['ss'] == 1 ; ?>){
+    sweetAlert("สำเร็จ!", "สมัครสมาชิกเรียบร้อย", "success");
+    <?php unset($_GET['ss']); ?>
+  }
   if(<?php echo (isset($_SESSION['successEV']) ? '1' : '0'); ?>){
     sweetAlert("สำเร็จ!", "หลักฐานการโอนได้ถูกบันทึกเรียบร้อยแล้วสามารถเข้าไปดูสถานะได้ที่ รายการสินค้าของคุณ", "success");
     <?php unset($_SESSION['successEV']); ?>
   }
 
 });
-
-
-
 
 if(<?php echo (isset($_SESSION['Modelon']) ? '1' : '0'); ?>){
   $("#Modals").modal();
