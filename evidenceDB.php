@@ -37,7 +37,9 @@ if(move_uploaded_file($_FILES['fileToUpload']['tmp_name'], $file_path)) {
 	mysqli_close($con);
 
 }
-$_SESSION['success'] = 1;
+
+$_SESSION['successEV'] = 1;
+echo isset($_SESSION['successEV']);
 header("Location: index.php");
 
 
