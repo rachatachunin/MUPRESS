@@ -462,6 +462,33 @@ else{
       new UISearch( document.getElementById( 'sb-search' ) );
   };
 
+  function profile_request(email){
+       $.ajax({
+      url: "request_profile.php",
+      data: {
+          email: email ,
+      },
+      type: "GET",
+      dataType : "JSON",
+      success: function( json ) {
+      var profile = json;
+      $("#edit_Profile_Model input[name='fname']").val(profile[0]['user_fn']);
+      $("#edit_Profile_Model input[name='lname']").val(profile[0]['user_ln']);
+      $("#edit_Profile_Model input[name='tel']").val(profile[0]['tel']);
+      $("#edit_Profile_Model select[name='gender']").val(profile[0]['gender']);
+      $("#edit_Profile_Model textarea[name='address']").val(profile[0]['address']);
+
+      },
+      error: function( xhr, status, errorThrown ) {
+          alert( "Sorry, there was a problem in user profile request!" );
+          console.log( "Error: " + errorThrown );
+          console.log( "Status: " + status );
+          console.dir( xhr );
+      },
+    });
+  $("#edit_Profile_Model").modal(); ///enable edit model
+  }
+
 </script>
 
 

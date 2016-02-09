@@ -4,7 +4,7 @@ $q = intval($_GET['q']);
 
 include "../../dbconnection.php";
 
- $sql =" SELECT pe.pe_id,pe.order_id,pe.payment_date,pe.bank,pe.price,user.user_fn,user.user_ln
+ $sql =" SELECT pe.pe_id,pe.order_id,pe.pay_date,pe.bank,pe.fname as sendFname,pe.lname as sendLname,pe.price,user.user_fn as userFname,user.user_ln as userLname
          FROM payment_evidence pe LEFT JOIN order_book ob ON pe.order_id = ob.order_id
          LEFT JOIN user ON ob.user_id = user.user_id WHERE pe.pe_id = '".$q."'  ";
  $sqlgetOrder = "SELECT ob.order_id, user.user_fn, user.user_ln, ob.total_price, ob.note, ob.created_date FROM payment_evidence pe LEFT JOIN order_book ob ON pe.order_id = ob.order_id
@@ -27,8 +27,8 @@ echo ' <div class="modal fade" id="Detail'.$row['pe_id'].'" tabindex="-1" role="
                       <div class="col-xs-6">
                            <div class="text-center"><h4>หลักฐานการโอน</h4> </div>
                           รายการสั่งซื้อเลขที่ MUP '.$row['order_id'].' <br>
-                          นาย '.$row['user_fn'].'  '.$row['user_ln'].' <br>
-                          วันที่โอน '.$row['payment_date'].' <br>
+                          นาย '.$row['sendFname'].'  '.$row['sendLname'].' <br>
+                          วันที่โอน '.$row['pay_date'].' <br>
                           ธนาคาร '.$row['bank'].' <br>
                           จำนวนเงิน '.$row['price'].' บาท <br><br>
 

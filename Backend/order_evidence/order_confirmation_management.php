@@ -4,7 +4,7 @@
     include "../../dbconnection.php";
     include "../../head.php";
     $sql_getPaymentEvidence = "SELECT * FROM payment_evidence LEFT JOIN order_book ON payment_evidence.order_id = order_book.order_id
-                               WHERE order_book.payment_status = 0 ORDER BY payment_date ASC  ";
+                               WHERE order_book.payment_status = 0 ORDER BY pay_date ASC  ";
     $result = mysqli_query($con,$sql_getPaymentEvidence);
 
   ?>
@@ -57,7 +57,7 @@ function getOrder(str) {
                echo '<a href="#" class="list-group-item"  onclick="getOrder('.$row1['pe_id'].')"> <div style="color:green"> ' ;
                echo "รายการสั่งซื้อเลขที่ " . $row1['order_id']  ;
                echo '</div><div style="color:orange">';
-               echo " ของวันที่ " . $row1['payment_date'] ;
+               echo " ของวันที่ " . $row1['pay_date'] ;
                echo '</div></a>';
                    }
               ?>
