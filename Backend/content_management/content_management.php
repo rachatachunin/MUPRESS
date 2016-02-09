@@ -6,12 +6,12 @@ session_start();
 <html>
 <head>
     <meta http-equiv="content-Type" content="text/html; charset=utf-8">
-    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+    <!-- <link href="../../css/bootstrap.min.css" rel="stylesheet">
     <link href="../../css/index.css" rel="stylesheet">
     <script src="../../js/jq.js"></script>
     <script src="../../js/bootstrap.min.js"></script>
     <script src="../../js/jquery.bootpag.js"></script>
-    <script src="../../js/jquery.bootpag.min.js"></script>
+    <script src="../../js/jquery.bootpag.min.js"></script> -->
 
     <!--<link href="css/bootstrap-theme.min.css" rel="stylesheet">-->
     <title>MU PRESS</title>
@@ -31,21 +31,17 @@ session_start();
             margin-bottom: 20px;
         }
     </style>
+
+    <?php
+        include "../../head.php";
+    ?>
 </head>
 
 <body>
 
 <!--///////////////////////////// Start  page header ///////////////////////// -->
 
-    <div class="page-header" >
-      <div style="margin-left: 20px;margin-bottom: 20px;"><img src="../../image/logo_mupress.jpg">
-        <button class="btn btn-info pull-right" style="margin-right: 20px" type="button">
-          ลงชื่อออก <span class="badge"></span>
-        </button>
-      </div>
-      <!--<h1 style="margin-left: 30px; margin-bottom: 20px;">MU PRESS</h1>-->
-    </div>
-
+  <?php include "../header.php" ?>
     <div class = "container-fluid ">
       <!--///////////////////////////// End page header /////////////////////////// -->
 
@@ -141,10 +137,10 @@ session_start();
                   </tbody>
                 </table>
               </div>
-          
+
             </div>
 
-       
+
           </div>
       <!--///////////////////////////// Start page selection /////////////////////////// -->
       <div class="row">
@@ -189,9 +185,9 @@ session_start();
                   </tbody>
                 </table>
               </div>
-          
+
             </div>
-       
+
           </div>
 
       <!--///////////////////////////// Start page selection /////////////////////////// -->
@@ -205,7 +201,7 @@ session_start();
 
       </div> <!--//////// End tab content //////////////// -->
 
-    
+
     </div>  <!--///////////////////// End container ////////////////// -->
 
 
@@ -227,7 +223,7 @@ session_start();
             <input type="text" class="form-control" name="promotionName" required>
           </div>
           <div class="form-group" id="book_serialno">
-              
+
           </div>
           <div class="form-group">
             <label for="discount">ส่วนลด</label>
@@ -348,7 +344,7 @@ session_start();
         <h4 class="modal-title" id="myModalLabel">แก้ไขรายละเอียดโปรโมชั่น</h4>
       </div>
       <div class="modal-body">
-    
+
          <form name="editPromotionForm" onsubmit="return validatePromotion('edit')" method="post" action="edit_promotion.php" enctype="multipart/form-data">
           <div class="form-group">
             <input type="text" class="form-control hide" name="promotion_id">
@@ -381,14 +377,14 @@ session_start();
             <label for="fileToUpload">กรุณาเลือกไฟล์</label>
             <input type="file" id="fileToUpload" name="fileToUpload">
           </div>
- 
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">ยกเลิก</button>
         <button type="submit" class="btn btn-success">แก้ไข</button>
       </div>
          </form>
- 
+
     </div>
   </div>
   </div>
@@ -403,7 +399,7 @@ session_start();
         <h4 class="modal-title" id="myModalLabel">แก้ไขรายละเอียดข่าวสาร</h4>
       </div>
       <div class="modal-body">
-    
+
          <form method="post" action="edit_news.php" enctype="multipart/form-data">
           <div class="form-group">
             <input type="text" class="form-control hide" name="news_id">
@@ -420,14 +416,14 @@ session_start();
           <label for="fileToUpload">รูปภาพประกอบข่าวสาร</label>
           <input type="file" id="fileToUpload" name="fileToUpload">
         </div>
- 
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">ยกเลิก</button>
         <button type="submit" class="btn btn-success">แก้ไข</button>
       </div>
          </form>
- 
+
     </div>
   </div>
   </div>
@@ -443,7 +439,7 @@ session_start();
         <h4 class="modal-title" id="myModalLabel">แก้ไขรายละเอียดกิจกรรม</h4>
       </div>
       <div class="modal-body">
-    
+
          <form method="post" action="edit_activities.php" enctype="multipart/form-data">
           <div class="form-group">
             <input type="text" class="form-control hide" name="activities_id">
@@ -468,14 +464,14 @@ session_start();
           <label for="fileToUpload">รูปภาพประกอบกิจกรรม</label>
           <input type="file" id="fileToUpload" name="fileToUpload">
         </div>
- 
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">ยกเลิก</button>
         <button type="submit" class="btn btn-success">แก้ไข</button>
       </div>
          </form>
- 
+
     </div>
   </div>
   </div>
@@ -492,7 +488,7 @@ session_start();
       </div>
      <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">ยกเลิก</button>
-        <button type="submit" class="btn btn-success" id="bookdelete" 
+        <button type="submit" class="btn btn-success" id="bookdelete"
         onclick="window.location.href='delete_promotion.php?promotion_id=' + this.value" >ตกลง</button>
       </div>
   </div>
@@ -509,7 +505,7 @@ session_start();
       </div>
      <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">ยกเลิก</button>
-        <button type="submit" class="btn btn-success" id="newsIdToDelete" 
+        <button type="submit" class="btn btn-success" id="newsIdToDelete"
         onclick="window.location.href='delete_news.php?news_id=' + this.value" >ตกลง</button>
       </div>
   </div>
@@ -527,7 +523,7 @@ session_start();
       </div>
      <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">ยกเลิก</button>
-        <button type="submit" class="btn btn-success" id="activitiesIdToDelete" 
+        <button type="submit" class="btn btn-success" id="activitiesIdToDelete"
         onclick="window.location.href='delete_activities.php?activities_id=' + this.value" >ตกลง</button>
       </div>
   </div>
@@ -542,12 +538,12 @@ var totalPageActivities;
 var rowsPerpage = 20;
 
 $(document).ready(function() {
- 
+
 
 });
 
 window.onload = function() {
- 
+
   getTotalPagePromotion();
   getTotalPageNews();
   getTotalPageActivities();
@@ -587,14 +583,14 @@ function editPromotion(promotion_id){
     url: "request_promotion.php",
     // The data to send (will be converted to a query string)
     data: {
-        promotion_id: promotion_id 
+        promotion_id: promotion_id
     },
- 
+
     // Whether this is a POST or GET request
     type: "GET",
     // The type of data we expect back
     dataType : "JSON",
- 
+
     // Code to run if the request succeeds;
     // the response is passed to the function
     success: function( json ) {
@@ -609,7 +605,7 @@ function editPromotion(promotion_id){
       img.src = promotion[0]['image'];
     $("#editpromotionmodel #Imagedisplay").html(img);
     },
- 
+
     // Code to run if the request fails; the raw request and
     // status codes are passed to the function
     error: function( xhr, status, errorThrown ) {
@@ -618,8 +614,8 @@ function editPromotion(promotion_id){
         console.log( "Status: " + status );
         console.dir( xhr );
     },
- 
-  
+
+
   });
 
   $("#editpromotionmodel").modal(); ///enable edit model
@@ -632,9 +628,9 @@ function editNews(news_id){
     url: "request_news.php",
     // The data to send (will be converted to a query string)
     data: {
-        news_id: news_id 
+        news_id: news_id
     },
- 
+
     type: "GET",
     // The type of data we expect back
     dataType : "JSON",
@@ -666,9 +662,9 @@ function editActivities(activities_id){
     url: "request_activities.php",
     // The data to send (will be converted to a query string)
     data: {
-        activities_id: activities_id 
+        activities_id: activities_id
     },
- 
+
     // Whether this is a POST or GET request
     type: "GET",
     // The type of data we expect back
@@ -684,7 +680,7 @@ function editActivities(activities_id){
     $("#editActivitiesModal textarea[name='activitiesDetail']").val(activities[0]['activities_detail']);
 
     },
- 
+
     // Code to run if the request fails; the raw request and
     // status codes are passed to the function
     error: function( xhr, status, errorThrown ) {
@@ -693,8 +689,8 @@ function editActivities(activities_id){
         console.log( "Status: " + status );
         console.dir( xhr );
     },
- 
-  
+
+
   });
 
   $("#editActivitiesModal").modal(); ///enable edit model
@@ -733,21 +729,21 @@ function getajax(page , searchBy , keyword, URL){
   $.ajax({
     // The URL for the request
     url: URL,
- 
+
     // The data to send (will be converted to a query string)
     data: {
         page: page ,
         rowsPerpage , rowsPerpage ,
         searchBy: searchBy ,
-        keyword: keyword 
+        keyword: keyword
     },
- 
+
     // Whether this is a POST or GET request
     type: "GET",
- 
+
     // The type of data we expect back
     dataType : "JSON",
- 
+
     // Code to run if the request succeeds;
     // the response is passed to the function
     success: function( json ) {
@@ -773,7 +769,7 @@ function getajax(page , searchBy , keyword, URL){
         console.log( "Status: " + status );
         console.dir( xhr );
     },
- 
+
   });
 }
 
@@ -912,7 +908,7 @@ function getBookName(){
         console.log( "Status: " + status );
         console.dir( xhr );
     },
- 
+
   });
 
 }

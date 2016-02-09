@@ -7,14 +7,16 @@ session_start();
 
 <head>
     <meta http-equiv="content-Type" content="text/html; charset=utf-8">
-    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+    <!-- <link href="../../css/bootstrap.min.css" rel="stylesheet">
     <link href="../../css/index.css" rel="stylesheet">
     <script src="../../js/jq.js"></script>
     <script src="../../js/jquery.maskedinput.js"></script>
     <script src="../../js/bootstrap.min.js"></script>
     <script src="../../js/jquery.bootpag.js"></script>
-    <script src="../../js/jquery.bootpag.min.js"></script>
-
+    <script src="../../js/jquery.bootpag.min.js"></script> -->
+    <?php
+        include "../../head.php";
+    ?>
     <!--<link href="css/bootstrap-theme.min.css" rel="stylesheet">-->
     <title>MU PRESS</title>
     <style>
@@ -39,18 +41,8 @@ session_start();
 </head>
 
 <body>
+<?php include "../header.php" ?>
 
-<!--///////////////////////////// Start  page header ///////////////////////// -->
-    </div>
-
-     <div class="page-header" >
-        <div style="margin-left: 20px;margin-bottom: 20px;"><img src="../../image/logo_mupress.jpg">
-            <button class="btn btn-info pull-right" style="margin-right: 20px" type="button">
-                ลงชื่อออก <span class="badge"></span>
-            </button>
-        </div>
-        <!--<h1 style="margin-left: 30px; margin-bottom: 20px;">MU PRESS</h1>-->
-    </div>
 <div class = "container-fluid ">
 <!--///////////////////////////// End page header /////////////////////////// -->
     <div class="row">
@@ -92,7 +84,7 @@ session_start();
                       <li class="divider"></li>
                     </ul>
                 </div>
-                <input type="hidden" name="search_param" value="" id="search_param">         
+                <input type="hidden" name="search_param" value="" id="search_param">
                 <input type="text" id= "searchKeyword" class="form-control" name="x" placeholder="คำที่ต้องการค้าหา ....">
                 <span class="input-group-btn">
                     <button class="btn btn-default" type="button" onclick="searchBook()"><span class="glyphicon glyphicon-search"></span></button>
@@ -100,7 +92,7 @@ session_start();
         </div>
         <!-- END Search Button  -->
         </div>
-      
+
     </div>
 <!--///////////////////////////// End insert,update,delete /////////////////////////// -->
 <!--///////////////////////////// START row search/////////////////////////// -->
@@ -172,7 +164,7 @@ session_start();
               <input type="text" class="form-control" name="edition" placeholder="หนังสือที่ต้องการจัดรายการ" required>
             </div>
             <div class="form-group" id="author_form">
-              
+
             </div>
             <div class="form-group">
               <input type="hidden" class="form-control" name="author" id="author"  required>
@@ -185,14 +177,14 @@ session_start();
               <label for="file">กรุณาเลือกไฟล์</label>
               <input type="file" name="fileToUpload">
             </div>
- 
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">ยกเลิก</button>
         <button type="submit" class="btn btn-success">เพิ่ม</button>
       </div>
          </form>
- 
+
     </div>
   </div>
   </div>
@@ -208,12 +200,12 @@ session_start();
         <h4 class="modal-title" id="myModalLabel">แก้ไขรายละเอียดหนังสือ</h4>
       </div>
       <div class="modal-body">
-    
+
           <form name="editForm" method="post" action="edit_book.php" enctype="multipart/form-data"
           onsubmit="return validateFormAdd('edit')">
             <div class="form-group">
               <label for="bookid">หมายเลขหนังสือ</label>
-              <input type="text" class="form-control" name="serial_no" placeholder="หนังสือที่ต้องการจัดรายการ" 
+              <input type="text" class="form-control" name="serial_no" placeholder="หนังสือที่ต้องการจัดรายการ"
               readonly="readonly">
             </div>
             <div class="form-group">
@@ -225,7 +217,7 @@ session_start();
               <input type="text" class="form-control" name="edition" placeholder="หนังสือที่ต้องการจัดรายการ" required>
             </div>
             <div class="form-group" id="author_form">
-              
+
             </div>
             <div class="form-group">
               <input type="hidden" class="form-control" name="author" id="author" required>
@@ -242,7 +234,7 @@ session_start();
               <label for="file">กรุณาเลือกไฟล์</label>
               <input type="file" name="fileToUpload">
             </div>
-          
+
 
       </div>
       <div class="modal-footer">
@@ -250,7 +242,7 @@ session_start();
         <button type="submit" class="btn btn-success">แก้ไข</button>
       </div>
          </form>
- 
+
     </div>
   </div>
   </div>
@@ -323,7 +315,7 @@ session_start();
         <button type="submit" class="btn btn-success">เพิ่ม</button>
       </div>
          </form>
- 
+
     </div>
   </div>
   </div>
@@ -340,7 +332,7 @@ session_start();
       </div>
      <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">ยกเลิก</button>
-        <button type="submit" class="btn btn-success" id="recommendChange" 
+        <button type="submit" class="btn btn-success" id="recommendChange"
         onclick="window.location.href='recommend_book.php?serial_no=' + this.value" >ตกลง</button>
       </div>
   </div>
@@ -358,7 +350,7 @@ session_start();
       </div>
      <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">ยกเลิก</button>
-        <button type="submit" class="btn btn-success" id="bookdelete" 
+        <button type="submit" class="btn btn-success" id="bookdelete"
         onclick="window.location.href='delete_book.php?serial_no=' + this.value" >ตกลง</button>
       </div>
   </div>
@@ -458,7 +450,7 @@ function searchBook(){
   sessionStorage.SearchKeyword  = keyword;
 
   $("#searchtext").html("ค้าหา :"+getSearchByText(sessionStorage.SearchBy)+" โดยคำว่า :"+sessionStorage.SearchKeyword);
-  
+
 
 
   getTotalPage()
@@ -582,12 +574,12 @@ function validateFormAdd(mode) {
     return false;
   }
 
-    return true; 
+    return true;
 }
 function changeAuthorName(name){
     $("#addbook #author").val(name);
     $("#editbookmodel #author").val(name);
-  
+
 }
 
 function getAuthorName(){
@@ -623,7 +615,7 @@ function getAuthorName(){
         console.log( "Status: " + status );
         console.dir( xhr );
     },
- 
+
   });
 
 }
@@ -635,13 +627,13 @@ function editBook(serial_no){
     url: "request_book.php",
     // The data to send (will be converted to a query string)
     data: {
-        serial_no: serial_no 
+        serial_no: serial_no
     },
     // Whether this is a POST or GET request
     type: "GET",
     // The type of data we expect back
     dataType : "JSON",
- 
+
     // Code to run if the request succeeds;
     // the response is passed to the function
     success: function( json ) {
@@ -664,7 +656,7 @@ function editBook(serial_no){
         console.log( "Error: " + errorThrown );
         console.log( "Status: " + status );
         console.dir( xhr );
-    }, 
+    },
   });
 
   $("#editbookmodel").modal(); ///enable edit model
@@ -674,10 +666,10 @@ function editBook(serial_no){
 function getajax(page , searchBy , keyword){
 
   $.ajax({
- 
+
     // The URL for the request
     url: "select_book.php",
- 
+
     // The data to send (will be converted to a query string)
     data: {
         page: page ,
@@ -685,13 +677,13 @@ function getajax(page , searchBy , keyword){
         keyword: keyword ,
         rowsPerpage : rowsPerpage ,
     },
- 
+
     // Whether this is a POST or GET request
     type: "GET",
- 
+
     // The type of data we expect back
     dataType : "JSON",
- 
+
     // Code to run if the request succeeds;
     // the response is passed to the function
     success: function( json ) {
@@ -705,7 +697,7 @@ function getajax(page , searchBy , keyword){
           $("#page-selection").html("");
         }
     },
- 
+
     // Code to run if the request fails; the raw request and
     // status codes are passed to the function
     error: function( xhr, status, errorThrown ) {
@@ -714,8 +706,8 @@ function getajax(page , searchBy , keyword){
         console.log( "Status: " + status );
         console.dir( xhr );
     },
- 
-  
+
+
   });
 }
 
