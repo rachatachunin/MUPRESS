@@ -15,7 +15,9 @@ $book_id = $_GET['id'];
             include "headFrontEnd.php";
             include "dbconnection.php";
 
-            $sqlgetBookSingle = "SELECT * FROM book LEFT JOIN current_stock on book.book_id = current_stock.book_id  WHERE book.book_id = '".$book_id."' ";
+            $sqlgetBookSingle = "SELECT * FROM book LEFT JOIN current_stock on book.book_id = current_stock.book_id
+                                 LEFT JOIN promotion ON book.serial_no = promotion.book_serial_no WHERE book.book_id = '".$book_id."' ";
+            // var_dump($sqlgetBookSingle);
 
             $result = mysqli_query($con,$sqlgetBookSingle);
             $row = mysqli_fetch_array($result);
@@ -89,7 +91,7 @@ $book_id = $_GET['id'];
 							<div class="clearfix"> </div>
 							</div>
 
-							<h5 class="item_price">฿ <?php echo $row['price'] ; ?></h5>
+							<h5 class="item_price">฿ <?php echo $row['price'] ; ?>    <span style="color: red;"> ส่วนลด <?php echo $row['discount']; ?>  % </span></h5>
 
 							<div class="available">
 								<ul>
