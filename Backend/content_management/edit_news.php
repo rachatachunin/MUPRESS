@@ -1,5 +1,8 @@
 <?php
-$headTo = "content_management.html";
+ob_start();
+session_start();
+
+$headTo = "content_management.php";
 $db_cont = "../../dbconnection.php";
 
 if(!@file_exists("./".$db_cont) ) {
@@ -8,20 +11,17 @@ if(!@file_exists("./".$db_cont) ) {
    require("./".$db_cont);
 
 }
-$activities_id		= $_POST['activities_id'];
-$activities_name 	= $_POST['activitiesName'];
-$startDate 			= $_POST['startDate'];
-$endDate			= $_POST['endDate'];
-$activities_detail	= $_POST['activitiesDetail'];
 
-unset($_POST['activities_id']);
-unset($_POST['activitiesName']);
-unset($_POST['startDate']);
-unset($_POST['endDate']);
-unset($_POST['activitiesDetail']);
+$news_id  			= $_POST['news_id'];
+$news_name			= $_POST['news_name'];
+$news_detail 		= $_POST['news_detail'];
 
+unset($_POST['news_id']);
+unset($_POST['news_name']);
+unset($_POST['news_detail']);
 
-$sql ="UPDATE news_activities SET activities_name='$activities_name', startDate='$startDate', endDate='$endDate', activities_detail='$activities_detail' WHERE activities_id = '$activities_id'";
+$sql ="UPDATE news SET news_name='$news_name', news_detail='$news_detail' 
+		WHERE news_id = '$news_id'";
 
 if (mysqli_query($con, $sql)) {
     echo "The news is edited successfully";
@@ -29,7 +29,6 @@ if (mysqli_query($con, $sql)) {
     echo "Error: " . $sql . "<br>" . mysqli_error($con);
 }
 mysqli_close($con);
-
 
 header("Location: $headTo");
 ?>

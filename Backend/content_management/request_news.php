@@ -1,4 +1,6 @@
 <?php
+ob_start();
+session_start();
 $db_cont = "../../dbconnection.php";
 
 if(!@file_exists("./".$db_cont) ) {
@@ -7,10 +9,10 @@ if(!@file_exists("./".$db_cont) ) {
    require("./".$db_cont);
 }
 
-$activities_id 	= $_GET['news_id'];
+$news_id 	= $_GET['news_id'];
 unset($_GET['news_id']);
 
-$sql = "SELECT * FROM news_activities WHERE activities_id = '$activities_id'";
+$sql = "SELECT * FROM news WHERE news_id = '$news_id'";
 
 $result = mysqli_query($con,$sql);
 $data = array();

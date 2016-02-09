@@ -10,12 +10,12 @@ if(!@file_exists("./".$db_cont) ) {
    require("./".$db_cont);
 }
 
-$news_id 	= $_GET['news_id'];
-unset($_GET['news_id']);
+$activities_id 	= $_GET['activities_id'];
+unset($_GET['activities_id']);
 
-$sql = "DELETE FROM news WHERE news_id = '$news_id'";
+$sql = "DELETE FROM activities WHERE activities_id = '$activities_id'";
 if (mysqli_query($con, $sql)) {
-    echo "The news is deleted completely";
+    echo "The activity is deleted completely";
 } else {
     echo "Error: " . $sql . "<br>" . mysqli_error($con);
 }

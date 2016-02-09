@@ -1,5 +1,7 @@
 <?php
-$headTo = "book_management.html";
+ob_start();
+session_start();
+$headTo = "book_management.php";
 $db_cont = "../../dbconnection.php";
 
 if(!@file_exists("./".$db_cont) ) {
