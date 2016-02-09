@@ -11,7 +11,7 @@
 </style>
 
 <script type="text/javascript">
-
+      var empty = 0;
       simpleCart({
         checkout: {
           type: "SendForm",
@@ -47,6 +47,7 @@
           e.preventDefault();
         }
         else{
+          empty = 1;
           simpleCart.empty();
         }
       }
@@ -65,7 +66,11 @@
       });
 
       simpleCart.bind( 'beforeRemove' , function( item ){
+        if(empty==1){
+          empty == 0;
+        }else{
         if(!confirm('ต้องการที่จะลบหนังสือเล่มนี้จากตะกร้า?'))e.preventDefault();
+        }
       });
 
       simpleCart.total = function(){
@@ -111,6 +116,7 @@
         if(sessionValue==1){
           if(!confirm('ยืนยันการสั่งซื้อ?'))e.preventDefault();
           else{
+              empty = 1;
               simpleCart.empty();
               return true;
           }

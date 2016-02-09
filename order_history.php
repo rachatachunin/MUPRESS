@@ -333,6 +333,10 @@ function tabledisplay(currentPage){
       table += " onclick='viewHistoryModel(\""+orderArray[i]['order_id']+"\")' ";
       table += ">ดู</button></td>";
 
+      table += "<td><button type='button' class='btn btn-info btn-xs'";
+      table += " onclick= \"self.location = 'checkout_success.php?order_id="+orderArray[i]['order_id']+"'\"";
+      table += ">ส่งหลักฐานการโอน</button></td>";
+
       table += "</tr>"
     }
 

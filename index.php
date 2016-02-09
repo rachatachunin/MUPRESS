@@ -387,6 +387,14 @@ $(document).ready(function() {
 
 });
 
+$(document).ready(function() {
+  if(<?php echo (isset($_SESSION['errorbook']) ? '1' : '0'); ?>){
+    sweetAlert("ล้มเหลว!", "หนังสือ<?php echo $_SESSION['errorbook']; ?>มีจำนวนไม่พอในสต็อค", "error");
+    <?php unset($_SESSION['errorbook']); ?>
+  }
+
+});
+
 
 
 

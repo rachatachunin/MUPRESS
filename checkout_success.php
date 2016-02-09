@@ -39,33 +39,49 @@ $userinfo = mysqli_fetch_array($user);
 
     </style>
     <script type="text/javascript">
-    function validateCus(e){
+    function validateEV(){
 
       var filter = /[ก-๙a-zA-Z]/ ;
       var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-      var firstname = document.getElementById("firstname").value ;
-      var lastname = document.getElementById("lastname").value ;
-      var email = document.getElementById("email").value ;
-      var tel = document.getElementById("tel").value ;
+      var firstname = document.getElementById("firstnameEV").value ;
+      var lastname = document.getElementById("lastnameEV").value ;
+      var amount = document.getElementById("amountEV").value ;
+      var bank = document.getElementById("bankEV").value ;
+      var selectaddr = document.getElementById("selectaddrEV").value ;
+      var address = document.getElementById("addressEV").value ;
+      var datepicker = document.getElementById("datepickerEV").value ;
+      var timepicker = document.getElementById("timepickerEV").value ;
+
 
 
       if(firstname == "" || !filter.test(firstname)){
         alert("กรุณากรอกชื่อของลูกค้าให้ถูกต้อง");
+        alert(firstname);
         return false ;
       }else if(lastname== "" || !filter.test(lastname) ){
         alert("กรุณากรอกนามสกุลของลูกค้าให้ถูกต้อง");
         return false ;
-     }else if(email == "" || !re.test(email) ){
-        alert("กรุณากรอก e-mail ของลูกค้าให้ถูกต้อง");
+     }else if(bank == "" ){
+        alert("กรุณาเลือกธนาคารที่โอน");
         return false ;
-    //  }else if(address == "" ){
-    //     alert("กรุณากรอกที่อยู่ลูกค้าให้ถูกต้อง");
-    //     return false ;
-    }else if(tel == "" || filter.test(tel) || tel.length != 10  ){
-        alert("กรุณากรอกเบอร์โทรลูกค้าให้ถูกต้อง");
+      }else if(amount == "" || amount < 0){
+          alert("กรุณากรอกจำนวนเงินให้ถูกต้อง");
+          return false ;
+     }else if(selectaddr == "" ){
+         alert("กรุณาเลือกที่อยู่ที่ต้องการจะจัดส่ง");
+         return false ;
+     }else if(datepicker == "" ){
+         alert("กรุณากรอกวันที่โอนเงิน");
+         return false ;
+     }else if(timepicker == "" ){
+           alert("กรุณากรอกเวลาที่โอนเงิน");
+           return false ;
+     }else if(address == "" || address == "โปรดระบุที่อยู่ในการจัดส่ง" ){
+        alert("กรุณากรอกที่อยู่ให้ถูกต้อง");
         return false ;
     }else{
-        return true;
+
+        return confirm("ยืนยันการส่งหลักฐานการโอน?");
       }
     }
     </script>
@@ -108,34 +124,34 @@ $userinfo = mysqli_fetch_array($user);
         <br>
        <div class="container-fluid">
          <h4 class="lead">แบบฟอร์มส่งหลักฐานการชำระเงิน</h4><br>
-         <form class="form text-center" style="width: 70%" action="evidenceDB.php" enctype="multipart/form-data" method="post">
+         <form class="form text-center" style="width: 70%" onsubmit="return validateEV();" action="evidenceDB.php" enctype="multipart/form-data" method="post">
            <div class="form-group">
                <span class="input-group-addon" id="sizing-addon3">เลขที่ของ order:</span>
-               <input type="number" value="<?php echo $order['order_id']; ?>" class="form-control" placeholder="" aria-describedby="sizing-addon3" name="orderid">
+               <input type="number" value="<?php echo $order['order_id']; ?>" class="form-control" placeholder="" aria-describedby="sizing-addon3" name="orderid" disabled>
            </div>
            <br>
            <div class="row">
                <div class="col-xs-6 col-sm-6 col-md-6">
                  <div class="form-group">
                    <span class="input-group-addon" id="sizing-addon1">ชื่อ</span>
-                   <input type="text" name="fname" id="firstname" class="form-control input-sm" placeholder="ชื่อ" aria-describedby="sizing-addon1">
+                   <input type="text" name="fname" id="firstnameEV" class="form-control input-sm" placeholder="ชื่อ" aria-describedby="sizing-addon1">
                  </div>
                </div>
                <div class="col-xs-6 col-sm-6 col-md-6">
                  <div class="form-group">
                    <span class="input-group-addon" id="sizing-addon2">นามสกุล</span>
-                   <input type="text" name="lname" id="lastname" class="form-control input-sm" placeholder="นามสกุล" aria-describedby="sizing-addon2">
+                   <input type="text" name="lname" id="lastnameEV" class="form-control input-sm" placeholder="นามสกุล" aria-describedby="sizing-addon2">
                  </div>
                </div>
              </div>
              <div class="input-group">
                <span class="input-group-addon" id="sizing-addon4">วันที่ชำระเงิน</span>
-               <input name="date" id="datepicker" class="form-control input-sm" type="text" aria-describedby="sizing-addon4">
+               <input name="date" id="datepickerEV" class="form-control input-sm" type="text" aria-describedby="sizing-addon4">
              </div>
              <br>
              <div class="input-group">
                <span class="input-group-addon" id="sizing-addon4">เวลาชำระเงิน</span>
-               <input type="text" name="time" id="timepicker" class="form-control input-sm" aria-describedby="sizing-addon4" pattern="([01]?[0-9]|2[0-3]):[0-5][0-9]"/>
+               <input type="time" name="time" id="timepickerEV" class="form-control input-sm" aria-describedby="sizing-addon4" pattern="([01]?[0-9]|2[0-3]):[0-5][0-9]"/>
              </div>
              <h7 style="font-size: 70%">*หมายเหตุ เลือกเวลาที่ใกล้เคียงแล้วสามารถแก้เป็นเวลาที่แน่นอนได้ในฟิลล์</h7>
               <br>
@@ -144,8 +160,8 @@ $userinfo = mysqli_fetch_array($user);
 
              <div class="form-group">
                <span class="input-group-addon" id="sizing-addon4">ธนาคารที่โอน</span>
-               <select name="bank" class="form-control input-sm" aria-describedby="sizing-addon" aria-describedby="sizing-addon4" required="ture">
-                   <option disabled>เลือกธนาคาร</option>
+               <select name="bank" id="bankEV" class="form-control input-sm" aria-describedby="sizing-addon" aria-describedby="sizing-addon4" required="ture">
+                   <option value="" disabled>เลือกธนาคาร</option>
                    <option value="kasikorn">กสิกรไทย</option>
                    <option value="kungthai">กรุงไทย</option>
                </select>
@@ -156,7 +172,7 @@ $userinfo = mysqli_fetch_array($user);
                <div class="col-xs-6 col-sm-6 col-md-6">
                  <div class="form-group">
                    <span class="input-group-addon" id="sizing-addon7">จำนวนเงินที่ชำระ</span>
-                   <input type="number" name="amount" id="tel" class="form-control input-sm" placeholder="จำนวนเงิน" aria-describedby="sizing-addon7">
+                   <input type="number" name="amount" id="amountEV" class="form-control input-sm" placeholder="จำนวนเงิน" aria-describedby="sizing-addon7">
                  </div>
                </div>
              </div>
@@ -169,14 +185,14 @@ $userinfo = mysqli_fetch_array($user);
              <div class="input-group">
                <!-- <label for="file">กรุณาเลือกไฟล์ภาพหลักฐานการโอน</label> -->
                <span class="input-group-addon" id="sizing-addon7">กรุณาเลือกที่อยู่จัดส่ง</span>
-               <select name="addr" id="selectaddr" class="form-control input-sm" aria-describedby="sizing-addon" aria-describedby="sizing-addon4" required="ture">
-                   <option disabled selected>เลือกที่อยู่ในการจัดส่ง</option>
+               <select name="addr" id="selectaddrEV" class="form-control input-sm" aria-describedby="sizing-addon" aria-describedby="sizing-addon4" required="ture">
+                   <option value="" disabled selected>เลือกที่อยู่ในการจัดส่ง</option>
                    <option value="1">ที่อยู่ที่ลงทะเบียนไว้</option>
                    <option value="2">ที่อยู่อื่น</option>
                </select>
              </div>
              <br>
-             <textarea name="address" id="address" class="form-control" rows="5" cols="30">โปรดระบุที่อยู่ในการจัดส่ง</textarea>
+             <textarea name="address" id="addressEV" class="form-control" rows="5" cols="30">โปรดระบุที่อยู่ในการจัดส่ง</textarea>
 
 
              <br>
@@ -193,33 +209,33 @@ $userinfo = mysqli_fetch_array($user);
 
 <script type="text/javascript">
 $(function() {
-  $( "#datepicker" ).datepicker({
+  $( "#datepickerEV" ).datepicker({
     changeMonth: true,
     changeYear: true,
   });
-  $('#timepicker').timepicker({});
+  $('#timepickerEV').timepicker({});
 });
-var standard_message = $('#address').val();
-  $('#address').focus(
+var standard_message = $('#addressEV').val();
+  $('#addressEV').focus(
       function() {
           if ($(this).val() == standard_message)
               $(this).val("");
       }
   );
-  $('#address').blur(
+  $('#addressEV').blur(
       function() {
           if ($(this).val() == "")
               $(this).val(standard_message);
       }
   );
 
-  $("#selectaddr").on("change", function(e){
+  $("#selectaddrEV").on("change", function(e){
     if($(this).val()==1){
-      $("#address").val("<?php echo $userinfo['address']; ?>");
+      $("#addressEV").val("<?php echo $userinfo['address']; ?>");
     }
     else if($(this).val()==2){
-      $("#address").val("");
-      $("#address").focus();
+      $("#addressEV").val("");
+      $("#addressEV").focus();
     }
   });
 </script>
