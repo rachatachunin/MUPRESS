@@ -62,8 +62,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
   <div class="contact-top heading">
         <h3>รายการโปรโมชั่น</h3>
   </div><br>
-  <div class="container" style="height: 1250px; ">
-    <ul class="list-group" sytle="overflow:auto;">
+  <div class="container">
+    <div style = "max-height: 1100px;  overflow: auto ;">
+    <ul class="list-group">
       <?php
       while($row1 = mysqli_fetch_array($result)){
        echo '<li class = "list-group-item" style="height:250px;"><div class="col-xs-12">' ;
@@ -77,9 +78,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
            }
       ?>
    </ul>
+ </div>
   </div>
 
-  <!-- end activities -->
+  <!-- end promotion -->
 
   <!--footer-starts-->
   <?php include "footer.php" ; ?>

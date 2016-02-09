@@ -229,8 +229,10 @@ if(!isset($_SESSION['login'])){
                    </li >
                    <li>
                    <div class="search-bar">
-               					<input type="text" style="color:white" value="Search" onfocus="this.value = \'\';">
+                        <form action="searchBookPage.php" method="post">
+               					<input type="text" style="color:white" value="Search" name="searchStr" onfocus="this.value = \'\';">
                					<input type="submit" value="">
+                        </form>
                				</div>
                    </li>
                </ul>
@@ -329,7 +331,7 @@ else{
                   <li>
                   <div class="search-bar">
                       <form action="searchBookPage.php" method="post" >
-                       <input type="text" style="color:white" value="Search" onfocus="this.value = \'\';">
+                       <input type="text" style="color:white" name="searchStr" value="Search" onfocus="this.value = \'\';">
                        <input type="submit" value="">
                        </form>
                      </div>

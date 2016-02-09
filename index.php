@@ -42,6 +42,7 @@ $result2 = mysqli_query($con,$sql2);
         #partner {
           background: url(/MUPRESS_GIT/image/partner_bg.png) 50% 50% no-repeat;
           background-size: cover;
+
         }
         .partners ul li {
           display: inline-block;
@@ -57,6 +58,7 @@ $result2 = mysqli_query($con,$sql2);
 
     </style>
     <script type="text/javascript">
+
     function validateCus(e){
 
       var filter = /[ก-๙a-zA-Z]/ ;
@@ -256,15 +258,16 @@ $result2 = mysqli_query($con,$sql2);
   <section id="partner">
         <div class="container">
             <div class="center">
-                <h2>ผู้ร่วมงาน</h2>
+
                 <p class="lead">เป็นการร่วมงานระหว่าง คณะ เทคโนโลยีสาระสนเทศและการสื่อสาร และ สำนักพิมพ์มหาวิทยาลัย มหิดล<br>โดย<br> นาย ศุภณัฐ จันทร์แจ่ม<br>นาย รชต ชูนิล <br> นาย อนันต์ บุญถาวรทวี</p>
             </div>
 
             <div class="partners">
                 <ul style="padding-left:200px;">
-                    <li > <a href="#"><img class="img-responsive"  src="image/partner1.png"></a></li>
-                    <li > <a href="#"><img class="img-responsive "  src="image/partner2.png"></a></li>
-                    <li > <a href="#"><img class="img-responsive "  src="image/partner3.png"></a></li>
+                    <li > <a href="#"><img class="img-responsive" width="100"   src="image/mu.png"></a></li>
+                    <li > <a href="#"><img class="img-responsive " width="200"  src="image/ict.png"></a></li>
+                    <li > <a href="#"><img class="img-responsive " width="200"  src="image/press.png"></a></li>
+
                 </ul>
             </div>
         </div><!--/.container-->
@@ -349,6 +352,30 @@ $result2 = mysqli_query($con,$sql2);
     </div>
 </div>
 <!---//////////////////////////////////////// End edit model  ///////////////////////////////////////////////-->
+
+<!---//////////////////////////////////////// Begin success model  ///////////////////////////////////////////////-->
+<div class="modal fade" id="Modals" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header alert alert-info">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title text-center" id="myModalLabel">ทำการส่งคำขอ password สำหรับ ผู้เขียนเรียบร้อยแล้ว </h4>
+
+            </div>
+
+                <div class="modal-body">
+                    <div class="text-center">
+                          กรุณาติดต่อ เจ้าหน้าที่ของ สำนักพิมพ์มหาวิทยาลัย มหิดล  ติดต่อ <br>โทร. 0-2800-2680-9 ต่อ 4302 email : mupress@mahidol.ac.th
+
+                    </div>
+
+                </div>
+
+
+        </div>
+    </div>
+</div>
+<!---//////////////////////////////////////// End edit model  ///////////////////////////////////////////////-->
 </html>
 
 <script type="text/javascript">
@@ -387,5 +414,11 @@ function profile_request(email){
     },
   });
 $("#edit_Profile_Model").modal(); ///enable edit model
+}
+
+
+if(<?php echo isset($_SESSION['Modelon']); ?>){
+  $("#Modals").modal();
+  <?php unset($_SESSION['Modelon']); ?>
 }
 </script>
