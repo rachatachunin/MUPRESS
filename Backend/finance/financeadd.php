@@ -7,7 +7,9 @@
     ?>
     <script type="text/javascript">
           $(document).ready(function () {
-                   $('.chosen-select').chosen();
+                   $('.chosen-select').chosen({
+                      
+                    });
            });
 
            function validateOrder(e){
@@ -68,7 +70,7 @@
                     <form action="" id="myForm">
                     <div class="input-group">
                         <span class="input-group-addon" id="sizing-addon">ชื่อหนังสือ:</span>
-                        <select name="bookname" id="bn" class="form-control" aria-describedby="sizing-addon">
+                        <select name="bookname" id="bn" class="form-control chosen-select" aria-describedby="sizing-addon">
                             <option selected disabled value="0">เลือกหนังสือ</option>
                             <?php
                             while($row = mysqli_fetch_array($book)){
