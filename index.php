@@ -184,7 +184,7 @@ $result2 = mysqli_query($con,$sql2);
             echo '<div class="product-one">
     					     <div class="col-md-3 product-left">
     						     <div class="product-main simpleCart_shelfItem">
-                      <a href="single.php?id='.$row['book_id'].' " class="mask"><img class="img-responsive zoom-img" src="/MUPRESS_GIT/Backend/book_management/'.$row['image'].'" alt="" /></a>
+                      <a href="single.php?id='.$row['book_id'].' " class="mask"><img class="img-responsive zoom-img" src="/MUPRESS_GIT/Backend/book_management/'.$row['image'].'" onError="this.onerror=null;this.src=\'/MUPRESS_GIT/image/no_image.png\'" alt="" /></a>
                       <div class="product-bottom">';
             echo '<h3 class="item_name">'. $row['title'] . '</h3>' ;
             echo '<p>' . 'ผู้เขียน' . $row['author'] . '</p>' ;
@@ -230,7 +230,7 @@ $result2 = mysqli_query($con,$sql2);
             echo '<div class="product-one">
     					     <div class="col-md-3 product-left">
     						     <div class="product-main simpleCart_shelfItem">
-                      <a href="single.php?id='.$row2['book_id'].'" class="mask"><img class="img-responsive zoom-img" src="/MUPRESS_GIT/Backend/book_management/'.$row2['image'].'" alt="" /></a>
+                      <a href="single.php?id='.$row2['book_id'].'" class="mask"><img class="img-responsive zoom-img" src="/MUPRESS_GIT/Backend/book_management/'.$row2['image'].'" onError="this.onerror=null;this.src=\'/MUPRESS_GIT/image/no_image.png\'" alt="" /></a>
                       <div class="product-bottom">';
             echo '<h3 class="item_name">'. $row2['title'] . '</h3>' ;
             echo '<p>' . 'ผู้เขียน' . $row2['author'] . '</p>' ;

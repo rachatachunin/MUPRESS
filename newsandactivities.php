@@ -56,7 +56,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
       <?php
       while($row1 = mysqli_fetch_array($resultnews)){
        echo '<li class = "list-group-item" style="height:250px;"><div class="col-xs-12">' ;
-       echo '<div class="col-xs-5 text-center"><img src="image/law.jpg" class="img-rounded" style="height:230px;"></div>';
+       echo '<div class="col-xs-5 text-center"><img src="MUPRESS_GIT/Backend/content_management/'.$row1['image'].'" onError="this.onerror=null;this.src=\'/MUPRESS_GIT/image/no_image.png\'" class="img-rounded" style="height:230px;"></div>';
        echo "<div class='text-center'><h3>" . $row1['news_name'] . '</h3></div>' .
             "<div><p>" . $row1['news_detail'] . '</p></div>' ;
        echo '</div></li><br>';
@@ -77,7 +77,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
       <?php
       while($row2 = mysqli_fetch_array($resultactivities)){
        echo '<li class = "list-group-item" style="height:250px;"><div class="col-xs-12">' ;
-       echo '<div class="col-xs-5 text-center"><img src="image/law.jpg" class="img-rounded" style="height:230px;"></div>';
+       echo '<div class="col-xs-5 text-center"><img src="MUPRESS_GIT/Backend/content_management/'.$row2['image'].'" onError="this.onerror=null;this.src=\'/MUPRESS_GIT/image/no_image.png\'" class="img-rounded" style="height:230px;"></div>';
        echo "<div class='text-center'><h3>" . $row2['activities_name'] . '</h3></div>' .
             "<div class='text-center'>" . "วันที่เริ่ม: " . $row2['startDate'] ." วันที่สิ้นสุด: " .$row2['endDate'] . '</div>'.
             "<p>" . $row2['activities_detail'] . "</p>" ;

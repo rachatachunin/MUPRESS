@@ -72,7 +72,7 @@ $book_id = $_GET['id'];
 				<div class="sngl-top">
 					<div class="col-md-5 single-top-left">
 						<div class="single-para simpleCart_shelfItem" style="height:600px;">
-									<div style="height:600px;"> <img src="/MUPRESS_GIT/Backend/book_management/<?php echo $row['image'] ?>" style="width:370px; height:600px;" class="img-responsive" alt=""/> </div>
+									<div style="height:600px;"> <img src="/MUPRESS_GIT/Backend/book_management/<?php echo $row['image'] ?>" onError="this.onerror=null;this.src='/MUPRESS_GIT/image/no_image_big.png'" style="width:370px; height:600px;" class="img-responsive" alt=""/> </div>
 						</div>
 
 					</div>

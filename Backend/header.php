@@ -52,7 +52,7 @@
                         <a href="/MUPRESS_GIT/Backend/stock/stock.php" >การจัดการคลังหนังสือ</a>
                     </li>
                     <li>
-                        <a href="/MUPRESS_GIT/Backend/finance/financial.php" >การขัดการ และ รายงานการขาย</a>
+                        <a href="/MUPRESS_GIT/Backend/finance/financial.php" >การจัดการและรายงานการขาย</a>
                     </li>
                     <li>
                         <a href="/MUPRESS_GIT/Backend/order_evidence/order_confirmation_management.php">การจัดการหลักฐานการโอน</a>

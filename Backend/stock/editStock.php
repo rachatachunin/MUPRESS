@@ -20,7 +20,7 @@ echo ' <div class="modal fade" id="mS'.$book['book_id'].'" tabindex="-1" role="d
                         <h4 class="modal-title" id="myModalLabel">แก้ไขคลังหนังสือ</h4>
                     </div>
                     <div class="modal-body">
-                            <img src="../../image/'.$book['image'].'" class="img-responsive center-block" alt="Responsive image">
+                            <img src="../book_management/'.$book['image'].'" onError="this.onerror=null;this.src=\'/MUPRESS_GIT/image/no_image.png\'" class="img-responsive center-block" alt="Responsive image">
                     </div>
                     <div class="modal-footer" style="text-align: center">
                         <div class="col-lg-6">
