@@ -68,7 +68,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
       <?php
       while($row1 = mysqli_fetch_array($result)){
        echo '<li class = "list-group-item" style="height:250px;"><div class="col-xs-12">' ;
-       echo '<div class="col-xs-4 text-center"><img src="image/law.jpg" class="img-rounded" style="height:230px;"></div>';
+       echo '<div class="col-xs-4 text-center"><img src="MUPRESS_GIT/Backend/content_management/'.$row1['image'].'" onError="this.onerror=null;this.src=\'/MUPRESS_GIT/image/no_image.png\'" class="img-rounded" style="height:230px;"></div>';
        echo "ชื่อหนังสือ:  " . $row1['title'] . '<br>' .
             "ผู้แต่ง:  " . $row1['author'] .'<br>'.
             "ISBN:  " . $row1['book_serial_no'] .'<br>'.

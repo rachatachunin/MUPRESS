@@ -15,7 +15,8 @@
     include "../../dbconnection.php";
 
     //$allhis = mysqli_query($con,"select * from sale_history where created_date >= CURDATE() AND created_date < CURDATE() + INTERVAL 1 DAY");
-    $allhis = mysqli_query($con,"select sale_history.created_date, sum(order_line.price) as eprice, sum(order_line.amount) as eamount,order_line.discount , order_line.book_id, book.title from sale_history left join order_book on sale_history.order_id = order_book.order_id left join order_line on order_book.order_id = order_line.order_id left join book on order_line.book_id = book.book_id where sale_history.created_date > CURRENT_DATE group by order_line.book_id, order_line.discount");
+    $allhis = mysqli_query($con,"select sale_history.created_date, sum(order_line.price) as eprice, sum(order_line.amount) as eamount,order_line.discount , order_line.book_id, book.title from sale_history left join order_book on sale_history.order_id = order_book.order_id left join order_line on order_book.order_id = order_line.order_id left join book on order_line.book_id = book.book_id where sale_history.created_date > CURRENT_DATE group by order_line.book_id, order_line.discount
+    order by book.title ASC");
 ?>
 <body>
 <?php include "../header.php" ?>
