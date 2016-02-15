@@ -16,7 +16,7 @@ include "../../dbconnection.php";
  $row = mysqli_fetch_array($result);
  $rows = mysqli_fetch_array($result2);
 
- var_dump($sql);
+
 
 echo ' <div class="modal fade" id="Detail'.$row['pe_id'].'" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
