@@ -5,6 +5,7 @@
     <?php
         include "../../head.php";
     ?>
+    <meta http-equiv="content-Type" content="text/html; charset=utf-8">
 
 </head>
 <body>
@@ -43,7 +44,7 @@
 </div>
 
 <div class="container" id="show_report" style="text-align: center;">
-  
+
 
 
 </div>

@@ -35,7 +35,8 @@
     <h3 class="lead">รายงานการขายของวันนี้</h3>
     <table class="table borderless">
       <?php
-
+        $totalp = 0 ;
+        $totala = 0 ;
            while($his = mysqli_fetch_array($allhis)){
                echo '<tr>';
                    echo '<td>'.$his['title'].'</td>';

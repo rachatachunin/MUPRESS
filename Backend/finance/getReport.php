@@ -4,7 +4,10 @@ include "../../dbconnection.php";
 //echo date('m', strtotime($id));
 //echo strtotime($id);
 //echo strlen($id);
+
 if(strlen($id)==4){
+  $totalp =0 ;
+  $totala =0 ;
   $rpt = mysqli_query($con,"select sale_history.created_date, sum(order_line.price) as eprice, sum(order_line.amount) as eamount,order_line.discount , order_line.book_id, book.title from sale_history left join order_book on sale_history.order_id = order_book.order_id left join order_line on order_book.order_id = order_line.order_id left join book on order_line.book_id = book.book_id
   where YEAR(sale_history.created_date) = ".date('Y', strtotime($id))."
   group by order_line.book_id, order_line.discount");
@@ -28,6 +31,8 @@ if(strlen($id)==4){
   }
 }
 elseif (strlen($id)>4) {
+  $totalp =0 ;
+  $totala =0 ;
   $rpt = mysqli_query($con,"select DATE_FORMAT(sale_history.created_date,'%m-%d-%Y') as datef, sum(order_line.price) as eprice, sum(order_line.amount) as eamount,order_line.discount , order_line.book_id, book.title from sale_history left join order_book on sale_history.order_id = order_book.order_id left join order_line on order_book.order_id = order_line.order_id left join book on order_line.book_id = book.book_id
   where MONTH(sale_history.created_date) = ".date('m', strtotime($id))." AND YEAR(sale_history.created_date) = ".date('Y', strtotime($id))."
   group by order_line.book_id, order_line.discount, DATE(sale_history.created_date)");
