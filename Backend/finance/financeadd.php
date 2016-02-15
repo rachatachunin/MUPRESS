@@ -26,7 +26,7 @@
                alert("กรุณากรอกจำนวนให้ถูกต้อง");
                return false ;
              }
-              if(discount == "" || discount < 0 || (discount % 1) != 0 || dicsount > 100){
+              if(discount == "" || discount < 0 || (discount % 1) != 0 || discount > 100){
                alert("กรุณากรอกส่วนลดให้ถูกต้อง");
                return false ;
              }
