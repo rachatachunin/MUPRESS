@@ -21,3 +21,4 @@
                    ";
     mysqli_query($con,$queryUpdate);
     header("Location: accountManagement.php");
+?>
