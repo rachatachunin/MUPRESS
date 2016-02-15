@@ -15,8 +15,8 @@ $book_id = $_GET['id'];
             include "headFrontEnd.php";
             include "dbconnection.php";
 
-            $sqlgetBookSingle = "SELECT * FROM book LEFT JOIN current_stock on book.book_id = current_stock.book_id
-                                 LEFT JOIN promotion ON book.serial_no = promotion.book_serial_no WHERE book.book_id = '".$book_id."' ";
+            $sqlgetBookSingle = "SELECT b.book_id, b.title , b.image, b.price, discount, b.author, b.serial_no, b.edition, cs.current_amount, b.content_preview FROM book as b LEFT JOIN current_stock as cs on b.book_id = cs.book_id
+                                 LEFT JOIN promotion as p  ON b.serial_no = p.book_serial_no WHERE b.book_id ='".$book_id."' ";
             // var_dump($sqlgetBookSingle);
 
             $result = mysqli_query($con,$sqlgetBookSingle);
@@ -72,7 +72,7 @@ $book_id = $_GET['id'];
 				<div class="sngl-top">
 					<div class="col-md-5 single-top-left">
 						<div class="single-para simpleCart_shelfItem" style="height:600px;">
-									<div style="height:600px;"> <img src="image/law.jpg" style="width:370px; height:600px;" class="img-responsive" alt=""/> </div>
+									<div style="height:600px;"> <img src="/MUPRESS_GIT/Backend/book_management/<?php echo $row['image'] ?>" style="width:370px; height:600px;" class="img-responsive" alt=""/> </div>
 						</div>
 
 					</div>
