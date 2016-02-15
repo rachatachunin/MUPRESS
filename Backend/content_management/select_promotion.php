@@ -1,4 +1,7 @@
 <?php
+ob_start();
+session_start();
+
 
 $db_cont = "../../dbconnection.php";
 if(!@file_exists("./".$db_cont) ) {
@@ -7,22 +10,21 @@ if(!@file_exists("./".$db_cont) ) {
    require("./".$db_cont);
 }
 $page = $_GET['page'];
-$searchBy = $_GET['searchBy'];
-$keyword = $_GET['keyword'];
-
+$rowsPerpage	= $_GET['rowsPerpage'];
+$startFrom  = ($page-1)*$rowsPerpage;
+unset($_GET['rowsPerpage']);
 unset($_GET['page']);
-unset($_GET['searchBy']);
-unset($_GET['keyword']);
+
+
 
 $sql = "";
 
 
-if($searchBy == "none" || $searchBy == "all"){
-$sql = "SELECT * FROM promotion INNER JOIN book ON promotion.book_serial_no = book.serial_no";
-}
-else{
-$sql = "SELECT * FROM promotion WHERE $searchBy LIKE '%$keyword%' ";
-}
+$sql = "SELECT * FROM promotion INNER JOIN book 
+ON promotion.book_serial_no = book.serial_no
+LIMIT $startFrom,$rowsPerpage";
+
+
 
 
 $result = mysqli_query($con,$sql);

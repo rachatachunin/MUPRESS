@@ -127,7 +127,7 @@ $userinfo = mysqli_fetch_array($user);
          <form class="form text-center" style="width: 70%" onsubmit="return validateEV();" action="evidenceDB.php" enctype="multipart/form-data" method="post">
            <div class="form-group">
                <span class="input-group-addon" id="sizing-addon3">เลขที่ของ order:</span>
-               <input type="number" value="<?php echo $order['order_id']; ?>" class="form-control" placeholder="" aria-describedby="sizing-addon3" name="orderid" disabled>
+               <input type="number" value="<?php echo $order['order_id']; ?>" class="form-control" placeholder="" aria-describedby="sizing-addon3" name="orderid" readonly>
            </div>
            <br>
            <div class="row">
@@ -146,7 +146,7 @@ $userinfo = mysqli_fetch_array($user);
              </div>
              <div class="input-group">
                <span class="input-group-addon" id="sizing-addon4">วันที่ชำระเงิน</span>
-               <input name="date" id="datepickerEV" class="form-control input-sm" type="text" aria-describedby="sizing-addon4">
+               <input name="text" id="datepickerEV" class="form-control input-sm" type="text" aria-describedby="sizing-addon4">
              </div>
              <br>
              <div class="input-group">
@@ -213,7 +213,7 @@ $(function() {
     changeMonth: true,
     changeYear: true,
   });
-  $('#timepickerEV').timepicker({});
+  // $('#timepickerEV').timepicker({});
 });
 var standard_message = $('#addressEV').val();
   $('#addressEV').focus(

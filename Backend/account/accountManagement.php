@@ -250,7 +250,7 @@
                        <li class="list-group-item">
                          <div id="search-input">
                             <div class="input-group col-md-12">
-                                <input type="text" id = "search_general_customer" onkeyup="filter(this)" class="form-control input-md" placeholder="ชื่อ ลูกค้า" />
+                                <input type="text" id = "search_general_customer" onkeyup="filter(this)" class="form-control input-md" placeholder="ค้นหา ลูกค้า" />
                                   <span class="input-group-btn">
                                     <button class="btn btn-info btn-md" type="button">
                                         <i class="glyphicon glyphicon-search"></i>
@@ -354,7 +354,7 @@
                       <li class="list-group-item">
                         <div id="search-input">
                            <div class="input-group col-md-12">
-                               <input type="text" id = "search_organization_customer" onkeyup ="filterOr(this)" class="form-control input-md" placeholder="ชื่อ ลูกค้า" />
+                               <input type="text" id = "search_organization_customer" onkeyup ="filterOr(this)" class="form-control input-md" placeholder="ค้นหาลูกค้าองค์กร" />
                                  <span class="input-group-btn">
                                    <button class="btn btn-warning btn-md" type="button">
                                        <i class="glyphicon glyphicon-search"></i>
@@ -449,7 +449,7 @@
               <li class="list-group-item">
                 <div id="search-input">
                    <div class="input-group col-md-12">
-                       <input type="text" id = "general_customer" onkeyup="filterAuther(this)" class="form-control input-md" placeholder="ชื่อ ลูกค้า" />
+                       <input type="text" id = "general_customer" onkeyup="filterAuther(this)" class="form-control input-md" placeholder="ค้นหาผู้เขียน" />
                          <span class="input-group-btn">
                            <button class="btn btn-success btn-md" type="button">
                                <i class="glyphicon glyphicon-search"></i>

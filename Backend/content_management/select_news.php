@@ -1,4 +1,6 @@
 <?php
+ob_start();
+session_start();
 
 $db_cont = "../../dbconnection.php";
 if(!@file_exists("./".$db_cont) ) {
@@ -7,22 +9,17 @@ if(!@file_exists("./".$db_cont) ) {
    require("./".$db_cont);
 }
 $page = $_GET['page'];
-$searchBy = $_GET['searchBy'];
-$keyword = $_GET['keyword'];
-
+$rowsPerpage	= $_GET['rowsPerpage'];
+$startFrom  = ($page-1)*$rowsPerpage;
+unset($_GET['rowsPerpage']);
 unset($_GET['page']);
-unset($_GET['searchBy']);
-unset($_GET['keyword']);
+
+
 
 $sql = "";
 
+$sql = "SELECT * FROM news LIMIT $startFrom,$rowsPerpage";
 
-if($searchBy == "none" || $searchBy == "all"){
-$sql = "SELECT * FROM news_activities";
-}
-else{
-$sql = "SELECT * FROM news_activities WHERE $searchBy LIKE '%$keyword%' ";
-}
 
 
 $result = mysqli_query($con,$sql);
@@ -35,10 +32,7 @@ while($r = mysqli_fetch_assoc($result)) {
     $data[] = $r;
 }
  
-
-
 mysqli_close($con);
-//print_r($data);
 
 echo json_encode($data);
 

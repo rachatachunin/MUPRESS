@@ -33,21 +33,39 @@
                 </a>
             </div>
 
-            <!-- <div class="nav navbar-nav" >
-                    <a href="/MUPRESS_GIT/Backend/admin.php" class="navbar-text"> <h4>MUPMIS</h4><b>(Mahidol University Press Management Information System)</b></a></li>
-            </div> -->
-
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <div class="nav navbar-nav" >
-                        <a href="/MUPRESS_GIT/Backend/admin.php" class="navbar-text"> <h4>MUPMIS</h4><b>(Mahidol University Press Management Information System)</b></a></li>
+                        <a style="margin-left:0px;" href="/MUPRESS_GIT/Backend/admin.php" class="navbar-text"> <h4>MUPMIS</h4><b>(Mahidol University Press Management Information System)</b></a></li>
                 </div>
-                <!-- <ul class="nav navbar-nav navbar-right">
-                    <li><a href="/MUPRESS_GIT/disconnect.php">Log out</a></li>
-                </ul> -->
+
                 <div class="nav navbar-nav navbar-right" style="margin-top:30px;">
                     <a href="/MUPRESS_GIT/disconnect.php" role="button" class="btn btn-danger">Log out</a>
                 </div>
+
+                <div class="collapse navbar-collapse" style="margin-left:30px;" >
+                <ul class="nav navbar-nav"  >
+                    <li>
+                        <a href="/MUPRESS_GIT/Backend/book_management/book_management.php" >การจัดการหนังสือ</a>
+                    </li>
+                    <li>
+                        <a href="/MUPRESS_GIT/Backend/stock/stock.php" >การจัดการคลังหนังสือ</a>
+                    </li>
+                    <li>
+                        <a href="/MUPRESS_GIT/Backend/finance/financial.php" >การขัดการ และ รายงานการขาย</a>
+                    </li>
+                    <li>
+                        <a href="/MUPRESS_GIT/Backend/order_evidence/order_confirmation_management.php">การจัดการหลักฐานการโอน</a>
+                    </li>
+                    <li>
+                        <a href="/MUPRESS_GIT/Backend/account/accountManagement.php" >การจัดการบัญชีผู้ใช้</a>
+                    </li >
+                    <li>
+                        <a href="/MUPRESS_GIT/Backend/content_management/content_management.php" >การจัดการเนื้อหาเวปไซต์</a>
+                    </li >
+                </ul>
+              </div>
+
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
     </nav>
