@@ -35,6 +35,9 @@ session_start();
     <?php
         include "../../head.php";
     ?>
+    <script src="../../js/jquery.maskedinput.js"></script>
+    <script src="../../js/jquery.bootpag.js"></script>
+    <script src="../../js/jquery.bootpag.min.js"></script>
 </head>
 
 <body>

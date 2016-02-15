@@ -4,9 +4,10 @@ $q = intval($_GET['q']);
 
 include "../../dbconnection.php";
 
- $sql =" SELECT pe.pe_id,pe.order_id,pe.pay_date,pe.bank,pe.fname as sendFname,pe.lname as sendLname,pe.price,user.user_fn as userFname,user.user_ln as userLname
+ $sql =" SELECT pe.pe_id,pe.image,pe.order_id,pe.pay_date,pe.bank,pe.fname as sendFname,pe.lname as sendLname,pe.price,user.user_fn as userFname,user.user_ln as userLname
          FROM payment_evidence pe LEFT JOIN order_book ob ON pe.order_id = ob.order_id
          LEFT JOIN user ON ob.user_id = user.user_id WHERE pe.pe_id = '".$q."'  ";
+
  $sqlgetOrder = "SELECT ob.order_id, user.user_fn, user.user_ln, ob.total_price, ob.note, ob.created_date FROM payment_evidence pe LEFT JOIN order_book ob ON pe.order_id = ob.order_id
                  LEFT JOIN user ON ob.user_id = user.user_id WHERE pe.pe_id = '".$q."'  " ;
 
@@ -14,6 +15,8 @@ include "../../dbconnection.php";
  $result2 = mysqli_query($con,$sqlgetOrder);
  $row = mysqli_fetch_array($result);
  $rows = mysqli_fetch_array($result2);
+
+ var_dump($sql);
 
 echo ' <div class="modal fade" id="Detail'.$row['pe_id'].'" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
@@ -30,7 +33,7 @@ echo ' <div class="modal fade" id="Detail'.$row['pe_id'].'" tabindex="-1" role="
                         if($row['image'] != null || $row['image'] != ''){
                         echo '
                            <div class ="text-center">
-                             <img src = "/MUPRESS_GIT/evidence_image/'.$row['image'].'" width="270px" height="350px"><br><br>
+                             <img src = "/MUPRESS_GIT/'.$row['image'].'" width="270px" height="350px"><br><br>
                            </div>' ;
                          }
                          echo '
