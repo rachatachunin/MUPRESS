@@ -17,6 +17,9 @@ session_start();
     <?php
         include "../../head.php";
     ?>
+      <script src="../../js/jquery.maskedinput.js"></script>
+      <script src="../../js/jquery.bootpag.js"></script>
+      <script src="../../js/jquery.bootpag.min.js"></script>
     <!--<link href="css/bootstrap-theme.min.css" rel="stylesheet">-->
     <title>MU PRESS</title>
     <style>
