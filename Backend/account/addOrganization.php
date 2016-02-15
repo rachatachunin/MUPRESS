@@ -9,7 +9,7 @@
   $tel = $_POST['phone'];
 
 // add to user table
-  $query = "INSERT into user (email,password,user_fn,user_ln,gender,tel,address,user_type) values('".$email."','','".$fname."','".$lname."','NA','".$tel."','".$address."','3') " ;
+  $query = "INSERT into user (email,password,user_fn,user_ln,gender,tel,address,user_type) values('".$email."','','".$fname."','".$lname."','NA','".$tel."','".$address."','2') " ;
   mysqli_query($con,$query);
 
 // get user id
