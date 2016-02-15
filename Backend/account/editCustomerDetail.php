@@ -84,6 +84,7 @@ echo ' <div class="modal fade" id="EditC'.$row['user_id'].'" tabindex="-1" role=
                           </div>
                       </div>
                        <div class="form-group text-center">
+                                <button type="button" class="btn btn-success" onclick ="addToAuthor('.$row['user_id'].') ;">เพิ่มเป็นผู้เขียน</button>
                                 <button type="submit" class="btn btn-warning">แก้ไข</button>
                                 <button type="button" class="btn btn-danger" onclick ="deleteCustomer('.$row['user_id'].') ;">ลบ</button>
                        </div>

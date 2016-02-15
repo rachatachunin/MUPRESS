@@ -3,7 +3,7 @@
 <?php
   include "../../dbconnection.php";
   //sql geting data
-  $sql_getCustomer = "SELECT * FROM user ORDER BY user_fn ASC  ";
+  $sql_getCustomer = "SELECT * FROM user WHERE user_type = 2 ORDER BY user_fn ASC  ";
   $sql_getOrganization = "SELECT comp.user_id, comp.organization_name FROM organization as comp LEFT JOIN user ON comp.user_id = user.user_id
                           ORDER BY comp.organization_name ASC ";
   $sql_getAuthor ="SELECT * FROM user WHERE user_type = 3 ORDER BY user_fn ASC ";
@@ -104,6 +104,14 @@
         return confirm("คุณต้องการจะเพิ่มลูกค้าใหม่หรือไม่ ?");
       }
     }
+    function DelB(user,book){
+      var path = "deleteBookFromAuthor.php?user=" + user +  "&book=" + book ;
+      if(confirm("ยืนยันที่จะลบหนังสือหรือไม่")){
+      window.location.href= path ;
+    }else{
+      false ; 
+    }
+    }
 
   function deleteCustomer(str){
     var path = "deleteCustomer.php?q=" + str  ;
@@ -180,6 +188,14 @@
             xmlhttp.open("GET","editAuthorDetail.php?q="+str,true);
             xmlhttp.send();
         }
+    }
+
+    function addToAuthor(str){
+      if( confirm('ยืนยันการตัดสินใจ')){
+        window.location.assign("addToAuthor.php?id="+str);
+      }else{
+        return false ;
+      }
     }
 
     function generateRandomString() {
@@ -466,8 +482,8 @@
             while($row3 = mysqli_fetch_array($result3)){
               // var_dump($row3);
               echo '<li class = "list-group-item">' ;
-              echo $row3['user_fn']."  ".$row3['user_ln'];
-              echo '<a href="#" class="icon pull-right" onclick="editCUS('.$row3['user_id'].')">
+              echo $row3['user_fn']."  ".$row3['user_ln'] ;
+              echo '<a href="#" class="icon pull-right" onclick="editAT('.$row3['user_id'].');">
                     <span class="glyphicon glyphicon-cog"></span>
                     </a>
                     </li>';
@@ -490,6 +506,7 @@
 <div id= "editCustomers">  </div>
 
 <div id= "editOrganization">  </div>
+<div id= "editAuthor">  </div>
 </html>
 
 <script type="text/javascript">
