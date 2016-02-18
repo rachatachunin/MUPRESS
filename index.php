@@ -9,9 +9,9 @@ session_start();
 
 <?php include "headFrontEnd.php";
 include 'dbconnection.php';
-$sql = "SELECT book.book_id , title , author ,price, edition, serial_no ,recommend,book.image,content_preview,cs_id,current_amount,promotion.discount FROM book LEFT JOIN current_stock on book.book_id = current_stock.book_id
+$sql = "SELECT book.book_id , book.title , book.price, book.edition, book.serial_no , book.recommend, book.image , current_stock.cs_id, current_stock.current_amount,promotion.discount FROM book LEFT JOIN current_stock on book.book_id = current_stock.book_id
 LEFT JOIN promotion on book.serial_no = promotion.book_serial_no ORDER BY book.book_id DESC LIMIT 0,4";
-$sql2 = "SELECT book.book_id , title , author,price , edition, serial_no ,recommend,book.image,content_preview,cs_id,current_amount,promotion.discount FROM book LEFT JOIN current_stock on book.book_id = current_stock.book_id
+$sql2 = "SELECT book.book_id , book.title , book.price, book.edition, book.serial_no , book.recommend, book.image , current_stock.cs_id, current_stock.current_amount,promotion.discount FROM book LEFT JOIN current_stock on book.book_id = current_stock.book_id
 LEFT JOIN promotion on book.serial_no = promotion.book_serial_no ORDER BY book.book_id DESC LIMIT 4,4";
 $result = mysqli_query($con,$sql);
 $result2 = mysqli_query($con,$sql2);
@@ -187,7 +187,6 @@ $result2 = mysqli_query($con,$sql2);
                       <a href="single.php?id='.$row['book_id'].' " class="mask"><img class="img-responsive zoom-img" src="/MUPRESS_GIT/Backend/book_management/'.$row['image'].'" onError="this.onerror=null;this.src=\'/MUPRESS_GIT/image/no_image.png\'" alt="" /></a>
                       <div class="product-bottom">';
             echo '<h3 class="item_name">'. $row['title'] . '</h3>' ;
-            echo '<p>' . 'ผู้เขียน' . $row['author'] . '</p>' ;
             echo '<p>' . 'ISBN ' . $row['serial_no'] . '</p>' ;
             echo '<p>' . 'Edition  ' . $row['edition'] . '</p>' ;
 
@@ -233,7 +232,6 @@ $result2 = mysqli_query($con,$sql2);
                       <a href="single.php?id='.$row2['book_id'].'" class="mask"><img class="img-responsive zoom-img" src="/MUPRESS_GIT/Backend/book_management/'.$row2['image'].'" onError="this.onerror=null;this.src=\'/MUPRESS_GIT/image/no_image.png\'" alt="" /></a>
                       <div class="product-bottom">';
             echo '<h3 class="item_name">'. $row2['title'] . '</h3>' ;
-            echo '<p>' . 'ผู้เขียน' . $row2['author'] . '</p>' ;
             echo '<p>' . 'ISBN ' . $row2['serial_no'] . '</p>' ;
             echo '<p>' . 'Edition  ' . $row2['edition'] . '</p>' ;
 

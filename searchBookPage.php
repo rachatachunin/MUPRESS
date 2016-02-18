@@ -2,6 +2,7 @@
 ob_start();
 session_start();
 $stringSearch = $_POST['searchStr'];
+unset($_POST['searchStr']);
 ?>
 
 <!DOCTYPE html>
@@ -62,7 +63,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <div id="page-selection" class="text-center"></div>
                             <script>
                              var SearchKey = <?php echo json_encode($stringSearch); ?>;
-                            //  alert(SearchKey);
                              var numPerpage = 20 ;
                              var totalPage;
                               window.onload = function(){
@@ -76,6 +76,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                    dataType : "text",
                                    success: function( json ) {
                                        totalPage = parseInt(json);
+                                      //  alert(json);
 
                                        // init bootpag
                                        $('#page-selection').bootpag({
@@ -111,7 +112,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
                                 function getAjax(num){
-
+                                  // alert(SearchKey);
                                   $.ajax({
                                  url: "getBookSearchDetail.php",
                                  data: {
@@ -123,6 +124,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                  dataType : "JSON",
                                  success: function( json ) {
                                    var bookArray = json ;
+
                                    showAllbook(bookArray);
                                  },
                                  error: function( xhr, status, errorThrown ) {
@@ -135,6 +137,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 }
                                 function showAllbook(data){
                                   // first row
+
                                    var products = "";
                                    var counter = 0 ;
                                 if(data == ""){
@@ -151,9 +154,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                          products += "<a href='single.php?id=" + data[counter]['book_id'] + " ' " + "class='mask'><img class='img-responsive zoom-img' src='image/law.jpg' alt='' /></a> ";
                                          products += "<div class='product-bottom'>";
                                          products += "<h3 class='item_name'>" + data[counter]['title'] + "</h3>" ;
-                         							   products +=	"<p>" + "ผู้เขียน " + data[counter]['author'] + "</p>" ;
                                          products +=	"<p>" + "serial no. " + data[counter]['serial_no'] + "</p>" ;
                                          products +=	"<p>" + "Edition  " + data[counter]['edition'] + "</p>" ;
+
+                                         if(data[counter]['discount']==undefined){
+                                           data[counter]['discount']=0;
+                                           dc = "ไม่ลดราคา";
+                                         }
+                                         else {
+                                           dc = "-"+data[counter]['discount']+"%";
+                                         }
+
                                          if(data[counter]['current_amount']>0){
                                             products += "<h4><a class='item_add' href='#'><i></i></a> <span class='item_price'>" + data[counter]['price'] +" บาท"+"</span><span style='margin-left:20px; color: green;'>มีสินค้า</span></h4>"  ;
                                             products += '<input type="text" name="name" class="item_bid" style="display: none" value="'+ data[counter]['book_id']+'">';
@@ -170,7 +181,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                          products += "</div>";
 
                                          products += "<div class='srch'>";
-                                         products += "<span>" + "-50" + "</span>" ;
+                                         products += "<span>" + dc + "</span>" ;
                                          products += "</div>";
 
                                          products += "</div>";
