@@ -103,8 +103,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                   <div id="content"></div>
                   <div id="page-selection" class="text-center"></div>
                       <script>
-
-
                        var numPerpage = 20 ;
                        var totalPage;
                         window.onload = function(){
@@ -176,6 +174,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                console.dir( xhr );
                            },
                          });
+
                           }
                           function showAllbook(data){
                             // first row
@@ -193,7 +192,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                products += "<a href='single.php?id=" + data[counter]['book_id'] + " ' " + "class='mask'><img class='img-responsive zoom-img' onError=\"this.onerror=null;this.src='/MUPRESS_GIT/image/no_image.png'\" src='/MUPRESS_GIT/Backend/book_management/" + data[counter]['image']+ "' alt='' /></a> ";
                                products += "<div class='product-bottom'>";
                                products += "<h3 class='item_name'>" + data[counter]['title'] + "</h3>" ;
-               							   products +=	"<p>" + "ผู้เขียน " + data[counter]['author'] + "</p>" ;
                                products +=	"<p>" + "serial no. " + data[counter]['serial_no'] + "</p>" ;
                                products +=	"<p>" + "Edition  " + data[counter]['edition'] + "</p>" ;
 

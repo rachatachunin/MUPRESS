@@ -13,8 +13,12 @@ unset($_GET['pageNumber']);
 $SearchKey 	= $_GET['SearchKey'];
 unset($_GET['SearchKey']);
 
-$sql = "SELECT book.book_id , title ,price, author , edition, serial_no ,recommend,image,content_preview,cs_id,current_amount FROM book LEFT JOIN current_stock on book.book_id = current_stock.book_id
-        WHERE book.title LIKE '%$SearchKey%' OR book.author LIKE '%$SearchKey%' ORDER BY book.book_id DESC LIMIT 0,20";
+$startFrom  = ($pageNum-1)*$Numperpage;
+
+$sql = "SELECT book.book_id , book.title ,book.price, book.edition, promotion.discount, book.serial_no ,book.recommend,book.image,current_stock.cs_id,current_stock.current_amount FROM book
+        LEFT JOIN current_stock on book.book_id = current_stock.book_id
+        LEFT JOIN promotion on book.serial_no = promotion.book_serial_no
+        WHERE book.title LIKE '%$SearchKey%' ORDER BY book.book_id DESC LIMIT $startFrom,$Numperpage";
 // var_dump($sql) ;
 
 $result = mysqli_query($con,$sql);
