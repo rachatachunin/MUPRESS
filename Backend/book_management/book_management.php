@@ -62,11 +62,6 @@ session_start();
             เพิ่มหนังสือ
         </button>
         <!-- END ADD BOOK Button trigger modal -->
-                <!-- Start add author Button trigger modal -->
-        <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#addauthor">
-            เพิ่มผู้เขียน
-        </button>
-        <!-- END ADD author Button trigger modal -->
         <!-- Start view all Button -->
         <button type="button" class="btn btn-info btn-lg" onclick="viewAllBook()">
             ดูทั้งหมด
@@ -113,10 +108,10 @@ session_start();
           <thead>
             <tr>
                 <th></th>
+                <th>รูปปกหนังสือ</th>
                 <th>หมายเลขหนังสือ</th>
                 <th>ชื่อหนังสือ</th>
                 <th>ฉบับที่</th>
-                <th>ผู้เขียน</th>
                 <th>ราคา</th>
                 <th>แนะนำ</th>
                 <th></th>
@@ -166,15 +161,19 @@ session_start();
               <label for="edition">ฉบับที่</label>
               <input type="text" class="form-control" name="edition" placeholder="หนังสือที่ต้องการจัดรายการ" required>
             </div>
-            <div class="form-group" id="author_form">
-
-            </div>
             <div class="form-group">
               <input type="hidden" class="form-control" name="author" id="author"  required>
             </div>
             <div class="form-group">
               <label for="price">ราคา</label>
               <input type="text" class="form-control" name="price" placeholder="หนังสือที่ต้องการจัดรายการ" id="price" required>
+            </div>
+            <div class="form-group" id="author_list_form">
+              <label for="author">รายชื่อผู้เขียน 
+                <button class="glyphicon glyphicon-plus" onclick="addAuthorField()"></button>
+                <button class="glyphicon glyphicon-minus" onclick="removeAuthorField()"></button>
+              </label>
+              <input type="text" class="form-control" name="author[]" placeholder="ชื่อผู้เขียนลำดับที่ 1" required>
             </div>
             <div class="form-group">
               <label for="file">กรุณาเลือกไฟล์</label>
@@ -219,15 +218,16 @@ session_start();
               <label for="edition">ฉบับที่</label>
               <input type="text" class="form-control" name="edition" placeholder="หนังสือที่ต้องการจัดรายการ" required>
             </div>
-            <div class="form-group" id="author_form">
-
-            </div>
-            <div class="form-group">
-              <input type="hidden" class="form-control" name="author" id="author" required>
-            </div>
             <div class="form-group">
               <label for="price">ราคา</label>
               <input type="text" class="form-control" name="price" placeholder="หนังสือที่ต้องการจัดรายการ" required>
+            </div>
+            <div class="form-group" id="author_list_form">
+              <label for="author">รายชื่อผู้เขียน 
+                <button class="glyphicon glyphicon-plus" onclick="addAuthorField()"></button>
+                <button class="glyphicon glyphicon-minus" onclick="removeAuthorField()"></button>
+              </label>
+              
             </div>
             <div>
               <label for="oldimage">รูปภาพปัจจุบัน</label>
@@ -241,8 +241,8 @@ session_start();
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">ยกเลิก</button>
-        <button type="submit" class="btn btn-success">แก้ไข</button>
+        <button type="button"  class="btn btn-default" data-dismiss="modal">ยกเลิก</button>
+        <button type="submit" class="btn btn-success">บันทึก</button>
       </div>
          </form>
 
@@ -251,79 +251,6 @@ session_start();
   </div>
 </div>
 <!--//////////////////////////// END Modal Edit book ///////////////////////////////////////////////-->
-
-<!--//////////////////////////// Modal add author ///////////////////////////////////////////////-->
-<div class="modal fade" id="addauthor" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">เพิ่มผู้เขียน</h4>
-      </div>
-      <div class="modal-body">
-
-          <form id="addAuthorForm" onsubmit="return validateCus();" action ="add_author.php" method="post" class="form-horizontal" role="form" style="margin-top: 20px">
-                               <!-- <form class="from" onsubmit="return confirm('Do you really want to submit?');" method="post" action="AddCustomer.php" style="margin-top: 20px"> -->
-                           <div class="form-group">
-                               <label for="firstname" class="col-md-3 control-label">ชื่อ (ต้องการข้อมูล)</label>
-                               <div class="col-md-9">
-                                   <input type="text"  id = "fn_cus" class="form-control" name="firstname" placeholder="ชื่อ" required="true">
-                               </div>
-                           </div>
-
-                           <div class="form-group">
-                               <label for="lastname" class="col-md-3 control-label">นามสกุล    (ต้องการข้อมูล)</label>
-                               <div class="col-md-9">
-                                   <input type="text"  id = "ln_cus"class="form-control" name="lastname" placeholder="นามสกุล" required="true">
-                               </div>
-                           </div>
-
-                           <div class="form-group">
-                               <label for="email" class="col-md-3 control-label">Email    (ต้องการข้อมูล)</label>
-                               <div class="col-md-9">
-                                   <input type="text"  id= "email_cus" class="form-control" name="email" placeholder="Email Address" required="true">
-                               </div>
-                           </div>
-
-
-                            <div class="form-group">
-                               <label for="gender" class="col-md-3 control-label">เพศ</label>
-                               <div class="col-md-9">
-                                   <select name="gender" class="form-control" aria-describedby="sizing-addon" required="ture">
-                                       <option value="">เลือกเพศ</option>
-                                       <option value="M">ชาย</option>
-                                       <option value="F">หญิง</option>
-                                   </select>
-                               </div>
-                           </div>
-                           <div class="form-group">
-                               <label for="address" class="col-md-3 control-label">ที่อยู่   (ต้องการข้อมูล) </label>
-                               <div class="col-md-9">
-                                   <textarea  name="address" id="address_cus"  cols="50" rows="5"></textarea>
-                               </div>
-                           </div>
-
-
-                           <div class="form-group">
-                               <label for="phone" class="col-md-3 control-label">เบอร์โทรศัพท์ (ต้องการข้อมูล) </label>
-                               <div class="col-md-9">
-                                   <input type="text" class="form-control"  id="tel_cus" name="phone" placeholder="เบอร์โทรศัพท์" required="ture">
-                               </div>
-                           </div>
-
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">ยกเลิก</button>
-        <button type="submit" class="btn btn-success">เพิ่ม</button>
-      </div>
-         </form>
-
-    </div>
-  </div>
-  </div>
-</div>
-<!--//////////////////////////// END Modal add author ///////////////////////////////////////////////-->
 
 <!--//////////////////////////// Start Modal rec toggle ///////////////////////////////////////////////-->
 <div class="modal fade" id="recommendmodel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -424,9 +351,10 @@ window.onload = function() {
    $("#searchtext").html("ค้าหา :"+getSearchByText(sessionStorage.SearchBy)+" โดยคำว่า :"+sessionStorage.SearchKeyword);
  getTotalPage();
  getajax(sessionStorage.Page,sessionStorage.SearchBy,sessionStorage.SearchKeyword);
- getAuthorName();
 
 };
+
+
 
 function deletebook(serial_no){
   document.getElementById("bookdelete").value = serial_no;
@@ -506,36 +434,6 @@ function getTotalPage(){
 });
 }
 
-function validateCus(e){
-      var filter = /[ก-๙a-zA-Z]/ ;
-      var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-      var fname = document.getElementById("fn_cus").value ;
-      var lname = document.getElementById("ln_cus").value ;
-      var email = document.getElementById("email_cus").value ;
-      var address = document.getElementById("address_cus").value ;
-      var tel = document.getElementById("tel_cus").value ;
-
-      if(fname == "" || !filter.test(fname)){
-        alert("กรุณากรอกชื่อของลูกค้าให้ถูกต้อง");
-        return false ;
-      }else if(lname== "" || !filter.test(lname) ){
-        alert("กรุณากรอกนามสกุลของลูกค้าให้ถูกต้อง");
-        return false ;
-     }else if(email == "" || !re.test(email) ){
-        alert("กรุณากรอก e-mail ของลูกค้าให้ถูกต้อง");
-        return false ;
-     }else if(address == "" ){
-        alert("กรุณากรอกที่อยู่ลูกค้าให้ถูกต้อง");
-        return false ;
-    }else if(tel == "" || filter.test(tel) || tel.length != 10  ){
-        alert("กรุณากรอกเบอร์โทรลูกค้าให้ถูกต้อง");
-        return false ;
-    }else{
-        return confirm("คุณต้องการจะเพิ่มผู้เขียนใหม่หรือไม่ ?");
-      }
-}
-
-
 function validateFormAdd(mode) {
   var price;
   var edition;
@@ -579,81 +477,51 @@ function validateFormAdd(mode) {
 
     return true;
 }
-function changeAuthorName(name){
-    $("#addbook #author").val(name);
-    $("#editbookmodel #author").val(name);
+
+
+function addAuthorField(){
+  var authorfield = "";
+  var count = $("#addbook #author_list_form").children().length;
+  authorfield = '<input type="text" name="author[]" placeholder="ชื่อผู้เขียนลำดับที่ '+count+'" class="form-control"  required>';
+  $("#addbook #author_list_form").append(authorfield);
 
 }
 
-function getAuthorName(){
-
-  $.ajax({
-    url: "request_authorName.php",
-    data: {
-    },
-
-    type: "GET",
-
-    dataType : "JSON",
-
-    success: function( json ) {
-    var author = json;
-    var authorNameform = "";
-      authorNameform += "<label for='author'>ชื่อผู้เขียน</label>";
-      authorNameform += "<select class='form-control' name='author_id' onchange='changeAuthorName(this.options[this.selectedIndex].innerHTML)'>";
-      authorNameform += "<option value='0' disabled selected>กรุณาเลือกผู้เขียน</option>";
-      for(var i=0;i< author.length ;i++){
-        var fullName = author[i]['user_fn']+" "+author[i]['user_ln'];
-        authorNameform += "<option value='"+author[i]['user_id']+"'>"+fullName+"</option>";
-      }
-      authorNameform += "</select>";
-
-    $("#addbook #author_form").html(authorNameform);
-    $("#editbookmodel #author_form").html(authorNameform);
-    },
-
-    error: function( xhr, status, errorThrown ) {
-        alert( "Sorry, there was a problem in request_authorName.php!" );
-        console.log( "Error: " + errorThrown );
-        console.log( "Status: " + status );
-        console.dir( xhr );
-    },
-
-  });
+function removeAuthorField(){
+  var count = $("#addbook #author_list_form").children().length;
+  if(count <= 2)
+    alert("หนังสือต้องมีผู้เขียนอย่างน้อย 1 คน");
+  else{
+    $("#addbook #author_list_form input:last").remove();
+  }
 
 }
 
 function editBook(serial_no){
-
+  $("#editbookmodel #author_list_form input").remove();
   $.ajax({
-    // The URL for the request
     url: "request_book.php",
-    // The data to send (will be converted to a query string)
     data: {
         serial_no: serial_no
     },
-    // Whether this is a POST or GET request
     type: "GET",
-    // The type of data we expect back
     dataType : "JSON",
-
-    // Code to run if the request succeeds;
-    // the response is passed to the function
     success: function( json ) {
     var book = json;
     var img  = new Image();
     $("#editbookmodel input[name='serial_no']").val(book[0]['serial_no']);
     $("#editbookmodel input[name='title']").val(book[0]['title']);
     $("#editbookmodel input[name='edition']").val(book[0]['edition']);
-    $("#editbookmodel select[name='author_id']").val(book[0]['author_id']);
     $("#editbookmodel input[name='price']").val(book[0]['price']);
+    var authorNameList;
+    for(var i = 0; i < book.length;i++){
+       authorNameList +='<input type="text" class="form-control" value="'+book[i]['author_name']+'" name="author['+book[i]['book_author2_id']+']" placeholder="ชื่อผู้เขียนลำดับที่ '+(i+1)+'" required>';
+    }
     img.src = book[0]['image'];
+    $("#editbookmodel #author_list_form").append(authorNameList);
     $("#editbookmodel #Imagedisplay").html(img);
 
     },
-
-    // Code to run if the request fails; the raw request and
-    // status codes are passed to the function
     error: function( xhr, status, errorThrown ) {
         alert( "Sorry, there was a problem in request_book.php!" );
         console.log( "Error: " + errorThrown );
@@ -661,9 +529,7 @@ function editBook(serial_no){
         console.dir( xhr );
     },
   });
-
   $("#editbookmodel").modal(); ///enable edit model
-
 }
 
 function getajax(page , searchBy , keyword){
@@ -734,10 +600,10 @@ function tabledisplay(currentPage){
       table += "onclick='editBook(\""+bookarray[i]['serial_no']+"\")'";
       table +=" >แก้ไข</button></td>";
 
+      table += "<td><img src="+bookarray[i]['image']+"></td>";
       table += "<td>"+bookarray[i]['serial_no']+"</td>";
       table += "<td>"+bookarray[i]['title']+"</td>";
       table += "<td>"+bookarray[i]['edition']+"</td>";
-      table += "<td>"+bookarray[i]['author']+"</td>";
       table += "<td>"+bookarray[i]['price']+"</td>";
 
       if( bookarray[i]['recommend'] == 1){

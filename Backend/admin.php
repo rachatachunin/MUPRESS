@@ -85,6 +85,40 @@
 
     </div>
 
+    <section id="partner">
+          <div class="container">
+            <div class="row">
+              <div class="">
+
+                  <p class="lead text-center" >เป็นการร่วมงานระหว่าง คณะ เทคโนโลยีสาระสนเทศและการสื่อสาร และ สำนักพิมพ์มหาวิทยาลัย มหิดล<br>โดย</p>
+                   <div class="lead" style="margin-left: 160px;">
+                     MU PRESS MANAGER: Assoc. Prof. Dr.Suvaluck Satumanatpan<br>
+                     ADVISOR: Asst. Prof. Dr. Charnyote Pluempitiwiriyawej<br>
+                     MU PRESS OFFICER: Miss Phungnapha Sornprasit<br>
+                     MU STUDENT: Mr. Supanat Chanjam <br>
+                     MU STUDENT: Mr. Rachata Chunin<br>
+                     MU STUDENT: Mr. Anan Boonthavornthavee
+
+
+                   </div>
+              </div>
+              <br><br>
+
+            <div class="col-md-12">
+                <div class="col-md-4 text-center">
+                    <img class="img-responsive" width="100"   src="/MUPRESS_GIT/image/mu.png">
+                </div>
+                <div class="col-md-4 text-center">
+                    <img class="img-responsive " width="200"  src="/MUPRESS_GIT/image/ict.png">
+                </div>
+                <div class="col-md-4 text-center">
+                    <img class="img-responsive " width="200"  src="/MUPRESS_GIT/image/press.png">
+                </div>
+            </div>
+          </div>
+          </div><!--/.container-->
+      </section>
+
 
 
 </div>

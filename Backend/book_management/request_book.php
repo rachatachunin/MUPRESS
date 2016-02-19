@@ -13,7 +13,9 @@ if(!@file_exists("./".$db_cont) ) {
 $serial_no 	= $_GET['serial_no'];
 unset($_GET['serial_no']);
 
-$sql = "SELECT * FROM book WHERE serial_no = '$serial_no'";
+$sql = "SELECT * FROM book 
+INNER JOIN book_author2 ON book.serial_no = book_author2.book_serial_no
+WHERE serial_no = '$serial_no' ORDER BY priority";
 
 $result = mysqli_query($con,$sql);
 $data = array();

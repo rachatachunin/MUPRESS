@@ -13,7 +13,8 @@ unset($_GET['serial_no']);
 
 $sql = "DELETE FROM promotion WHERE promotion_id = '$promotion_id'";
 if (mysqli_query($con, $sql)) {
-    echo "New book created successfully";
+    // echo "New book created successfully";
+    header("Location: $headTo");
 } else {
     echo "Error: " . $sql . "<br>" . mysqli_error($con);
 }

@@ -239,10 +239,6 @@ session_start();
             <label for="promotion_detail">รายละเอียดโปรโมชั่น</label>
             <textarea  class="form-control" name="promotion_detail" placeholder="รายละเอียดโปรโมชั่น"></textarea>
           </div>
-          <div class="form-group">
-            <label for="file">กรุณาเลือกไฟล์</label>
-            <input type="file" id="fileToUpload" name="fileToUpload">
-          </div>
 
         </div>
         <div class="modal-footer">
@@ -372,15 +368,6 @@ session_start();
             <label for="promotion_detail">รายละเอียดโปรโมชั่น</label>
             <textarea  class="form-control" name="promotion_detail" placeholder="รายละเอียดโปรโมชั่น"></textarea>
           </div>
-          <div>
-            <label for="oldimage">รูปภาพปัจจุบัน</label>
-            <div id="Imagedisplay"></div>
-          </div>
-          <div class="form-group">
-            <label for="fileToUpload">กรุณาเลือกไฟล์</label>
-            <input type="file" id="fileToUpload" name="fileToUpload">
-          </div>
-
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">ยกเลิก</button>
@@ -589,7 +576,7 @@ function editPromotion(promotion_id){
         promotion_id: promotion_id
     },
 
-    // Whether this is a POST or GET request
+    // Whether this is a POST 55or GET request
     type: "GET",
     // The type of data we expect back
     dataType : "JSON",
@@ -598,15 +585,12 @@ function editPromotion(promotion_id){
     // the response is passed to the function
     success: function( json ) {
     var promotion = json;
-    var img  = new Image();
     $("#editpromotionmodel input[name='promotion_id']").val(promotion[0]['promotion_id']);
     $("#editpromotionmodel input[name='promotionName']").val(promotion[0]['promotion_name']);
     $("#editpromotionmodel input[name='book_name']").val(promotion[0]['title']);
     $("#editpromotionmodel input[name='book_serial_no']").val(promotion[0]['book_serial_no']);
     $("#editpromotionmodel input[name='discount']").val(promotion[0]['discount']);
     $("#editpromotionmodel textarea[name='promotion_detail']").val(promotion[0]['promotion_detail']);
-      img.src = promotion[0]['image'];
-    $("#editpromotionmodel #Imagedisplay").html(img);
     },
 
     // Code to run if the request fails; the raw request and
@@ -797,7 +781,7 @@ function tabledisplayPromotion(currentPage){
 
       table += "<td>"+list[i]['promotion_name']+"</td>";
       table += "<td>"+list[i]['title']+"</td>";
-      table += "<td>"+list[i]['discount']+"</td>";
+      table += "<td>"+list[i]['discount']+"%</td>";
       table += "<td>"+list[i]['promotion_detail']+"</td>";
 
 
@@ -887,22 +871,21 @@ function getBookName(){
     data: {
     },
     type: "GET",
-
     dataType : "JSON",
-
     success: function( json ) {
     var book = json;
-    var bookNameform = "";
-      bookNameform += "<label for='booktitle'>ชื่อหนังสือ</label>";
-      bookNameform += "<select class='form-control' name='book_serial_no'>";
-      bookNameform += "<option value='0' disabled selected>กรุณาเลือกหนังสือ</option>";
-      for(var i=0;i< book.length ;i++){
-        var fullName = book[i]['title'];
-        bookNameform += "<option value='"+book[i]['serial_no']+"'>"+fullName+"</option>";
+     if(book.length == 0){
+        $("#addPromotionModel .modal-body").html("<h2 style='color:red;'>หนังสือทุกเล่นถูกจัดอยู่ในโปรโมชั่นแล้ว</h2>");
       }
-      bookNameform += "</select>";
+    else{
+      var bookNameform = "";
+        bookNameform += "<label for='booktitle'>ชื่อหนังสือที่ต้องการจัดโปรโมชั่น</label>";
+        for(var i=0;i< book.length ;i++){
+        bookNameform += "<div class='checkbox'><label><input type='checkbox' name='book_serial_no[]' value='"+book[i]['serial_no']+"'>"+book[i]['title']+"</label></div>";
+        }
 
-    $("#addPromotionModel #book_serialno").html(bookNameform);
+     $("#addPromotionModel #book_serialno").html(bookNameform);
+    }
     },
 
     error: function( xhr, status, errorThrown ) {

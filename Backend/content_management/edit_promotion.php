@@ -22,7 +22,7 @@ unset($_POST['book_serial_no']);
 unset($_POST['discount']);
 unset($_POST['promotion_detail']);
 
-$file_path = "promotion_image/";
+/*$file_path = "promotion_image/";
 
 $temp = explode(".", $_FILES["fileToUpload"]["name"]);
 $newfilename = round(microtime(true)) . '.' . end($temp);
@@ -33,11 +33,9 @@ if(move_uploaded_file($_FILES['fileToUpload']['tmp_name'], $file_path)){
 	book_serial_no='$book_serial_no', discount='$discount', 
 	promotion_name='$promotion_name',promotion_detail='$promotion_detail',
 	image='$file_path' WHERE promotion_id = '$promotion_id'";
-}
-else{
+}*/
 	$sql ="UPDATE promotion SET promotion_name='$promotion_name', book_serial_no='$book_serial_no', discount='$discount', promotion_name='$promotion_name',promotion_detail='$promotion_detail' 
 			WHERE promotion_id = '$promotion_id'";
-}
 
 if (mysqli_query($con, $sql)) {
     echo "The promotion is edited successfully";

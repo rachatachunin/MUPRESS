@@ -25,14 +25,21 @@ $sql = "";
 
 
 if($searchBy == "" || $keyword == ""){
-$sql = "SELECT *,CONCAT_WS(' ', user_fn, user_ln) AS author 
+/*$sql = "SELECT *,CONCAT_WS(' ', user_fn, user_ln) AS author 
 FROM book INNER JOIN user ON book.author_id = user.user_id
+ORDER BY serial_no ASC
+LIMIT $startFrom,$rowsPerpage";*/
+$sql = "SELECT * FROM book
 ORDER BY serial_no ASC
 LIMIT $startFrom,$rowsPerpage";
 }
 else{
-$sql = "SELECT *,CONCAT_WS(' ', user_fn, user_ln) AS author 
+/*$sql = "SELECT *,CONCAT_WS(' ', user_fn, user_ln) AS author 
 FROM book INNER JOIN user ON book.author_id = user.user_id
+WHERE $searchBy LIKE '%$keyword%'
+ORDER BY serial_no ASC
+LIMIT $startFrom,$rowsPerpage";*/
+$sql = "SELECT * FROM book
 WHERE $searchBy LIKE '%$keyword%'
 ORDER BY serial_no ASC
 LIMIT $startFrom,$rowsPerpage";
@@ -49,13 +56,8 @@ while($r = mysqli_fetch_assoc($result)) {
     $data[] = $r;
 }
  
-
-
 mysqli_close($con);
 //print_r($data);
 
 echo json_encode($data);
-
-
-
 ?>

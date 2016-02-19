@@ -42,8 +42,12 @@ rmdir($dir);
 	    echo "Error: " . $sql . "<br>" . mysqli_error($con);
 	}
 
-
-
+    $sql2 = "DELETE FROM book_author2 WHERE book_serial_no = '$serialno'";
+    if (mysqli_query($con, $sql2)) {
+        echo "The book_author2 was deleted";
+    } else {
+        echo "Error: " . $sql2 . "<br>" . mysqli_error($con);
+    }
 
 mysqli_close($con);
 

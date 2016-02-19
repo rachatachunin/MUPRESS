@@ -20,7 +20,20 @@ unset($_POST['book_serial_no']);
 unset($_POST['discount']);
 unset($_POST['promotion_detail']);
 
-$file_path = "promotion_image/";
+foreach($book_serial_no as $book) {
+
+	$sql = "INSERT INTO promotion (promotion_name, book_serial_no, discount,promotion_detail)
+	VALUES ('$promotion_name', '$book', '$discount','$promotion_detail')";
+		if (mysqli_query($con, $sql)) {
+			echo "New promotion created successfully";
+		} else {
+			echo "Error: " . $sql . "<br>" . mysqli_error($con);
+		}
+}
+mysqli_close($con);
+header("Location: $headTo");
+
+/*$file_path = "promotion_image/";
 
 $temp = explode(".", $_FILES["fileToUpload"]["name"]);
 $newfilename = round(microtime(true)) . '.' . end($temp);
@@ -30,20 +43,7 @@ if(move_uploaded_file($_FILES['fileToUpload']['tmp_name'], $file_path)){
 	$sql = "INSERT INTO promotion (promotion_name, book_serial_no, discount,promotion_detail,image)
 	VALUES ('$promotion_name', '$book_serial_no', '$discount','$promotion_detail','$file_path')";
 
-}
-else{
-    $sql = "INSERT INTO promotion (promotion_name, book_serial_no, discount,promotion_detail)
-	VALUES ('$promotion_name', '$book_serial_no', '$discount','$promotion_detail')";
-}
+}*/
 
-
-if (mysqli_query($con, $sql)) {
-		echo "New promotion created successfully";
-	} else {
-		echo "Error: " . $sql . "<br>" . mysqli_error($con);
-	}
-	mysqli_close($con);
-
-header("Location: $headTo");
 
 ?>
