@@ -74,7 +74,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
       <?php
       while($row1 = mysqli_fetch_array($result)){
        echo '<li class = "list-group-item" style="height:250px;"><div class="col-xs-12">' ;
-       echo '<div class="col-xs-4 text-center"><img src="MUPRESS_GIT/Backend/content_management/'.$row1['image'].'" onError="this.onerror=null;this.src=\'/MUPRESS_GIT/image/no_image.png\'" class="img-rounded" style="height:230px;"></div>';
+       echo '<div class="col-xs-4 text-center"><img src="/MUPRESS_GIT/Backend/book_management/'.$row1['image'].'" onError="this.onerror=null;this.src=\'/MUPRESS_GIT/image/no_image.png\'" class="img-rounded" style="height:230px;"></div>';
        echo "ชื่อหนังสือ:  " . $row1['title'] . '<br>' .
             "ISBN:  " . $row1['book_serial_no'] .'<br>'.
             "ส่วนลด:  ". $row1['discount'] . " %" . '<br>' .
@@ -98,7 +98,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
       <?php
       while($row2 = mysqli_fetch_array($resultNew)){
        echo '<li class = "list-group-item" style="height:250px;"><div class="col-xs-12">' ;
-       echo '<div class="col-xs-4 text-center"><img src="MUPRESS_GIT/Backend/content_management/'.$row2['image'].'" onError="this.onerror=null;this.src=\'/MUPRESS_GIT/image/no_image.png\'" class="img-rounded" style="height:230px;"></div>';
+       echo '<div class="col-xs-4 text-center"><img src="/MUPRESS_GIT/Backend/book_management/'.$row2['image'].'" onError="this.onerror=null;this.src=\'/MUPRESS_GIT/image/no_image.png\'" class="img-rounded" style="height:230px;"></div>';
        echo "ชื่อหนังสือ:  " . $row2['title'] . '<br>' .
             "ISBN:  " . $row2['book_serial_no'] .'<br>'.
             "ส่วนลด:  ". $row2['discount'] . " %" . '<br>' .
