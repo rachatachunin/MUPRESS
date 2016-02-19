@@ -13,8 +13,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <?php
         include "headFrontEnd.php";
         include "dbconnection.php";
-        // get promotion
-        $sql = "SELECT b.title,b.author,p.promotion_name,p.promotion_detail, p.book_serial_no,p.discount,p.image FROM promotion as p LEFT JOIN book as b ON p.book_serial_no = b.serial_no ORDER BY p.promotion_id DESC ";
+        // get new book promotion
+        $sqlNew = "SELECT b.title,p.promotion_name,p.promotion_detail, p.book_serial_no,p.discount,b.image FROM promotion as p
+        LEFT JOIN book as b ON p.book_serial_no = b.serial_no WHERE p.discount = 30 ORDER BY p.promotion_id DESC ";
+        $resultNew = mysqli_query($con,$sqlNew);
+
+        // get old book promotion
+        $sql = "SELECT b.title,p.promotion_name,p.promotion_detail, p.book_serial_no,p.discount,b.image FROM promotion as p
+        LEFT JOIN book as b ON p.book_serial_no = b.serial_no WHERE p.discount > 30 ORDER BY p.promotion_id DESC ";
         $result = mysqli_query($con,$sql);
 
     ?>
@@ -58,9 +64,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
   </div><br><br>
   <!-- end news -->
 
-  <!-- start promotion list -->
+  <!-- start promotion old book list  -->
   <div class="contact-top heading">
-        <h3>รายการโปรโมชั่น</h3>
+        <h3>รายการโปรโมชั่น ลด 40 - 50 %</h3>
   </div><br>
   <div class="container">
     <div style = "max-height: 1100px;  overflow: auto ;">
@@ -70,7 +76,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
        echo '<li class = "list-group-item" style="height:250px;"><div class="col-xs-12">' ;
        echo '<div class="col-xs-4 text-center"><img src="MUPRESS_GIT/Backend/content_management/'.$row1['image'].'" onError="this.onerror=null;this.src=\'/MUPRESS_GIT/image/no_image.png\'" class="img-rounded" style="height:230px;"></div>';
        echo "ชื่อหนังสือ:  " . $row1['title'] . '<br>' .
-            "ผู้แต่ง:  " . $row1['author'] .'<br>'.
             "ISBN:  " . $row1['book_serial_no'] .'<br>'.
             "ส่วนลด:  ". $row1['discount'] . " %" . '<br>' .
             "รายละเอียด:  ". $row1['promotion_detail'];
@@ -81,7 +86,32 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
  </div>
   </div>
 
-  <!-- end promotion -->
+  <!-- end promotion old book-->
+
+  <!-- start promotion new book list  -->
+  <div class="contact-top heading">
+        <h3>รายการโปรโมชั่น ลด 30%</h3>
+  </div><br>
+  <div class="container">
+    <div style = "max-height: 1100px;  overflow: auto ;">
+    <ul class="list-group">
+      <?php
+      while($row2 = mysqli_fetch_array($resultNew)){
+       echo '<li class = "list-group-item" style="height:250px;"><div class="col-xs-12">' ;
+       echo '<div class="col-xs-4 text-center"><img src="MUPRESS_GIT/Backend/content_management/'.$row2['image'].'" onError="this.onerror=null;this.src=\'/MUPRESS_GIT/image/no_image.png\'" class="img-rounded" style="height:230px;"></div>';
+       echo "ชื่อหนังสือ:  " . $row2['title'] . '<br>' .
+            "ISBN:  " . $row2['book_serial_no'] .'<br>'.
+            "ส่วนลด:  ". $row2['discount'] . " %" . '<br>' .
+            "รายละเอียด:  ". $row2['promotion_detail'];
+       echo '</div></li>';
+           }
+      ?>
+   </ul>
+ </div>
+  </div>
+
+  <!-- end promotion new book-->
+
 
   <!--footer-starts-->
   <?php include "footer.php" ; ?>

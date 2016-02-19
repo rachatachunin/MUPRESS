@@ -109,7 +109,7 @@
       if(confirm("ยืนยันที่จะลบหนังสือหรือไม่")){
       window.location.href= path ;
     }else{
-      false ; 
+      false ;
     }
     }
 
@@ -119,6 +119,10 @@
   }
   function deleteOrganization(str){
     var path = "deleteOrganization.php?q=" + str  ;
+    window.location.href= path ;
+  }
+  function deleteAuthor(str){
+    var path = "deleteAuthor.php?q=" + str  ;
     window.location.href= path ;
   }
 

@@ -31,7 +31,7 @@ echo '
                 </ul>
             </div>
 
-          <!-- modal register & login -->
+          <!-- modal edit author -->
                 <div class="modal-body">
                     <div class="tab-content">
                         <div id="A" class="tab-pane fade in active">
@@ -101,7 +101,7 @@ echo '
                             </div>
                              <div class="form-group text-center">
                                       <button type="submit" class="btn btn-warning">แก้ไข</button>
-                                      <button type="button" class="btn btn-danger" onclick ="deleteCustomer('.$row['user_id'].') ;">ลบ</button>
+                                      <button type="button" class="btn btn-danger" onclick ="deleteAuthor('.$row['user_id'].') ;">ลบ</button>
                              </div>
                             </form>
 
