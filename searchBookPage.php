@@ -2,7 +2,6 @@
 ob_start();
 session_start();
 $stringSearch = $_POST['searchStr'];
-unset($_POST['searchStr']);
 ?>
 
 <!DOCTYPE html>

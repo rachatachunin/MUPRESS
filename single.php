@@ -2,6 +2,7 @@
 ob_start();
 session_start();
 $book_id = $_GET['id'];
+
  ?>
  <!DOCTYPE html>
  <html>
@@ -15,12 +16,18 @@ $book_id = $_GET['id'];
             include "headFrontEnd.php";
             include "dbconnection.php";
 
-            $sqlgetBookSingle = "SELECT b.book_id, b.title , b.image, b.price, discount, b.author, b.serial_no, b.edition, cs.current_amount, b.content_preview FROM book as b LEFT JOIN current_stock as cs on b.book_id = cs.book_id
-                                 LEFT JOIN promotion as p  ON b.serial_no = p.book_serial_no WHERE b.book_id ='".$book_id."' ";
-            // var_dump($sqlgetBookSingle);
+            $sqlgetBookSingle = "SELECT b.book_id, b.title , b.image, b.price, p.discount, b.serial_no, b.edition, cs.current_amount, b.content_preview FROM book as b
+            LEFT JOIN current_stock as cs on b.book_id = cs.book_id
+            LEFT JOIN promotion as p  ON b.serial_no = p.book_serial_no WHERE b.book_id ='".$book_id."' ";
+            $sqlgetAuthor = "SELECT author_name FROM book_author2 WHERE book_serial_no IN
+            ( SELECT serial_no FROM book WHERE book_id = '$book_id' ) ORDER BY priority ASC ";
+
 
             $result = mysqli_query($con,$sqlgetBookSingle);
             $row = mysqli_fetch_array($result);
+
+            $resultAuthor = mysqli_query($con,$sqlgetAuthor);
+
         ?>
     <script>$(document).ready(function(){$(".memenu").memenu();});</script>
     <script type="text/javascript">
@@ -102,8 +109,15 @@ $book_id = $_GET['id'];
 
 							<div class="available">
 								<ul>
-									<li>ผู้เขียน
-										<span style="margin-left:16%;"><?php echo $row['author']; ?></span>
+									<li>
+                    ผู้เขียน
+                      <div style="margin-left:30%; ">
+                          <?php
+                            while($rowAuthors = mysqli_fetch_array($resultAuthor) ){ echo $rowAuthors['author_name'] ;   ?>
+                            <br>
+                          <?php  } ?>
+                      </div>
+                  
                 </li>
 								<li>ISBN
                     	<span style="margin-left:20%;"><?php echo $row['serial_no']; ?></span>

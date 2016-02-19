@@ -3,7 +3,7 @@
   <?php
     include "../../dbconnection.php";
     include "../../head.php";
-    $sql_getPaymentEvidence = "SELECT * FROM order_book LEFT JOIN payment_evidence ON payment_evidence.order_id = order_book.order_id
+    $sql_getPaymentEvidence = "SELECT * FROM payment_evidence LEFT JOIN order_book ON payment_evidence.order_id = order_book.order_id
                                WHERE order_book.payment_status = 0 ORDER BY pay_date ASC  ";
     $result = mysqli_query($con,$sql_getPaymentEvidence);
 
